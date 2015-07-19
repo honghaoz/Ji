@@ -97,6 +97,95 @@ func dictionaryForNode(currentNode: xmlNodePtr, inout parentResult: [String: Any
 	return resultForNode
 }
 
+func performXPathQuery(doc: xmlDocPtr, query: String) -> [[String: Any]?]? {
+	var xpathCtx: xmlXPathContextPtr = nil
+	var xpathObj: xmlXPathObjectPtr = nil
+	
+	/* Create xpath evaluation context */
+	xpathCtx = xmlXPathNewContext(doc)
+	if xpathCtx == nil {
+		println("Unable to create XPath context.")
+		return nil;
+	}
+	
+	/* Evaluate xpath expression */
+	xpathObj = xmlXPathEvalExpression(UnsafePointer<xmlChar>(query.cStringUsingEncoding(NSUTF8StringEncoding)!), xpathCtx)
+	if xpathObj == nil {
+		println("Unable to evaluate XPath.")
+		xmlXPathFreeContext(xpathCtx)
+		return nil;
+	}
+	
+	let nodes = xpathObj.memory.nodesetval
+	if nodes == nil {
+		println("Nodes was nil.")
+		xmlXPathFreeObject(xpathObj)
+		xmlXPathFreeContext(xpathCtx)
+		return nil;
+	}
+	
+	var resultNodes = [[String: Any]?]()
+	var Nil: [String: Any]? = nil
+	for i in 0 ..< Int(nodes.memory.nodeNr) {
+		if let nodeDictionary = dictionaryForNode(nodes.memory.nodeTab[i], &Nil, false) {
+			resultNodes.append(nodeDictionary)
+		}
+	}
+	
+	/* Cleanup */
+	xmlXPathFreeObject(xpathObj)
+	xmlXPathFreeContext(xpathCtx)
+	
+	return resultNodes
+}
+
+func performHTMLXPathQuery(document: NSData, query: String) -> [[String: Any]?]? {
+	return performHTMLXPathQueryWithEncoding(document, query, nil)
+}
+
+func performHTMLXPathQueryWithEncoding(document: NSData, query: String, encoding: String?) -> [[String: Any]?]? {
+	/* Load XML document */
+	var encoded: [CChar]? = nil
+	if let encoding = encoding {
+		encoded = encoding.cStringUsingEncoding(NSUTF8StringEncoding)
+	}
+	
+	var doc: xmlDocPtr = htmlReadMemory(UnsafePointer<CChar>(document.bytes), CInt(document.length), UnsafePointer<CChar>([""]), UnsafePointer<CChar>(encoded!), CInt(HTML_PARSE_NOWARNING.value | HTML_PARSE_NOERROR.value))
+	if doc == nil {
+		NSLog("Unable to parse.")
+		return nil
+	}
+	
+	let result = performXPathQuery(doc, query)
+	xmlFreeDoc(doc)
+	
+	return result
+}
+
+func performXMLXPathQuery(document: NSData, query: String) -> [[String: Any]?]? {
+	return performXMLXPathQueryWithEncoding(document, query, nil)
+}
+
+func performXMLXPathQueryWithEncoding(document: NSData, query: String, encoding: String?) -> [[String: Any]?]? {
+	/* Load XML document */
+	var encoded: [CChar]? = nil
+	if let encoding = encoding {
+		encoded = encoding.cStringUsingEncoding(NSUTF8StringEncoding)
+	}
+	
+	var doc: xmlDocPtr = htmlReadMemory(UnsafePointer<CChar>(document.bytes), CInt(document.length), UnsafePointer<CChar>([""]), UnsafePointer<CChar>(encoded!), CInt(XML_PARSE_RECOVER.value))
+	
+	if doc == nil {
+		NSLog("Unable to parse.")
+		return nil
+	}
+	
+	let result = performXPathQuery(doc, query)
+	xmlFreeDoc(doc)
+	
+	return result
+}
+
 // MARK: - Helpers
 extension String {
 	static func fromXmlChar(char: UnsafePointer<xmlChar>) -> String? {
