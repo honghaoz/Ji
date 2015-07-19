@@ -15,7 +15,7 @@
 		E4F3410F1B5B420300032A3B /* JiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3410E1B5B420300032A3B /* JiTests.swift */; };
 		E4F341191B5B44F300032A3B /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F341181B5B44F300032A3B /* libxml2.2.dylib */; };
 		E4F3411B1B5B468600032A3B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F3411A1B5B468600032A3B /* libxml2.dylib */; };
-		E4F341201B5B49BE00032A3B /* libXMLDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3411F1B5B49BE00032A3B /* libXMLDoc.swift */; };
+		E4F341201B5B49BE00032A3B /* XPathQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3411F1B5B49BE00032A3B /* XPathQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,7 @@
 		E4F341181B5B44F300032A3B /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		E4F3411A1B5B468600032A3B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		E4F3411C1B5B46F000032A3B /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		E4F3411F1B5B49BE00032A3B /* libXMLDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = libXMLDoc.swift; sourceTree = "<group>"; };
+		E4F3411F1B5B49BE00032A3B /* XPathQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPathQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E4F3411C1B5B46F000032A3B /* Bridging-Header.h */,
-				E4F3411F1B5B49BE00032A3B /* libXMLDoc.swift */,
+				E4F3411F1B5B49BE00032A3B /* XPathQuery.swift */,
 			);
 			name = Ji;
 			sourceTree = "<group>";
@@ -242,7 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4F341201B5B49BE00032A3B /* libXMLDoc.swift in Sources */,
+				E4F341201B5B49BE00032A3B /* XPathQuery.swift in Sources */,
 				E4F340FB1B5B420300032A3B /* ViewController.swift in Sources */,
 				E4F340F91B5B420300032A3B /* AppDelegate.swift in Sources */,
 			);
@@ -456,6 +456,7 @@
 				E4F341141B5B420300032A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4F341151B5B420300032A3B /* Build configuration list for PBXNativeTarget "JiTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +465,7 @@
 				E4F341171B5B420300032A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
