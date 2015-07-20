@@ -150,7 +150,7 @@ func performHTMLXPathQueryWithEncoding(document: NSData, query: String, encoding
 		encoded = encoding.cStringUsingEncoding(NSUTF8StringEncoding)
 	}
 	
-	var doc: xmlDocPtr = htmlReadMemory(UnsafePointer<CChar>(document.bytes), CInt(document.length), UnsafePointer<CChar>([""]), UnsafePointer<CChar>(encoded!), CInt(HTML_PARSE_NOWARNING.value | HTML_PARSE_NOERROR.value))
+	var doc: xmlDocPtr = htmlReadMemory(UnsafePointer<CChar>(document.bytes), CInt(document.length), UnsafePointer<CChar>([""]), (encoded == nil) ? nil : UnsafePointer<CChar>(encoded!), CInt(HTML_PARSE_NOWARNING.value | HTML_PARSE_NOERROR.value))
 	if doc == nil {
 		NSLog("Unable to parse.")
 		return nil

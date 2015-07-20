@@ -34,7 +34,7 @@ public class JiElement {
 	public var children: [JiElement] {
 		var children = [JiElement]()
 		for child in node![JiNodeChildrenKey] as! [[String: Any]?] {
-			let element = JiElement.elementWithNode(child, isXML: isXML, withEncoding: encoding!)
+			let element = JiElement.elementWithNode(child, isXML: isXML, withEncoding: encoding)
 			element.parent = self
 			children.append(element)
 		}
@@ -51,13 +51,13 @@ public class JiElement {
 	
 	var description: String { return node!.description }
 	
-	init(node: [String: Any]?, isXML: Bool, withEncoding encoding: String) {
+	init(node: [String: Any]?, isXML: Bool, withEncoding encoding: String?) {
 		self.isXML = isXML
 		self.node = node
 		self.encoding = encoding
 	}
 	
-	public class func elementWithNode(node: [String: Any]?, isXML: Bool, withEncoding encoding: String) -> JiElement {
+	public class func elementWithNode(node: [String: Any]?, isXML: Bool, withEncoding encoding: String?) -> JiElement {
 		return self.init(node: node, isXML: isXML, withEncoding: encoding)
 	}
 	
@@ -156,7 +156,7 @@ public class JiElement {
 		var elements = [JiElement]()
 		if let detailNodes = detailNodes {
 			for newNode in detailNodes {
-				elements.append(JiElement.elementWithNode(newNode, isXML: isXML, withEncoding: encoding!))
+				elements.append(JiElement.elementWithNode(newNode, isXML: isXML, withEncoding: encoding))
 			}
 		}
 		
