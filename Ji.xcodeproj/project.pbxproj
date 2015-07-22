@@ -11,6 +11,8 @@
 		E4168BD21B5D352800D4EFDA /* feed.rss in Resources */ = {isa = PBXBuildFile; fileRef = E4168BD01B5D352800D4EFDA /* feed.rss */; };
 		E4168BD31B5D352800D4EFDA /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E4168BD11B5D352800D4EFDA /* index.html */; };
 		E4168BD51B5D355200D4EFDA /* JiHTMLTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4168BD41B5D355200D4EFDA /* JiHTMLTest.swift */; };
+		E4168BD91B5D997200D4EFDA /* JiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4168BD81B5D997200D4EFDA /* JiNode.swift */; };
+		E457CE851B5E93D20064F26B /* JiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457CE841B5E93D20064F26B /* JiDocument.swift */; };
 		E4AC60091B5C5FB6002B8E96 /* JiElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC60081B5C5FB6002B8E96 /* JiElement.swift */; };
 		E4F340F91B5B420300032A3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F340F81B5B420300032A3B /* AppDelegate.swift */; };
 		E4F340FB1B5B420300032A3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F340FA1B5B420300032A3B /* ViewController.swift */; };
@@ -38,6 +40,8 @@
 		E4168BD01B5D352800D4EFDA /* feed.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = feed.rss; sourceTree = "<group>"; };
 		E4168BD11B5D352800D4EFDA /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		E4168BD41B5D355200D4EFDA /* JiHTMLTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiHTMLTest.swift; sourceTree = "<group>"; };
+		E4168BD81B5D997200D4EFDA /* JiNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiNode.swift; sourceTree = "<group>"; };
+		E457CE841B5E93D20064F26B /* JiDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiDocument.swift; sourceTree = "<group>"; };
 		E4AC60081B5C5FB6002B8E96 /* JiElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiElement.swift; sourceTree = "<group>"; };
 		E4F340F31B5B420300032A3B /* Ji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F340F71B5B420300032A3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,7 +55,7 @@
 		E4F3410E1B5B420300032A3B /* JiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JiTests.swift; sourceTree = "<group>"; };
 		E4F341181B5B44F300032A3B /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		E4F3411A1B5B468600032A3B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		E4F3411C1B5B46F000032A3B /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		E4F3411C1B5B46F000032A3B /* Ji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ji-Bridging-Header.h"; sourceTree = "<group>"; };
 		E4F3411F1B5B49BE00032A3B /* XPathQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPathQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,9 +161,11 @@
 		E4F3411E1B5B499B00032A3B /* Ji */ = {
 			isa = PBXGroup;
 			children = (
-				E4F3411C1B5B46F000032A3B /* Bridging-Header.h */,
+				E4F3411C1B5B46F000032A3B /* Ji-Bridging-Header.h */,
 				E4F3411F1B5B49BE00032A3B /* XPathQuery.swift */,
 				E4AC60081B5C5FB6002B8E96 /* JiElement.swift */,
+				E4168BD81B5D997200D4EFDA /* JiNode.swift */,
+				E457CE841B5E93D20064F26B /* JiDocument.swift */,
 				E4168BCD1B5D314A00D4EFDA /* Ji.swift */,
 			);
 			name = Ji;
@@ -271,6 +277,8 @@
 				E4F341201B5B49BE00032A3B /* XPathQuery.swift in Sources */,
 				E4F340FB1B5B420300032A3B /* ViewController.swift in Sources */,
 				E4168BCE1B5D314A00D4EFDA /* Ji.swift in Sources */,
+				E457CE851B5E93D20064F26B /* JiDocument.swift in Sources */,
+				E4168BD91B5D997200D4EFDA /* JiNode.swift in Sources */,
 				E4F340F91B5B420300032A3B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,7 +416,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Ji-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -426,7 +434,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Ji-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -457,7 +465,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Ji-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ji.app/Ji";
 			};
 			name = Debug;
@@ -484,7 +492,7 @@
 					"-lxml2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ji/Ji-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ji.app/Ji";
 			};
 			name = Release;
