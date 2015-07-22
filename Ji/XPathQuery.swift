@@ -186,13 +186,3 @@ func performXMLXPathQueryWithEncoding(document: NSData, query: String, encoding:
 	return result
 }
 
-// MARK: - Helpers
-extension String {
-	static func fromXmlChar(char: UnsafePointer<xmlChar>) -> String? {
-		if char != nil {
-			return String.fromCString(UnsafePointer<CChar>(char))
-		} else {
-			return nil
-		}
-	}
-}

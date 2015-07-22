@@ -12,15 +12,24 @@ public class JiDocument {
 	public let xmlDoc: xmlDocPtr
 	
 	private var _rootNode: JiNode?
-	public var rootNode: JiNode? {
-		return nil
-	}
 	
-	public init(xmlURL: NSURL) {
+	public init?(xmlURL: NSURL) {
 		xmlDoc = xmlParseFile(xmlURL.fileSystemRepresentation)
+		if xmlDoc == nil {
+			return nil
+		}
 	}
 	
 	deinit {
 		xmlFreeDoc(xmlDoc)
 	}
+	
+	public lazy var rootNode: JiNode? = {
+		let rootNodePointer = xmlDocGetRootElement(self.xmlDoc)
+		if rootNodePointer == nil {
+			return nil
+		} else {
+			return JiNode(xmlNode: rootNodePointer, jiDocument: self)
+		}
+	}()
 }

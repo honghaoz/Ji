@@ -1,5 +1,5 @@
 //
-//  JiHTMLTest.swift
+//  JiHTMLTests.swift
 //  Ji
 //
 //  Created by Honghao Zhang on 2015-07-20.
@@ -10,12 +10,12 @@ import Foundation
 import XCTest
 import Ji
 
-class JiHTMLText: XCTestCase {
+class JiHTMLTests: XCTestCase {
 	var doc: Ji!
 	
 	override func setUp() {
 		super.setUp()
-		let testBundle = NSBundle(forClass: JiHTMLText.self)
+		let testBundle = NSBundle(forClass: JiHTMLTests.self)
 		let testFileURL = testBundle.URLForResource("index", withExtension: "html", subdirectory: nil)
 		let data = NSData(contentsOfURL: testFileURL!)
 		doc = Ji(HTMLData: data!)
