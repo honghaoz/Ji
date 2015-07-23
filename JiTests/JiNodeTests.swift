@@ -33,7 +33,7 @@ class JiNodeTests: JiTests {
 	// TODO: Test keep text node
 	
 	func testChildrenCount() {
-		XCTAssertEqual(rootNode.children.count, 7)
+		XCTAssertEqual(rootNode.children.count, 9)
 	}
 	
 	func testChildrenAllNameIsMatched() {
@@ -45,6 +45,10 @@ class JiNodeTests: JiTests {
 			// Make sure empty node is not ignored
 			if i == 3 {
 				XCTAssertEqual(rootNode.children[i].name!, "empty_food")
+				continue
+			}
+			if i == 4 || i == 5 {
+				XCTAssertEqual(rootNode.children[i].name!, "comment")
 				continue
 			}
 			XCTAssertEqual(rootNode.children[i].name!, "food")
@@ -114,7 +118,7 @@ class JiNodeTests: JiTests {
 	func testLastThirdPreviousSibling() {
 		let last = rootNode.lastChild!
 		XCTAssertNotNil(last.previousSibling?.previousSibling?.previousSibling)
-		XCTAssertEqual(last.previousSibling!.previousSibling!.previousSibling!.name!, "empty_food")
+		XCTAssertEqual(last.previousSibling!.previousSibling!.previousSibling!.name!, "comment")
 	}
 	
 	func testRawContent() {
@@ -125,6 +129,9 @@ class JiNodeTests: JiTests {
 		let not_foodNode = rootNode.children[2]
 		expectedString = "\n\t\tfoo\n\t\tfoo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar\n\t\t  spaces before and tabs after\t\t\n\t"
 		XCTAssertEqual(not_foodNode.rawContent!, expectedString)
+		
+		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
+		XCTAssertEqual(commentNode.rawContent!, " Dummy Comments 1 ")
 	}
 	
 	func testContent() {
@@ -135,6 +142,9 @@ class JiNodeTests: JiTests {
 		let not_foodNode = rootNode.children[2]
 		expectedString = "foo\n\t\tfoo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar\n\t\t  spaces before and tabs after"
 		XCTAssertEqual(not_foodNode.content!, expectedString)
+		
+		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
+		XCTAssertEqual(commentNode.content!, "Dummy Comments 1")
 	}
 	
 	func testRawValue() {
@@ -145,6 +155,9 @@ class JiNodeTests: JiTests {
 		node = rootNode.children[2].children[1]
 		expectedString = "foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar"
 		XCTAssertEqual(node.rawValue!, expectedString)
+		
+		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
+		XCTAssertNil(commentNode.rawValue)
 	}
 	
 	func testValue() {
@@ -155,5 +168,8 @@ class JiNodeTests: JiTests {
 		node = rootNode.children[2].children[1]
 		expectedString = "foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar"
 		XCTAssertEqual(node.value!, expectedString)
+		
+		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
+		XCTAssertNil(commentNode.value)
 	}
 }

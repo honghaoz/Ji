@@ -17,6 +17,8 @@
 		E457CE851B5E93D20064F26B /* JiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457CE841B5E93D20064F26B /* JiDocument.swift */; };
 		E478AF081B6007DF004C6C41 /* sample-menu.xml in Resources */ = {isa = PBXBuildFile; fileRef = E478AF071B6007DF004C6C41 /* sample-menu.xml */; };
 		E4AC60091B5C5FB6002B8E96 /* JiElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC60081B5C5FB6002B8E96 /* JiElement.swift */; };
+		E4E419D81B609B5800EC21D2 /* JiDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E419D71B609B5800EC21D2 /* JiDocumentTests.swift */; };
+		E4E419DA1B609C4E00EC21D2 /* sample-empty.xml in Resources */ = {isa = PBXBuildFile; fileRef = E4E419D91B609C4E00EC21D2 /* sample-empty.xml */; };
 		E4F340F91B5B420300032A3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F340F81B5B420300032A3B /* AppDelegate.swift */; };
 		E4F340FB1B5B420300032A3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F340FA1B5B420300032A3B /* ViewController.swift */; };
 		E4F340FE1B5B420300032A3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F340FC1B5B420300032A3B /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 		E457CE841B5E93D20064F26B /* JiDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiDocument.swift; sourceTree = "<group>"; };
 		E478AF071B6007DF004C6C41 /* sample-menu.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "sample-menu.xml"; sourceTree = "<group>"; };
 		E4AC60081B5C5FB6002B8E96 /* JiElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiElement.swift; sourceTree = "<group>"; };
+		E4E419D71B609B5800EC21D2 /* JiDocumentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiDocumentTests.swift; sourceTree = "<group>"; };
+		E4E419D91B609C4E00EC21D2 /* sample-empty.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "sample-empty.xml"; sourceTree = "<group>"; };
 		E4F340F31B5B420300032A3B /* Ji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ji.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F340F71B5B420300032A3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4F340F81B5B420300032A3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				E478AF071B6007DF004C6C41 /* sample-menu.xml */,
+				E4E419D91B609C4E00EC21D2 /* sample-empty.xml */,
 				E4168BD01B5D352800D4EFDA /* feed.rss */,
 				E4168BD11B5D352800D4EFDA /* index.html */,
 			);
@@ -142,6 +147,7 @@
 				E4168BCF1B5D352800D4EFDA /* TestData */,
 				E4F3410E1B5B420300032A3B /* JiTests.swift */,
 				E4015AA21B5F51560054CC6A /* JiNodeTests.swift */,
+				E4E419D71B609B5800EC21D2 /* JiDocumentTests.swift */,
 				E4168BD41B5D355200D4EFDA /* JiHTMLTests.swift */,
 				E4F3410C1B5B420300032A3B /* Supporting Files */,
 			);
@@ -271,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4168BD21B5D352800D4EFDA /* feed.rss in Resources */,
+				E4E419DA1B609C4E00EC21D2 /* sample-empty.xml in Resources */,
 				E4168BD31B5D352800D4EFDA /* index.html in Resources */,
 				E478AF081B6007DF004C6C41 /* sample-menu.xml in Resources */,
 			);
@@ -299,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4F3410F1B5B420300032A3B /* JiTests.swift in Sources */,
+				E4E419D81B609B5800EC21D2 /* JiDocumentTests.swift in Sources */,
 				E4168BD51B5D355200D4EFDA /* JiHTMLTests.swift in Sources */,
 				E4015AA31B5F51560054CC6A /* JiNodeTests.swift in Sources */,
 			);
