@@ -12,6 +12,8 @@ public class JiNode {
 	public var document: JiDocument
 	public let xmlNode: xmlNodePtr
 	
+	private var keepTextNode: Bool = false
+	
 	init(xmlNode: xmlNodePtr, jiDocument: JiDocument) {
 		self.xmlNode = xmlNode
 		document = jiDocument
@@ -28,43 +30,117 @@ public class JiNode {
 			childNodePointer != nil;
 			childNodePointer = childNodePointer.memory.next
 		{
-//			if xmlNodeIsText(childNodePointer) == 0 {
+			if self.keepTextNode || xmlNodeIsText(childNodePointer) == 0 {
 				let childNode = JiNode(xmlNode: childNodePointer, jiDocument: self.document)
 				resultChildren.append(childNode)
-//			}
+			}
 		}
 		
 		return resultChildren
 	}()
 	
+	public lazy var firstChild: JiNode? = {
+		var first = self.xmlNode.memory.children
+		if first == nil { return nil }
+		if self.keepTextNode {
+			return JiNode(xmlNode: first, jiDocument: self.document)
+		} else {
+			while xmlNodeIsText(first) != 0 {
+				first = first.memory.next
+				if first == nil { return nil }
+			}
+			return JiNode(xmlNode: first, jiDocument: self.document)
+		}
+	}()
+	
 	public lazy var lastChild: JiNode? = {
-		self.xmlNode.memory.last == nil ? nil : JiNode(xmlNode: self.xmlNode.memory.last, jiDocument: self.document)
+		var last = self.xmlNode.memory.last
+		if last == nil { return nil }
+		if self.keepTextNode {
+			return JiNode(xmlNode: last, jiDocument: self.document)
+		} else {
+			while xmlNodeIsText(last) != 0 {
+				last = last.memory.prev
+				if last == nil { return nil }
+			}
+			return JiNode(xmlNode: last, jiDocument: self.document)
+		}
 	}()
 	
 	public lazy var parent: JiNode? = {
-		self.xmlNode.memory.parent == nil ? nil : JiNode(xmlNode: self.xmlNode.memory.parent, jiDocument: self.document)
-	}()
-	
-	public lazy var nextSibling: JiNode? = {
-		self.xmlNode.memory.next == nil ? nil : JiNode(xmlNode: self.xmlNode.memory.next, jiDocument: self.document)
-	}()
-	
-	public lazy var previousSibling: JiNode? = {
-		self.xmlNode.memory.next == nil ? nil : JiNode(xmlNode: self.xmlNode.memory.prev, jiDocument: self.document)
-	}()
-	
-	public lazy var content: String? = {
-		String.fromXmlChar(self.xmlNode.memory.content)
-	}()
-	
-	public lazy var value: String? = {
-		let textValue = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
-		if (textValue != nil) {
-			let nodeString = String.fromXmlChar(textValue)
-			free(textValue)
-			return nodeString
+		if self.xmlNode.memory.parent == nil { return nil }
+		// Only return JiNode id the type is XML_ELEMENT_NODE
+		// rootNode.parent can be a node with type XML_DOCUMENT_NODE
+		else if self.xmlNode.memory.parent.memory.type.value == XML_ELEMENT_NODE.value {
+			return JiNode(xmlNode: self.xmlNode.memory.parent, jiDocument: self.document)
 		} else {
 			return nil
 		}
 	}()
+	
+	public lazy var nextSibling: JiNode? = {
+		var next = self.xmlNode.memory.next
+		if next == nil { return nil }
+		if self.keepTextNode {
+			return JiNode(xmlNode: next, jiDocument: self.document)
+		} else {
+			while xmlNodeIsText(next) != 0 {
+				next = next.memory.next
+				if next == nil { return nil }
+			}
+			return JiNode(xmlNode: next, jiDocument: self.document)
+		}
+	}()
+	
+	public lazy var previousSibling: JiNode? = {
+		var prev = self.xmlNode.memory.prev
+		if prev == nil { return nil }
+		if self.keepTextNode {
+			return JiNode(xmlNode: prev, jiDocument: self.document)
+		} else {
+			while xmlNodeIsText(prev) != 0 {
+				prev = prev.memory.prev
+				if prev == nil { return nil }
+			}
+			return JiNode(xmlNode: prev, jiDocument: self.document)
+		}
+	}()
+	
+	public lazy var rawContent: String? = {
+		let contentChars = xmlNodeGetContent(self.xmlNode)
+		if contentChars == nil { return nil }
+		let contentString = String.fromXmlChar(contentChars)
+		free(contentChars)
+		return contentString
+	}()
+	
+	public lazy var content: String? = {
+		let contentChars = xmlNodeGetContent(self.xmlNode)
+		if contentChars == nil { return nil }
+		let contentString = String.fromXmlChar(contentChars)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		free(contentChars)
+		return contentString
+	}()
+	
+	public lazy var rawValue: String? = {
+		let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
+		if valueChars == nil { return nil }
+		let valueString = String.fromXmlChar(valueChars)
+		free(valueChars)
+		return valueString
+	}()
+	
+	public lazy var value: String? = {
+		let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
+		if valueChars == nil { return nil }
+		let valueString = String.fromXmlChar(valueChars)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		free(valueChars)
+		return valueString
+	}()
+}
+
+extension JiNode: Equatable { }
+public func ==(lhs: JiNode, rhs: JiNode) -> Bool {
+	return lhs.document == rhs.document &&
+		lhs.xmlNode == rhs.xmlNode
 }

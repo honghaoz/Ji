@@ -33,3 +33,8 @@ public class JiDocument {
 		}
 	}()
 }
+
+extension JiDocument: Equatable { }
+public func ==(lhs: JiDocument, rhs: JiDocument) -> Bool {
+	return lhs.xmlDoc == rhs.xmlDoc
+}

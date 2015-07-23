@@ -11,22 +11,17 @@ import XCTest
 import Ji
 
 class JiTests: XCTestCase {
-	var jiDocument: JiDocument!
+	var sampleMenuXMLDocument: JiDocument!
 	
     override func setUp() {
         super.setUp()
-		let xmlFileURL = NSURL(string: "feed.rss", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
-		jiDocument = JiDocument(xmlURL: xmlFileURL)
+		var xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+		sampleMenuXMLDocument = JiDocument(xmlURL: xmlFileURL)
     }
 	
     override func tearDown() {
         // Put teardown code here.
         super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
     }
     
     func testPerformanceExample() {
