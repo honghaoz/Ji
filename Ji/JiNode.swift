@@ -164,14 +164,17 @@ public class JiNode {
 	
 	public lazy var attributes: [String: String] = {
 		var result = [String: String]()
-		for var attribute: xmlAttrPtr = self.xmlNode.memory.properties; attribute != nil; attribute = attribute.memory.next {
+		for var attribute: xmlAttrPtr = self.xmlNode.memory.properties;
+			attribute != nil;
+			attribute = attribute.memory.next
+		{
 			let key = String.fromXmlChar(attribute.memory.name)
 			assert(key != nil, "key doesn't exist")
 			let valueChars = xmlNodeGetContent(attribute.memory.children)
 			var value: String? = ""
 			if valueChars != nil {
 				value = String.fromXmlChar(valueChars)
-				assert(value != nil, "valye doesn't exist")
+				assert(value != nil, "value doesn't exist")
 			}
 			free(valueChars)
 			
@@ -179,10 +182,22 @@ public class JiNode {
 		}
 		return result
 	}()
+	
+	public func searchWithXPathQuery(xPathQuery: String) -> [JiNode]? {
+		let xPathContext = xmlXPathNewContext(self.document.xmlDoc)
+		if xPathContext == nil {
+			NSLog("Unable to create XPath context.")
+			return nil
+		}
+		
+		return nil
+	}
 }
 
 extension JiNode: Equatable { }
 public func ==(lhs: JiNode, rhs: JiNode) -> Bool {
-	return lhs.document == rhs.document &&
-		lhs.xmlNode == rhs.xmlNode
+	if lhs.document == rhs.document && lhs.xmlNode != nil && rhs.xmlNode != nil {
+		return xmlXPathCmpNodes(lhs.xmlNode, rhs.xmlNode) == 0
+	}
+	return false
 }
