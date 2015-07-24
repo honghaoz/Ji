@@ -30,6 +30,10 @@ class JiNodeTests: JiTests {
 		XCTAssertEqual(rootNode.name!, "breakfast_menu")
 	}
 	
+	func testNodeTagName() {
+		XCTAssertEqual(rootNode.tagName!, "breakfast_menu")
+	}
+	
 	// TODO: Test keep text node
 	
 	func testChildrenCount() {
@@ -171,5 +175,26 @@ class JiNodeTests: JiTests {
 		
 		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
 		XCTAssertNil(commentNode.value)
+	}
+	
+	func testSubscriptAttribute() {
+		var node = rootNode.children[2]
+		XCTAssertNil(node["foo"])
+		XCTAssertEqual(node["description"]!, "for testing purpose")
+		XCTAssertEqual(node["price"]!, "infinite")
+		
+		XCTAssertEqual(node.firstChild!["gender"]!, "Women's")
+	}
+	
+	func testAttributes() {
+		XCTAssertEqual(rootNode.attributes.count, 0)
+		
+		var node = rootNode.children[2]
+		XCTAssertEqual(node.attributes.count, 2)
+		XCTAssertEqual(node.attributes["description"]!, "for testing purpose")
+		XCTAssertEqual(node.attributes["price"]!, "infinite")
+		
+		XCTAssertEqual(node.firstChild!.attributes.count, 1)
+		XCTAssertEqual(node.firstChild!.attributes["gender"]!, "Women's")
 	}
 }

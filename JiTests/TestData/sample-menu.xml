@@ -12,8 +12,8 @@
 		<description>Light Belgian waffles covered with strawberries and whipped cream</description>
 		<calories>900</calories>
 	</food>
-	<not_food>
-		<name>foo</name>
+	<not_food description="for testing purpose" price="infinite">
+		<name gender="Women's">foo</name>
 		<test_content>foo_following_Tab	fooo_following_Endline_then_three_Tabs
 			bar</test_content>
 		<test_content>  spaces before and tabs after		</test_content>

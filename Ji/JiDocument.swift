@@ -10,9 +10,7 @@ import Foundation
 
 public class JiDocument {
 	public let xmlDoc: xmlDocPtr
-	
-	private var _rootNode: JiNode?
-	
+		
 	public init?(xmlURL: NSURL) {
 		xmlDoc = xmlParseFile(xmlURL.fileSystemRepresentation)
 		if xmlDoc == nil {

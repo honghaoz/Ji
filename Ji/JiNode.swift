@@ -19,6 +19,8 @@ public class JiNode {
 		document = jiDocument
 	}
 	
+	public var tagName: String? { return name }
+	
 	public lazy var name: String? = {
 		return String.fromXmlChar(self.xmlNode.memory.name)
 	}()
@@ -136,6 +138,46 @@ public class JiNode {
 		let valueString = String.fromXmlChar(valueChars)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 		free(valueChars)
 		return valueString
+	}()
+	
+	/**
+	Get attribute with key
+	
+	:param: key attribute key string
+	
+	:returns: attribute
+	*/
+	public subscript(key: String) -> String? {
+		get {
+			for var attribute: xmlAttrPtr = self.xmlNode.memory.properties; attribute != nil; attribute = attribute.memory.next {
+				if key == String.fromXmlChar(attribute.memory.name) {
+					let contentChars = xmlNodeGetContent(attribute.memory.children)
+					if contentChars == nil { return nil }
+					let contentString = String.fromXmlChar(contentChars)
+					free(contentChars)
+					return contentString
+				}
+			}
+			return nil
+		}
+	}
+	
+	public lazy var attributes: [String: String] = {
+		var result = [String: String]()
+		for var attribute: xmlAttrPtr = self.xmlNode.memory.properties; attribute != nil; attribute = attribute.memory.next {
+			let key = String.fromXmlChar(attribute.memory.name)
+			assert(key != nil, "key doesn't exist")
+			let valueChars = xmlNodeGetContent(attribute.memory.children)
+			var value: String? = ""
+			if valueChars != nil {
+				value = String.fromXmlChar(valueChars)
+				assert(value != nil, "valye doesn't exist")
+			}
+			free(valueChars)
+			
+			result[key!] = value!
+		}
+		return result
 	}()
 }
 
