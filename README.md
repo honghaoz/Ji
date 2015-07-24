@@ -5,5 +5,7 @@ Ji (戟) is an XML/HTML parser for Swift, inspired by hpple. (Ji to Swift is wha
 
 # Todo:
 1. Translate hpple in Swift (Proof of concept) **[DONE]**
-2. Redesign the overall structure using Swift features
-3. CocoaPods integration
+2. Redesign the overall structure using Swift features **[In Progress]**
+3. Add related tests **[In Progress]**
+3. Clean up translated classes and tests
+4. CocoaPods integration
