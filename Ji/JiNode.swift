@@ -186,11 +186,34 @@ public class JiNode {
 	public func searchWithXPathQuery(xPathQuery: String) -> [JiNode]? {
 		let xPathContext = xmlXPathNewContext(self.document.xmlDoc)
 		if xPathContext == nil {
-			NSLog("Unable to create XPath context.")
+			println("Unable to create XPath context.")
 			return nil
 		}
 		
-		return nil
+		xPathContext.memory.node = self.xmlNode
+		
+		let xPathObject = xmlXPathEvalExpression(UnsafePointer<xmlChar>(xPathQuery.cStringUsingEncoding(NSUTF8StringEncoding)!), xPathContext)
+		xmlXPathFreeContext(xPathContext)
+		if xPathObject == nil {
+			println("Unable to evaluate XPath.")
+			return nil;
+		}
+		
+		let nodeSet = xPathObject.memory.nodesetval
+		if nodeSet == nil || nodeSet.memory.nodeNr == 0 || nodeSet.memory.nodeTab == nil {
+			println("NodeSet is nil.")
+			return nil
+		}
+		
+		var resultNodes = [JiNode]()
+		for i in 0 ..< Int(nodeSet.memory.nodeNr) {
+			let jiNode = JiNode(xmlNode: nodeSet.memory.nodeTab[i], jiDocument: self.document)
+			resultNodes.append(jiNode)
+		}
+		
+		xmlXPathFreeObject(xPathObject)
+		
+		return resultNodes
 	}
 }
 
