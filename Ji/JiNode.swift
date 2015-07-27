@@ -8,15 +8,42 @@
 
 import Foundation
 
+public enum JiNodeType: Int {
+	case Element = 1
+	case Attribute = 2
+	case Text = 3
+	case CDataSection = 4
+	case EntityRef = 5
+	case Entity = 6
+	case Pi = 7
+	case Comment = 8
+	case Document = 9
+	case DocumentType = 10
+	case DocumentFrag = 11
+	case Notation = 12
+	case HtmlDocument = 13
+	case DTD = 14
+	case ElementDecl = 15
+	case AttributeDecl = 16
+	case EntityDecl = 17
+	case NamespaceDecl = 18
+	case XIncludeStart = 19
+	case XIncludeEnd = 20
+	case DocbDocument = 21
+}
+
 public class JiNode {
-	public var document: JiDocument
 	public let xmlNode: xmlNodePtr
+	public let document: JiDocument
+	public let type: JiNodeType
 	
-	private var keepTextNode: Bool = false
+	public var keepTextNode: Bool = false
+	// TODO: Change lazy properties
 	
 	init(xmlNode: xmlNodePtr, jiDocument: JiDocument) {
 		self.xmlNode = xmlNode
 		document = jiDocument
+		type = JiNodeType(rawValue: Int(xmlNode.memory.type.value))!
 	}
 	
 	public var tagName: String? { return name }
@@ -71,13 +98,7 @@ public class JiNode {
 	
 	public lazy var parent: JiNode? = {
 		if self.xmlNode.memory.parent == nil { return nil }
-		// Only return JiNode id the type is XML_ELEMENT_NODE
-		// rootNode.parent can be a node with type XML_DOCUMENT_NODE
-		else if self.xmlNode.memory.parent.memory.type.value == XML_ELEMENT_NODE.value {
-			return JiNode(xmlNode: self.xmlNode.memory.parent, jiDocument: self.document)
-		} else {
-			return nil
-		}
+		return JiNode(xmlNode: self.xmlNode.memory.parent, jiDocument: self.document)
 	}()
 	
 	public lazy var nextSibling: JiNode? = {

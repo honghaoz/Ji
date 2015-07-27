@@ -14,6 +14,7 @@
 		E4168BD31B5D352800D4EFDA /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E4168BD11B5D352800D4EFDA /* index.html */; };
 		E4168BD51B5D355200D4EFDA /* JiHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4168BD41B5D355200D4EFDA /* JiHTMLTests.swift */; };
 		E4168BD91B5D997200D4EFDA /* JiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4168BD81B5D997200D4EFDA /* JiNode.swift */; };
+		E42362C91B65A39500E97EEF /* JiNodeXPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42362C81B65A39500E97EEF /* JiNodeXPathTests.swift */; };
 		E457CE851B5E93D20064F26B /* JiDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457CE841B5E93D20064F26B /* JiDocument.swift */; };
 		E478AF081B6007DF004C6C41 /* sample-menu.xml in Resources */ = {isa = PBXBuildFile; fileRef = E478AF071B6007DF004C6C41 /* sample-menu.xml */; };
 		E4AC60091B5C5FB6002B8E96 /* JiElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC60081B5C5FB6002B8E96 /* JiElement.swift */; };
@@ -48,6 +49,7 @@
 		E4168BD11B5D352800D4EFDA /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		E4168BD41B5D355200D4EFDA /* JiHTMLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiHTMLTests.swift; sourceTree = "<group>"; };
 		E4168BD81B5D997200D4EFDA /* JiNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiNode.swift; sourceTree = "<group>"; };
+		E42362C81B65A39500E97EEF /* JiNodeXPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiNodeXPathTests.swift; sourceTree = "<group>"; };
 		E457CE841B5E93D20064F26B /* JiDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiDocument.swift; sourceTree = "<group>"; };
 		E478AF071B6007DF004C6C41 /* sample-menu.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "sample-menu.xml"; sourceTree = "<group>"; };
 		E4AC60081B5C5FB6002B8E96 /* JiElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiElement.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				E4168BCF1B5D352800D4EFDA /* TestData */,
 				E4F3410E1B5B420300032A3B /* JiTests.swift */,
 				E4015AA21B5F51560054CC6A /* JiNodeTests.swift */,
+				E42362C81B65A39500E97EEF /* JiNodeXPathTests.swift */,
 				E4E419D71B609B5800EC21D2 /* JiDocumentTests.swift */,
 				E4168BD41B5D355200D4EFDA /* JiHTMLTests.swift */,
 				E4F3410C1B5B420300032A3B /* Supporting Files */,
@@ -307,6 +310,7 @@
 			files = (
 				E4F3410F1B5B420300032A3B /* JiTests.swift in Sources */,
 				E4E419D81B609B5800EC21D2 /* JiDocumentTests.swift in Sources */,
+				E42362C91B65A39500E97EEF /* JiNodeXPathTests.swift in Sources */,
 				E4168BD51B5D355200D4EFDA /* JiHTMLTests.swift in Sources */,
 				E4015AA31B5F51560054CC6A /* JiNodeTests.swift in Sources */,
 			);

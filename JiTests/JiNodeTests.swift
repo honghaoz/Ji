@@ -34,10 +34,16 @@ class JiNodeTests: JiTests {
 		XCTAssertEqual(rootNode.tagName!, "breakfast_menu")
 	}
 	
-	// TODO: Test keep text node
-	
 	func testChildrenCount() {
 		XCTAssertEqual(rootNode.children.count, 9)
+	}
+	
+	func testChildrenCountIncludeTextNode() {
+		rootNode.keepTextNode = true
+		XCTAssertEqual(rootNode.children.count, 19)
+		
+//		rootNode.keepTextNode = false
+//		XCTAssertEqual(rootNode.children.count, 9)
 	}
 	
 	func testChildrenAllNameIsMatched() {
@@ -93,8 +99,8 @@ class JiNodeTests: JiTests {
 		XCTAssertNil(rootNode.lastChild!.lastChild!.lastChild)
 	}
 	
-	func testRootNodeParentIsNil() {
-		XCTAssertNil(rootNode.parent)
+	func testRootNodeParentTypeIsDoc() {
+		XCTAssertEqual(rootNode.parent!.type, JiNodeType.Document)
 	}
 	
 	func testLastChildNodeParentIsRootNode() {
