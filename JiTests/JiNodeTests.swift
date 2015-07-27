@@ -26,6 +26,7 @@ class JiNodeTests: JiTests {
 		XCTAssertNotNil(rootNode)
 	}
 	
+	// MARK: - Name / TagName
 	func testNodeName() {
 		XCTAssertEqual(rootNode.name!, "breakfast_menu")
 	}
@@ -34,16 +35,13 @@ class JiNodeTests: JiTests {
 		XCTAssertEqual(rootNode.tagName!, "breakfast_menu")
 	}
 	
+	// MARK: - Children
 	func testChildrenCount() {
+		rootNode.keepTextNode = false
 		XCTAssertEqual(rootNode.children.count, 9)
-	}
-	
-	func testChildrenCountIncludeTextNode() {
+		
 		rootNode.keepTextNode = true
 		XCTAssertEqual(rootNode.children.count, 19)
-		
-//		rootNode.keepTextNode = false
-//		XCTAssertEqual(rootNode.children.count, 9)
 	}
 	
 	func testChildrenAllNameIsMatched() {
@@ -65,6 +63,23 @@ class JiNodeTests: JiTests {
 		}
 	}
 	
+	func testChildrenAllNameIsMatchedKeepTextNode() {
+		rootNode.keepTextNode = false
+		let previousChildrenNodeCount = rootNode.children.count
+		XCTAssertTrue(previousChildrenNodeCount > 0)
+		
+		// If keepTextNode is changed, children should be recalculated
+		rootNode.keepTextNode = true
+		XCTAssertEqual(rootNode.children.count, previousChildrenNodeCount * 2 + 1)
+		for i in 0 ..< rootNode.children.count {
+			XCTAssertEqual(rootNode.children[i].keepTextNode, rootNode.keepTextNode)
+			if i % 2 == 0 {
+				XCTAssertEqual(rootNode.children[i].name!, "text")
+			}
+		}
+	}
+	
+	// MARK: - Children Value Matched
 	func testCertainChildrenValueMatched() {
 		XCTAssertEqual(rootNode.children[1].children[2].value!, "Light Belgian waffles covered with strawberries and whipped cream")
 		XCTAssertEqual(rootNode.children[1].children[1].value!, "$7.95")
@@ -73,6 +88,18 @@ class JiNodeTests: JiTests {
 		XCTAssertEqual(rootNode.children[2].children[1].name!, "test_content")
 	}
 	
+	func testTextChildrenValueMatched() {
+		rootNode.keepTextNode = false
+		// Let node calculates children first
+		let dummyChildren = rootNode.children
+		
+		rootNode.keepTextNode = true
+		let textNode = rootNode.children[2]
+		XCTAssertEqual(textNode.name!, "text")
+		XCTAssertEqual(textNode.content!, "some text")
+	}
+	
+	// MARK: - firstChild
 	func testFirstChildNotNil() {
 		XCTAssertNotNil(rootNode.firstChild)
 		XCTAssertEqual(rootNode.firstChild!.name!, "food")
@@ -86,6 +113,20 @@ class JiNodeTests: JiTests {
 		XCTAssertNil(rootNode.firstChild!.firstChild!.firstChild)
 	}
 	
+	func testFirstChildKeppTextNode() {
+		rootNode.keepTextNode = false
+		XCTAssertNotNil(rootNode.firstChild)
+		XCTAssertNotEqual(rootNode.firstChild!.name!, "text")
+		
+		rootNode.keepTextNode = true
+		XCTAssertNotNil(rootNode.firstChild)
+		XCTAssertEqual(rootNode.firstChild!.keepTextNode, rootNode.keepTextNode)
+		XCTAssertEqual(rootNode.firstChild!.name!, "text")
+		
+		XCTAssertNil(rootNode.firstChild!.firstChild)
+	}
+	
+	// MARK: - lastChild
 	func testLastChildNotNil() {
 		XCTAssertNotNil(rootNode.lastChild)
 		XCTAssertEqual(rootNode.lastChild!.name!, "food")
@@ -99,6 +140,19 @@ class JiNodeTests: JiTests {
 		XCTAssertNil(rootNode.lastChild!.lastChild!.lastChild)
 	}
 	
+	func testLastChilddKeppTextNode() {
+		rootNode.keepTextNode = false
+		XCTAssertNotNil(rootNode.lastChild)
+		XCTAssertNotEqual(rootNode.lastChild!.name!, "text")
+		
+		rootNode.keepTextNode = true
+		XCTAssertNotNil(rootNode.lastChild)
+		XCTAssertEqual(rootNode.lastChild!.name!, "text")
+		
+		XCTAssertNil(rootNode.lastChild!.lastChild)
+	}
+	
+	// MARK: - parent
 	func testRootNodeParentTypeIsDoc() {
 		XCTAssertEqual(rootNode.parent!.type, JiNodeType.Document)
 	}
@@ -107,6 +161,7 @@ class JiNodeTests: JiTests {
 		XCTAssertTrue(rootNode.lastChild?.parent == rootNode)
 	}
 	
+	// MARK: - nextSibling
 	func testFirstNextSibling() {
 		let first = rootNode.firstChild!
 		XCTAssertNotNil(first.nextSibling)
@@ -119,6 +174,21 @@ class JiNodeTests: JiTests {
 		XCTAssertEqual(second.nextSibling!.name!, "not_food")
 	}
 	
+	func testNextSiblingKeepTextNode() {
+		let first = rootNode.firstChild!
+		XCTAssertNotNil(first.nextSibling)
+		XCTAssertEqual(first.nextSibling!.name!, "food")
+		
+		rootNode.keepTextNode = true
+		let firstFoodNode = rootNode.children[1]
+		XCTAssertEqual(firstFoodNode.keepTextNode, rootNode.keepTextNode)
+		let textNode = firstFoodNode.nextSibling
+		XCTAssertNotNil(textNode)
+		XCTAssertEqual(textNode!.name!, "text")
+		XCTAssertEqual(textNode!.content!, "some text")
+	}
+	
+	// MARK: - previousSibling
 	func testLastPreviousSibling() {
 		let last = rootNode.lastChild!
 		XCTAssertNotNil(last.previousSibling)
@@ -131,6 +201,19 @@ class JiNodeTests: JiTests {
 		XCTAssertEqual(last.previousSibling!.previousSibling!.previousSibling!.name!, "comment")
 	}
 	
+	func testPreviousSiblingKeepTextNode() {
+		let secondFood = rootNode.children[1]
+		XCTAssertNotNil(secondFood)
+		
+		secondFood.keepTextNode = true
+		let previouTextNode = secondFood.previousSibling
+		XCTAssertNotNil(previouTextNode)
+		XCTAssertEqual(previouTextNode!.keepTextNode, secondFood.keepTextNode)
+		XCTAssertEqual(previouTextNode!.name!, "text")
+		XCTAssertEqual(previouTextNode!.content!, "some text")
+	}
+	
+	// MARK: - Content
 	func testRawContent() {
 		let node = rootNode.children[2].lastChild!
 		var expectedString = "  spaces before and tabs after\t\t"
@@ -157,6 +240,13 @@ class JiNodeTests: JiTests {
 		XCTAssertEqual(commentNode.content!, "Dummy Comments 1")
 	}
 	
+	func testContentTextNode() {
+		rootNode.keepTextNode = true
+		let textNode = rootNode.children[2]
+		XCTAssertEqual(textNode.content!, "some text")
+	}
+	
+	// MARK: - Value
 	func testRawValue() {
 		var node = rootNode.children[2].lastChild!
 		var expectedString = "  spaces before and tabs after\t\t"
@@ -183,6 +273,13 @@ class JiNodeTests: JiTests {
 		XCTAssertNil(commentNode.value)
 	}
 	
+	func testValueTextNode() {
+		rootNode.keepTextNode = true
+		let textNode = rootNode.children[2]
+		XCTAssertNil(textNode.value)
+	}
+	
+	// MARK: - Attribute
 	func testSubscriptAttribute() {
 		var node = rootNode.children[2]
 		XCTAssertNil(node["foo"])

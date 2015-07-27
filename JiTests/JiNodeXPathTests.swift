@@ -122,4 +122,18 @@ class JiNodeXPathTests: JiTests {
 			XCTAssertEqual(resultNodes[0].value!, "spaces before and tabs after")
 		}
 	}
+	
+	func testKeepTextNodePropertyIsKept() {
+		rootNode.keepTextNode = true
+		let xPath = "//name"
+		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		
+		XCTAssertNotNil(resultNodes)
+		if let resultNodes = resultNodes {
+			XCTAssertEqual(resultNodes.count, 6)
+			for node in resultNodes {
+				XCTAssertEqual(node.keepTextNode, rootNode.keepTextNode)
+			}
+		}
+	}
 }

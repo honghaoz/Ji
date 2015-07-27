@@ -37,13 +37,14 @@ public class JiNode {
 	public let document: JiDocument
 	public let type: JiNodeType
 	
-	public var keepTextNode: Bool = false
-	// TODO: Change lazy properties
+	private var _keepTextNodePrevious = false
+	public var keepTextNode = false
 	
-	init(xmlNode: xmlNodePtr, jiDocument: JiDocument) {
+	init(xmlNode: xmlNodePtr, jiDocument: JiDocument, keepTextNode: Bool = false) {
 		self.xmlNode = xmlNode
 		document = jiDocument
 		type = JiNodeType(rawValue: Int(xmlNode.memory.type.value))!
+		self.keepTextNode = keepTextNode
 	}
 	
 	public var tagName: String? { return name }
@@ -52,82 +53,89 @@ public class JiNode {
 		return String.fromXmlChar(self.xmlNode.memory.name)
 	}()
 	
-	public lazy var children: [JiNode] = {
-		var resultChildren = [JiNode]()
-		
-		for var childNodePointer = self.xmlNode.memory.children;
-			childNodePointer != nil;
-			childNodePointer = childNodePointer.memory.next
-		{
-			if self.keepTextNode || xmlNodeIsText(childNodePointer) == 0 {
-				let childNode = JiNode(xmlNode: childNodePointer, jiDocument: self.document)
-				resultChildren.append(childNode)
+	private var _children: [JiNode] = []
+	private var _childrenHasBeenCalculated = false
+	public var children: [JiNode] {
+		if _childrenHasBeenCalculated && keepTextNode == _keepTextNodePrevious {
+			return _children
+		} else {
+			_children = [JiNode]()
+			
+			for var childNodePointer = xmlNode.memory.children;
+				childNodePointer != nil;
+				childNodePointer = childNodePointer.memory.next
+			{
+				if keepTextNode || xmlNodeIsText(childNodePointer) == 0 {
+					let childNode = JiNode(xmlNode: childNodePointer, jiDocument: document, keepTextNode: keepTextNode)
+					_children.append(childNode)
+				}
 			}
+			_childrenHasBeenCalculated = true
+			_keepTextNodePrevious = keepTextNode
+			return _children
 		}
-		
-		return resultChildren
-	}()
+	}
 	
-	public lazy var firstChild: JiNode? = {
-		var first = self.xmlNode.memory.children
+	public var firstChild: JiNode? {
+		var first = xmlNode.memory.children
 		if first == nil { return nil }
-		if self.keepTextNode {
-			return JiNode(xmlNode: first, jiDocument: self.document)
+		if keepTextNode {
+			return JiNode(xmlNode: first, jiDocument: document, keepTextNode: keepTextNode)
 		} else {
 			while xmlNodeIsText(first) != 0 {
 				first = first.memory.next
 				if first == nil { return nil }
 			}
-			return JiNode(xmlNode: first, jiDocument: self.document)
+			return JiNode(xmlNode: first, jiDocument: document, keepTextNode: keepTextNode)
 		}
-	}()
+	}
 	
-	public lazy var lastChild: JiNode? = {
-		var last = self.xmlNode.memory.last
+	public var lastChild: JiNode? {
+		var last = xmlNode.memory.last
 		if last == nil { return nil }
-		if self.keepTextNode {
-			return JiNode(xmlNode: last, jiDocument: self.document)
+		if keepTextNode {
+			return JiNode(xmlNode: last, jiDocument: document, keepTextNode: keepTextNode)
 		} else {
 			while xmlNodeIsText(last) != 0 {
 				last = last.memory.prev
 				if last == nil { return nil }
 			}
-			return JiNode(xmlNode: last, jiDocument: self.document)
+			return JiNode(xmlNode: last, jiDocument: document, keepTextNode: keepTextNode)
 		}
-	}()
+	}
 	
 	public lazy var parent: JiNode? = {
 		if self.xmlNode.memory.parent == nil { return nil }
 		return JiNode(xmlNode: self.xmlNode.memory.parent, jiDocument: self.document)
 	}()
 	
-	public lazy var nextSibling: JiNode? = {
-		var next = self.xmlNode.memory.next
+	public var nextSibling: JiNode? {
+		var next = xmlNode.memory.next
 		if next == nil { return nil }
-		if self.keepTextNode {
-			return JiNode(xmlNode: next, jiDocument: self.document)
+		if keepTextNode {
+			return JiNode(xmlNode: next, jiDocument: document, keepTextNode: keepTextNode)
 		} else {
 			while xmlNodeIsText(next) != 0 {
 				next = next.memory.next
 				if next == nil { return nil }
 			}
-			return JiNode(xmlNode: next, jiDocument: self.document)
+			return JiNode(xmlNode: next, jiDocument: document, keepTextNode: keepTextNode)
 		}
-	}()
+	}
 	
-	public lazy var previousSibling: JiNode? = {
-		var prev = self.xmlNode.memory.prev
+	public var previousSibling: JiNode? {
+		var prev = xmlNode.memory.prev
 		if prev == nil { return nil }
-		if self.keepTextNode {
-			return JiNode(xmlNode: prev, jiDocument: self.document)
+		if keepTextNode {
+			return JiNode(xmlNode: prev, jiDocument: document, keepTextNode: keepTextNode)
 		} else {
 			while xmlNodeIsText(prev) != 0 {
 				prev = prev.memory.prev
 				if prev == nil { return nil }
 			}
-			return JiNode(xmlNode: prev, jiDocument: self.document)
+			return JiNode(xmlNode: prev, jiDocument: document, keepTextNode: keepTextNode)
 		}
-	}()
+	}
 	
 	public lazy var rawContent: String? = {
 		let contentChars = xmlNodeGetContent(self.xmlNode)
@@ -228,7 +236,7 @@ public class JiNode {
 		
 		var resultNodes = [JiNode]()
 		for i in 0 ..< Int(nodeSet.memory.nodeNr) {
-			let jiNode = JiNode(xmlNode: nodeSet.memory.nodeTab[i], jiDocument: self.document)
+			let jiNode = JiNode(xmlNode: nodeSet.memory.nodeTab[i], jiDocument: self.document, keepTextNode: keepTextNode)
 			resultNodes.append(jiNode)
 		}
 		
