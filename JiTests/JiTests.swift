@@ -11,23 +11,43 @@ import XCTest
 import Ji
 
 class JiTests: XCTestCase {
-	var sampleMenuXMLDocument: JiDocument!
-	
     override func setUp() {
         super.setUp()
-		let xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
-//		var xmlFileURL = NSURL(string: "http://www.w3schools.com/xml/simple.xml")!
-		let xmlData = NSData(contentsOfURL: xmlFileURL)
-//		sampleMenuXMLDocument = JiDocument(data: xmlData, isXML: true)
-		sampleMenuXMLDocument = JiDocument(contentsOfURL: xmlFileURL, isXML: true)
+		// Setup here
     }
 	
     override func tearDown() {
         // Put teardown code here.
         super.tearDown()
     }
+	
+	// MARK: - Init
+	func testInitWithLocalXMLURLSucceed() {
+		let url = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+		let document = Ji(xmlURL: url)
+		XCTAssertNotNil(document)
+	}
 
-	func testDocumentsInitialized() {
-		XCTAssertNotNil(sampleMenuXMLDocument)
+	func testInitWithRemoteXMLURLSucceed() {
+		var xmlFileURL = NSURL(string: "http://www.w3schools.com/xml/simple.xml")
+		if let xmlFileURL = xmlFileURL {
+			let ji = Ji(xmlURL: xmlFileURL)
+			XCTAssertNotNil(ji)
+		} else {
+			NSLog("WARNING: simple.xml is not found!")
+		}
+	}
+	
+	func testInitWithInvalidURLFailed() {
+		let url = NSURL(string: "dummyURL")!
+		let document = Ji(xmlURL: url)
+		XCTAssertNil(document)
+	}
+	
+	// MARK: Root Node
+	func testRootNodeNotNil() {
+		let url = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+		let document = Ji(xmlURL: url)
+		XCTAssertNotNil(document!.rootNode)
 	}
 }

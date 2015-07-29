@@ -2,88 +2,108 @@
 //  Ji.swift
 //  Ji
 //
-//  Created by Honghao Zhang on 2015-07-20.
+//  Created by Honghao Zhang on 2015-07-21.
 //  Copyright (c) 2015 Honghao Zhang. All rights reserved.
 //
 
 import Foundation
 
 public class Ji {
-	private(set) public var data: NSData
-	private(set) public var encoding: String?
-	private var isXML = false
+	private var isXML: Bool = true
+	private(set) public var data: NSData?
+	private(set) public var encoding: NSStringEncoding = NSUTF8StringEncoding
 	
-	public required init(data: NSData, encoding: String?, isXML: Bool) {
-		self.data = data
-		self.encoding = encoding
-		self.isXML = isXML
+	public typealias htmlDocPtr = xmlDocPtr
+	
+	private(set) public var xmlDoc: xmlDocPtr = nil
+	private(set) public var htmlDoc: htmlDocPtr {
+		get { return xmlDoc }
+		set { xmlDoc = newValue }
 	}
 	
-	public convenience init(data: NSData, isXML: Bool) {
-		self.init(data: data, encoding: nil, isXML: isXML)
+	// MARK: - Init
+	public required init?(data: NSData?, encoding: NSStringEncoding, isXML: Bool) {
+		if let data = data where data.length > 0 {
+			self.isXML = isXML
+			self.data = data
+			self.encoding = encoding
+			
+			let cBuffer = UnsafePointer<CChar>(data.bytes)
+			let cSize = CInt(data.length)
+			let cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding)
+			let cfEncodingAsString: CFStringRef = CFStringConvertEncodingToIANACharSetName(cfEncoding)
+			let cEncoding: UnsafePointer<CChar> = CFStringGetCStringPtr(cfEncodingAsString, 0)
+			
+			if isXML {
+				let options = CInt(XML_PARSE_RECOVER.value)
+				xmlDoc = xmlReadMemory(cBuffer, cSize, nil, cEncoding, options)
+			} else {
+				let options = CInt(HTML_PARSE_RECOVER.value | HTML_PARSE_NOWARNING.value | HTML_PARSE_NOERROR.value)
+				htmlDoc = htmlReadMemory(cBuffer, cSize, nil, cEncoding, options)
+			}
+			if xmlDoc == nil { return nil }
+		} else {
+			return nil
+		}
 	}
 	
-	public convenience init(XMLData: NSData, encoding: String) {
-		self.init(data: XMLData, encoding: encoding, isXML: true)
+	public convenience init?(data: NSData?, isXML: Bool) {
+		self.init(data: data, encoding: NSUTF8StringEncoding, isXML: isXML)
 	}
 	
-	public convenience init(XMLData: NSData) {
-		self.init(data: XMLData, encoding: nil, isXML: true)
+	// MARK: - Data Init
+	public convenience init?(xmlData: NSData, encoding: NSStringEncoding) {
+		self.init(data: xmlData, encoding: encoding, isXML: true)
 	}
 	
-	public convenience init(HTMLData: NSData, encoding: String) {
-		self.init(data: HTMLData, encoding: encoding, isXML: false)
+	public convenience init?(xmlData: NSData) {
+		self.init(data: xmlData, isXML: true)
 	}
 	
-	public convenience init(HTMLData: NSData) {
-		self.init(data: HTMLData, encoding: nil, isXML: false)
+	public convenience init?(htmlData: NSData, encoding: NSStringEncoding) {
+		self.init(data: htmlData, encoding: encoding, isXML: false)
 	}
 	
-	public class func JiWithData(data: NSData, encoding: String, isXML: Bool) -> Ji {
-		return self(data: data, encoding: encoding, isXML: isXML)
+	public convenience init?(htmlData: NSData) {
+		self.init(data: htmlData, isXML: false)
 	}
 	
-	public class func JiWithData(data: NSData, isXML: Bool) -> Ji {
-		return self(data: data, encoding: nil, isXML: isXML)
+	// MARK: - URL Init
+	public convenience init?(contentsOfURL url: NSURL, encoding: NSStringEncoding, isXML: Bool) {
+		let data = NSData(contentsOfURL: url)
+		self.init(data: data, encoding: encoding, isXML: isXML)
 	}
 	
-	public class func JiWithXMLData(XMLData: NSData, encoding: String) -> Ji {
-		return self(data: XMLData, encoding: encoding, isXML: true)
+	public convenience init?(contentsOfURL url: NSURL, isXML: Bool) {
+		self.init(contentsOfURL: url, encoding: NSUTF8StringEncoding, isXML: isXML)
 	}
 	
-	public class func JiWithXMLData(XMLData: NSData) -> Ji {
-		return self(data: XMLData, encoding: nil, isXML: true)
+	public convenience init?(xmlURL: NSURL) {
+		self.init(contentsOfURL: xmlURL, isXML: true)
 	}
 	
-	public class func JiWithHTMLData(HTMLData: NSData, encoding: String) -> Ji {
-		return self(data: HTMLData, encoding: encoding, isXML: false)
+	public convenience init?(htmlURL: NSURL) {
+		self.init(contentsOfURL: htmlURL, isXML: false)
 	}
 	
-	public class func JiWithHTMLData(HTMLData: NSData) -> Ji {
-		return self(data: HTMLData, encoding: nil, isXML: false)
+	// MARK: - Deinit
+	deinit {
+		xmlFreeDoc(xmlDoc)
 	}
+	
 	
 	// MARK: -
-	public func searchWithXPathQuery(xPathOrCSS: String) -> [JiElement] {
-		var detailNodes: [[String: Any]?]? = nil
-		if isXML {
-			detailNodes = performXMLXPathQueryWithEncoding(data, xPathOrCSS, encoding)
+	public lazy var rootNode: JiNode? = {
+		let rootNodePointer = xmlDocGetRootElement(self.xmlDoc)
+		if rootNodePointer == nil {
+			return nil
 		} else {
-			detailNodes = performHTMLXPathQueryWithEncoding(data, xPathOrCSS, encoding)
+			return JiNode(xmlNode: rootNodePointer, jiDocument: self)
 		}
-		
-		var elements = [JiElement]()
-		if let detailNodes = detailNodes {
-			for newNode in detailNodes {
-				elements.append(JiElement.elementWithNode(newNode, isXML: isXML, withEncoding: encoding))
-			}
-		}
-		
-		return elements
-	}
-	
-	public func peekAtSearchWithXPathQuery(xPathOrCSS: String) -> JiElement? {
-		var elements = searchWithXPathQuery(xPathOrCSS)
-		return elements.first
-	}
+	}()
+}
+
+extension Ji: Equatable { }
+public func ==(lhs: Ji, rhs: Ji) -> Bool {
+	return lhs.xmlDoc == rhs.xmlDoc
 }

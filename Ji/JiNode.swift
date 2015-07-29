@@ -34,13 +34,13 @@ public enum JiNodeType: Int {
 
 public class JiNode {
 	public let xmlNode: xmlNodePtr
-	public let document: JiDocument
+	public let document: Ji
 	public let type: JiNodeType
 	
 	private var _keepTextNodePrevious = false
 	public var keepTextNode = false
 	
-	init(xmlNode: xmlNodePtr, jiDocument: JiDocument, keepTextNode: Bool = false) {
+	init(xmlNode: xmlNodePtr, jiDocument: Ji, keepTextNode: Bool = false) {
 		self.xmlNode = xmlNode
 		document = jiDocument
 		type = JiNodeType(rawValue: Int(xmlNode.memory.type.value))!

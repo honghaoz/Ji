@@ -11,14 +11,14 @@ import XCTest
 import Ji
 
 class JiHTMLTests: XCTestCase {
-	var doc: JiDocument!
+	var doc: Ji!
 	
 	override func setUp() {
 		super.setUp()
 		let testBundle = NSBundle(forClass: JiHTMLTests.self)
 		let testFileURL = testBundle.URLForResource("index", withExtension: "html", subdirectory: nil)
 		let data = NSData(contentsOfURL: testFileURL!)
-		doc = JiDocument(htmlData: data!)
+		doc = Ji(htmlData: data!)
 	}
 	
 	override func tearDown() {

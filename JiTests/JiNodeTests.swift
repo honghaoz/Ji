@@ -11,9 +11,13 @@ import XCTest
 import Ji
 
 class JiNodeTests: JiTests {
+	var sampleMenuXMLDocument: Ji!
 	var rootNode: JiNode!
+	
 	override func setUp() {
 		super.setUp()
+		let xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+		sampleMenuXMLDocument = Ji(xmlURL: xmlFileURL)
 		rootNode = sampleMenuXMLDocument.rootNode
 	}
 	
@@ -22,7 +26,11 @@ class JiNodeTests: JiTests {
 		super.tearDown()
 	}
 	
-	func testInitialization() {
+	func testDocumentsInitialized() {
+		XCTAssertNotNil(sampleMenuXMLDocument)
+	}
+	
+	func testRootNodeExists() {
 		XCTAssertNotNil(rootNode)
 	}
 	
