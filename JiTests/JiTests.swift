@@ -15,19 +15,19 @@ class JiTests: XCTestCase {
 	
     override func setUp() {
         super.setUp()
-		var xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
-		sampleMenuXMLDocument = JiDocument(xmlURL: xmlFileURL)
+		let xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+//		var xmlFileURL = NSURL(string: "http://www.w3schools.com/xml/simple.xml")!
+		let xmlData = NSData(contentsOfURL: xmlFileURL)
+//		sampleMenuXMLDocument = JiDocument(data: xmlData, isXML: true)
+		sampleMenuXMLDocument = JiDocument(contentsOfURL: xmlFileURL, isXML: true)
     }
 	
     override func tearDown() {
         // Put teardown code here.
         super.tearDown()
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
+
+	func testDocumentsInitialized() {
+		XCTAssertNotNil(sampleMenuXMLDocument)
+	}
 }

@@ -21,14 +21,7 @@ public class JiDocument {
 		set { xmlDoc = newValue }
 	}
 	
-	public init?(xmlURL: NSURL) {
-		xmlDoc = xmlParseFile(xmlURL.fileSystemRepresentation)
-		
-		if xmlDoc == nil {
-			return nil
-		}
-	}
-	
+	// MARK: - Init
 	public required init?(data: NSData?, encoding: NSStringEncoding, isXML: Bool) {
 		if let data = data where data.length > 0 {
 			self.isXML = isXML
@@ -58,6 +51,24 @@ public class JiDocument {
 		self.init(data: data, encoding: NSUTF8StringEncoding, isXML: isXML)
 	}
 	
+	// MARK: - Data Init
+	public convenience init?(xmlData: NSData, encoding: NSStringEncoding) {
+		self.init(data: xmlData, encoding: encoding, isXML: true)
+	}
+	
+	public convenience init?(xmlData: NSData) {
+		self.init(data: xmlData, isXML: true)
+	}
+	
+	public convenience init?(htmlData: NSData, encoding: NSStringEncoding) {
+		self.init(data: htmlData, encoding: encoding, isXML: false)
+	}
+	
+	public convenience init?(htmlData: NSData) {
+		self.init(data: htmlData, isXML: false)
+	}
+	
+	// MARK: - URL Init
 	public convenience init?(contentsOfURL url: NSURL, encoding: NSStringEncoding, isXML: Bool) {
 		let data = NSData(contentsOfURL: url)
 		self.init(data: data, encoding: encoding, isXML: isXML)
@@ -67,10 +78,21 @@ public class JiDocument {
 		self.init(contentsOfURL: url, encoding: NSUTF8StringEncoding, isXML: isXML)
 	}
 	
+	public convenience init?(xmlURL: NSURL) {
+		self.init(contentsOfURL: xmlURL, isXML: true)
+	}
+	
+	public convenience init?(htmlURL: NSURL) {
+		self.init(contentsOfURL: htmlURL, isXML: false)
+	}
+	
+	// MARK: - Deinit
 	deinit {
 		xmlFreeDoc(xmlDoc)
 	}
 	
+	
+	// MARK: -
 	public lazy var rootNode: JiNode? = {
 		let rootNodePointer = xmlDocGetRootElement(self.xmlDoc)
 		if rootNodePointer == nil {
