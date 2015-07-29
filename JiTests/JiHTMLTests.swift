@@ -11,14 +11,14 @@ import XCTest
 import Ji
 
 class JiHTMLTests: XCTestCase {
-	var doc: Ji!
+	var doc: JiDocument!
 	
 	override func setUp() {
 		super.setUp()
 		let testBundle = NSBundle(forClass: JiHTMLTests.self)
 		let testFileURL = testBundle.URLForResource("index", withExtension: "html", subdirectory: nil)
 		let data = NSData(contentsOfURL: testFileURL!)
-		doc = Ji(HTMLData: data!)
+		doc = JiDocument(htmlData: data!)
 	}
 	
 	override func tearDown() {
@@ -32,12 +32,12 @@ class JiHTMLTests: XCTestCase {
 	
 	//  doc.search("//p[@class='posted']")
 	func testSearchesWithXPath() {
-		var results = doc.searchWithXPathQuery("//a[@class='sponsor']")
-		XCTAssertEqual(results.count, 2)
+		var results = doc.rootNode?.searchWithXPathQuery("//a[@class='sponsor']")
+		XCTAssertEqual(results!.count, 2)
 	}
 	
 	func testFindsFirstElementAtXPath() {
-		let first = doc.peekAtSearchWithXPathQuery("//a[@class='sponsor']")
+		let first = doc.rootNode?.searchWithXPathQuery("//a[@class='sponsor']")![0]
 		
 		XCTAssertEqual(first!.content!, "RailsMachine")
 		XCTAssertEqual(first!.tagName!, "a")
