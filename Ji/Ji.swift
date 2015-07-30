@@ -86,11 +86,21 @@ public class Ji {
 		self.init(contentsOfURL: htmlURL, isXML: false)
 	}
 	
+	// MARK:  - String Init
+	public convenience init?(xmlString: String, encoding: NSStringEncoding) {
+		let data = NSData(contentsOfFile: xmlString)
+		self.init(data: data, encoding: encoding, isXML: true)
+	}
+	
+	public convenience init?(htmlString: String, encoding: NSStringEncoding) {
+		let data = NSData(contentsOfFile: htmlString)
+		self.init(data: data, encoding: encoding, isXML: false)
+	}
+	
 	// MARK: - Deinit
 	deinit {
 		xmlFreeDoc(xmlDoc)
 	}
-	
 	
 	// MARK: -
 	public lazy var rootNode: JiNode? = {
@@ -101,6 +111,10 @@ public class Ji {
 			return JiNode(xmlNode: rootNodePointer, jiDocument: self)
 		}
 	}()
+	
+	public func searchWithXPathQuery(xPathQuery: String) -> [JiNode]? {
+		return self.rootNode?.searchWithXPathQuery(xPathQuery)
+	}
 }
 
 extension Ji: Equatable { }

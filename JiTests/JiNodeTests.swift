@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 import Ji
 
-class JiNodeTests: JiTests {
+class JiNodeTests: XCTestCase {
 	var sampleMenuXMLDocument: Ji!
 	var rootNode: JiNode!
 	
