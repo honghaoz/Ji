@@ -244,6 +244,36 @@ public class JiNode {
 		
 		return resultNodes
 	}
+	
+	public func firstChildWithName(name: String) -> JiNode? {
+		var node = firstChild
+		while (node != nil) {
+			if node!.name == name {
+				return node
+			}
+			node = node?.nextSibling
+		}
+		return nil
+	}
+	
+	public func childrenWithName(name: String) -> [JiNode] {
+		return children.filter { $0.name == name }
+	}
+	
+	public func firstChildWithAttributeName(attributeName: String, attributeValue: String) -> JiNode? {
+		var node = firstChild
+		while (node != nil) {
+			if let value = node![attributeName] where value == attributeValue {
+				return node
+			}
+			node = node?.nextSibling
+		}
+		return nil
+	}
+	
+	public func childrenWithAttributeName(attributeName: String, attributeValue: String) -> [JiNode] {
+		return children.filter { $0.attributes[attributeName] == attributeValue }
+	}
 }
 
 // MARK: - Equatable
