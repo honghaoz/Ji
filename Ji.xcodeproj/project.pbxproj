@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		E4015AA11B5F4BF30054CC6A /* JiHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4015AA01B5F4BF30054CC6A /* JiHelpers.swift */; };
-		E4015AA31B5F51560054CC6A /* JiNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4015AA21B5F51560054CC6A /* JiNodeTests.swift */; };
+		E4015AA31B5F51560054CC6A /* JiNodeXMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4015AA21B5F51560054CC6A /* JiNodeXMLTests.swift */; };
 		E4168BD31B5D352800D4EFDA /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E4168BD11B5D352800D4EFDA /* index.html */; };
 		E4168BD51B5D355200D4EFDA /* htmlXPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4168BD41B5D355200D4EFDA /* htmlXPathTests.swift */; };
 		E4168BD91B5D997200D4EFDA /* JiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4168BD81B5D997200D4EFDA /* JiNode.swift */; };
 		E42362C91B65A39500E97EEF /* xmlXPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42362C81B65A39500E97EEF /* xmlXPathTests.swift */; };
+		E4244FD31B69D24500303F7D /* JiNodeHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4244FD21B69D24500303F7D /* JiNodeHTMLTests.swift */; };
 		E457CE851B5E93D20064F26B /* Ji.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457CE841B5E93D20064F26B /* Ji.swift */; };
 		E478AF081B6007DF004C6C41 /* sample-menu.xml in Resources */ = {isa = PBXBuildFile; fileRef = E478AF071B6007DF004C6C41 /* sample-menu.xml */; };
 		E4F340F91B5B420300032A3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F340F81B5B420300032A3B /* AppDelegate.swift */; };
@@ -37,11 +38,12 @@
 
 /* Begin PBXFileReference section */
 		E4015AA01B5F4BF30054CC6A /* JiHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiHelpers.swift; sourceTree = "<group>"; };
-		E4015AA21B5F51560054CC6A /* JiNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiNodeTests.swift; sourceTree = "<group>"; };
+		E4015AA21B5F51560054CC6A /* JiNodeXMLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiNodeXMLTests.swift; sourceTree = "<group>"; };
 		E4168BD11B5D352800D4EFDA /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		E4168BD41B5D355200D4EFDA /* htmlXPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = htmlXPathTests.swift; sourceTree = "<group>"; };
 		E4168BD81B5D997200D4EFDA /* JiNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiNode.swift; sourceTree = "<group>"; };
 		E42362C81B65A39500E97EEF /* xmlXPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xmlXPathTests.swift; sourceTree = "<group>"; };
+		E4244FD21B69D24500303F7D /* JiNodeHTMLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiNodeHTMLTests.swift; sourceTree = "<group>"; };
 		E457CE841B5E93D20064F26B /* Ji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ji.swift; sourceTree = "<group>"; };
 		E478AF071B6007DF004C6C41 /* sample-menu.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "sample-menu.xml"; sourceTree = "<group>"; };
 		E4F340F31B5B420300032A3B /* Ji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ji.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +136,8 @@
 			children = (
 				E4168BCF1B5D352800D4EFDA /* TestData */,
 				E4F3410E1B5B420300032A3B /* JiTests.swift */,
-				E4015AA21B5F51560054CC6A /* JiNodeTests.swift */,
+				E4015AA21B5F51560054CC6A /* JiNodeXMLTests.swift */,
+				E4244FD21B69D24500303F7D /* JiNodeHTMLTests.swift */,
 				E42362C81B65A39500E97EEF /* xmlXPathTests.swift */,
 				E4168BD41B5D355200D4EFDA /* htmlXPathTests.swift */,
 				E4F3410C1B5B420300032A3B /* Supporting Files */,
@@ -288,7 +291,8 @@
 				E4F3410F1B5B420300032A3B /* JiTests.swift in Sources */,
 				E42362C91B65A39500E97EEF /* xmlXPathTests.swift in Sources */,
 				E4168BD51B5D355200D4EFDA /* htmlXPathTests.swift in Sources */,
-				E4015AA31B5F51560054CC6A /* JiNodeTests.swift in Sources */,
+				E4015AA31B5F51560054CC6A /* JiNodeXMLTests.swift in Sources */,
+				E4244FD31B69D24500303F7D /* JiNodeHTMLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

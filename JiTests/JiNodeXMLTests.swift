@@ -1,5 +1,5 @@
 //
-//  JiNodeTests.swift
+//  JiNodeXMLTests.swift
 //  Ji
 //
 //  Created by Honghao Zhang on 2015-07-22.
@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 import Ji
 
-class JiNodeTests: XCTestCase {
+class JiNodeXMLTests: XCTestCase {
 	var sampleMenuXMLDocument: Ji!
 	var rootNode: JiNode!
 	

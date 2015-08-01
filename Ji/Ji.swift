@@ -88,13 +88,23 @@ public class Ji {
 	
 	// MARK:  - String Init
 	public convenience init?(xmlString: String, encoding: NSStringEncoding) {
-		let data = NSData(contentsOfFile: xmlString)
+		let data = xmlString.dataUsingEncoding(encoding, allowLossyConversion: false)
 		self.init(data: data, encoding: encoding, isXML: true)
 	}
 	
 	public convenience init?(htmlString: String, encoding: NSStringEncoding) {
-		let data = NSData(contentsOfFile: htmlString)
+		let data = htmlString.dataUsingEncoding(encoding, allowLossyConversion: false)
 		self.init(data: data, encoding: encoding, isXML: false)
+	}
+	
+	public convenience init?(xmlString: String) {
+		let data = xmlString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+		self.init(data: data, isXML: true)
+	}
+	
+	public convenience init?(htmlString: String) {
+		let data = htmlString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+		self.init(data: data, isXML: false)
 	}
 	
 	// MARK: - Deinit
