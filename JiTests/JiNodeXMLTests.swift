@@ -308,4 +308,21 @@ class JiNodeXMLTests: XCTestCase {
 		XCTAssertEqual(node.firstChild!.attributes.count, 1)
 		XCTAssertEqual(node.firstChild!.attributes["gender"]!, "Women's")
 	}
+	
+	// MARK: - Generator
+	func testSequenceGenerator() {
+		for (index, node) in enumerate(rootNode!) {
+			if index == 2 {
+				XCTAssertEqual(node.name!, "not_food")
+			} else if index == 3 {
+				XCTAssertEqual(node.name!, "empty_food")
+			} else if index == 4 {
+				XCTAssertEqual(node.name!, "comment")
+			} else if index == 5 {
+				XCTAssertEqual(node.name!, "comment")
+			} else {
+				XCTAssertEqual(node.name!, "food")
+			}
+		}
+	}
 }

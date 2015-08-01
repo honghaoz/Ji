@@ -246,10 +246,36 @@ public class JiNode {
 	}
 }
 
+// MARK: - Equatable
 extension JiNode: Equatable { }
 public func ==(lhs: JiNode, rhs: JiNode) -> Bool {
 	if lhs.document == rhs.document && lhs.xmlNode != nil && rhs.xmlNode != nil {
 		return xmlXPathCmpNodes(lhs.xmlNode, rhs.xmlNode) == 0
 	}
 	return false
+}
+
+// MARK: - SequenceType
+extension JiNode: SequenceType {
+	public func generate() -> JiNodeGenerator {
+		return JiNodeGenerator(node: self)
+	}
+}
+
+public class JiNodeGenerator: GeneratorType {
+	private var node: JiNode?
+	private var started = false
+	public init(node: JiNode) {
+		self.node = node
+	}
+	
+	public func next() -> JiNode? {
+		if !started {
+			node = node?.firstChild
+			started = true
+		} else {
+			node = node?.nextSibling
+		}
+		return node
+	}
 }
