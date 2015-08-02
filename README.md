@@ -1,4 +1,4 @@
-![Ji: a Swift XML/HTML parser](https://raw.githubusercontent.com/honghaoz/Ji/Ji.png)
+![Ji: a Swift XML/HTML parser](https://raw.githubusercontent.com/honghaoz/Ji/master/Ji.png)
 # Ji 戟 
 Ji (戟) is an XML/HTML parser for Swift, inspired by hpple. (Ji to Swift is what hpple to Objective-C)
 
