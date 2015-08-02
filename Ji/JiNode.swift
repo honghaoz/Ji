@@ -216,11 +216,11 @@ public class JiNode {
 		return result
 	}()
 	
-	public func searchWithXPathQuery(xPathQuery: String) -> [JiNode]? {
+	public func searchWithXPathQuery(xPathQuery: String) -> [JiNode] {
 		let xPathContext = xmlXPathNewContext(self.document.xmlDoc)
 		if xPathContext == nil {
-			println("Unable to create XPath context.")
-			return nil
+			// Unable to create XPath context.
+			return []
 		}
 		
 		xPathContext.memory.node = self.xmlNode
@@ -228,14 +228,14 @@ public class JiNode {
 		let xPathObject = xmlXPathEvalExpression(UnsafePointer<xmlChar>(xPathQuery.cStringUsingEncoding(NSUTF8StringEncoding)!), xPathContext)
 		xmlXPathFreeContext(xPathContext)
 		if xPathObject == nil {
-			println("Unable to evaluate XPath.")
-			return nil;
+			// Unable to evaluate XPath.
+			return []
 		}
 		
 		let nodeSet = xPathObject.memory.nodesetval
 		if nodeSet == nil || nodeSet.memory.nodeNr == 0 || nodeSet.memory.nodeTab == nil {
-			println("NodeSet is nil.")
-			return nil
+			// NodeSet is nil.
+			return []
 		}
 		
 		var resultNodes = [JiNode]()

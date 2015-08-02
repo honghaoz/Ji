@@ -23,7 +23,7 @@ class JiTests: XCTestCase {
 	
 	// MARK: - Init
 	func testInitWithLocalXMLURLSucceed() {
-		let url = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+		let url = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: self.dynamicType).resourceURL)!
 		let document = Ji(xmlURL: url)
 		XCTAssertNotNil(document)
 	}
@@ -46,7 +46,7 @@ class JiTests: XCTestCase {
 	
 	// MARK: Root Node
 	func testRootNodeNotNil() {
-		let url = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+		let url = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: self.dynamicType).resourceURL)!
 		let document = Ji(xmlURL: url)
 		XCTAssertNotNil(document!.rootNode)
 	}

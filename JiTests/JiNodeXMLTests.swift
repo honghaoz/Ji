@@ -16,7 +16,7 @@ class JiNodeXMLTests: XCTestCase {
 	
 	override func setUp() {
 		super.setUp()
-		let xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
+		let xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: self.dynamicType).resourceURL)!
 		sampleMenuXMLDocument = Ji(xmlURL: xmlFileURL)
 		rootNode = sampleMenuXMLDocument.rootNode
 	}

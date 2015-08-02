@@ -16,8 +16,10 @@ class JiNodeHTMLTests: XCTestCase {
 	
 	override func setUp() {
 		super.setUp()
-		let fileURL = NSURL(string: "simple.html", relativeToURL: NSBundle(forClass: JiTests.self).resourceURL)!
-		sampleHTMLDocument = Ji(htmlURL: fileURL)
+		let testBundle = NSBundle(forClass: self.dynamicType)
+		let fileURL = testBundle.URLForResource("index", withExtension: "html")!
+		let htmlData = NSData(contentsOfURL: fileURL)!
+		sampleHTMLDocument = Ji(htmlData: htmlData)
 		rootNode = sampleHTMLDocument.rootNode
 	}
 	
@@ -46,236 +48,221 @@ class JiNodeHTMLTests: XCTestCase {
 	// MARK: - Children
 	func testChildrenCount() {
 		rootNode.keepTextNode = false
-		XCTAssertEqual(rootNode.children.count, 1)
+		XCTAssertEqual(rootNode.children.count, 2)
 		
-		XCTAssertEqual(rootNode.firstChild!.children.count, 5)
-		XCTAssertEqual(rootNode.firstChild!.firstChild!["http-equiv"]!, "content-type")
+		XCTAssertEqual(rootNode.firstChild!.children.count, 25)
 		
 		rootNode.keepTextNode = true
-		XCTAssertEqual(rootNode.children.count, 3)
+		XCTAssertEqual(rootNode.children.count, 5)
 	}
-
-	// MARK: - Children Value Matched
-//	func testCertainChildrenValueMatched() {
-//		XCTAssertEqual(rootNode.children[1].children[2].value!, "Light Belgian waffles covered with strawberries and whipped cream")
-//		XCTAssertEqual(rootNode.children[1].children[1].value!, "$7.95")
-//		
-//		XCTAssertEqual(rootNode.children[2].children[0].value!, "foo")
-//		XCTAssertEqual(rootNode.children[2].children[1].name!, "test_content")
-//	}
-//
-//	func testTextChildrenValueMatched() {
-//		rootNode.keepTextNode = false
-//		// Let node calculates children first
-//		let dummyChildren = rootNode.children
-//		
-//		rootNode.keepTextNode = true
-//		let textNode = rootNode.children[2]
-//		XCTAssertEqual(textNode.name!, "text")
-//		XCTAssertEqual(textNode.content!, "some text")
-//	}
-//	
-//	// MARK: - firstChild
-//	func testFirstChildNotNil() {
-//		XCTAssertNotNil(rootNode.firstChild)
-//		XCTAssertEqual(rootNode.firstChild!.name!, "food")
-//		
-//		XCTAssertNotNil(rootNode.firstChild!.firstChild)
-//		XCTAssertEqual(rootNode.firstChild!.firstChild!.name!, "name")
-//		XCTAssertEqual(rootNode.firstChild!.firstChild!.value!, "Belgian Waffles")
-//	}
-//	
-//	func testFirstChildIsNil() {
-//		XCTAssertNil(rootNode.firstChild!.firstChild!.firstChild)
-//	}
-//	
-//	func testFirstChildKeppTextNode() {
-//		rootNode.keepTextNode = false
-//		XCTAssertNotNil(rootNode.firstChild)
-//		XCTAssertNotEqual(rootNode.firstChild!.name!, "text")
-//		
-//		rootNode.keepTextNode = true
-//		XCTAssertNotNil(rootNode.firstChild)
-//		XCTAssertEqual(rootNode.firstChild!.keepTextNode, rootNode.keepTextNode)
-//		XCTAssertEqual(rootNode.firstChild!.name!, "text")
-//		
-//		XCTAssertNil(rootNode.firstChild!.firstChild)
-//	}
-//	
-//	// MARK: - lastChild
-//	func testLastChildNotNil() {
-//		XCTAssertNotNil(rootNode.lastChild)
-//		XCTAssertEqual(rootNode.lastChild!.name!, "food")
-//		
-//		XCTAssertNotNil(rootNode.lastChild!.lastChild)
-//		XCTAssertEqual(rootNode.lastChild!.lastChild!.name!, "calories")
-//		XCTAssertEqual(rootNode.lastChild!.lastChild!.value!, "950")
-//	}
-//	
-//	func testLastChildIsNil() {
-//		XCTAssertNil(rootNode.lastChild!.lastChild!.lastChild)
-//	}
-//	
-//	func testLastChilddKeppTextNode() {
-//		rootNode.keepTextNode = false
-//		XCTAssertNotNil(rootNode.lastChild)
-//		XCTAssertNotEqual(rootNode.lastChild!.name!, "text")
-//		
-//		rootNode.keepTextNode = true
-//		XCTAssertNotNil(rootNode.lastChild)
-//		XCTAssertEqual(rootNode.lastChild!.name!, "text")
-//		
-//		XCTAssertNil(rootNode.lastChild!.lastChild)
-//	}
-//	
-//	// MARK: - parent
-//	func testRootNodeParentTypeIsDoc() {
-//		XCTAssertEqual(rootNode.parent!.type, JiNodeType.Document)
-//	}
-//	
-//	func testLastChildNodeParentIsRootNode() {
-//		XCTAssertTrue(rootNode.lastChild?.parent == rootNode)
-//	}
-//	
-//	// MARK: - nextSibling
-//	func testFirstNextSibling() {
-//		let first = rootNode.firstChild!
-//		XCTAssertNotNil(first.nextSibling)
-//		XCTAssertEqual(first.nextSibling!.name!, "food")
-//	}
-//	
-//	func testSecondNextSibling() {
-//		let second = rootNode.children[1]
-//		XCTAssertNotNil(second.nextSibling)
-//		XCTAssertEqual(second.nextSibling!.name!, "not_food")
-//	}
-//	
-//	func testNextSiblingKeepTextNode() {
-//		let first = rootNode.firstChild!
-//		XCTAssertNotNil(first.nextSibling)
-//		XCTAssertEqual(first.nextSibling!.name!, "food")
-//		
-//		rootNode.keepTextNode = true
-//		let firstFoodNode = rootNode.children[1]
-//		XCTAssertEqual(firstFoodNode.keepTextNode, rootNode.keepTextNode)
-//		let textNode = firstFoodNode.nextSibling
-//		XCTAssertNotNil(textNode)
-//		XCTAssertEqual(textNode!.name!, "text")
-//		XCTAssertEqual(textNode!.content!, "some text")
-//	}
-//	
-//	// MARK: - previousSibling
-//	func testLastPreviousSibling() {
-//		let last = rootNode.lastChild!
-//		XCTAssertNotNil(last.previousSibling)
-//		XCTAssertEqual(last.previousSibling!.name!, "food")
-//	}
-//	
-//	func testLastThirdPreviousSibling() {
-//		let last = rootNode.lastChild!
-//		XCTAssertNotNil(last.previousSibling?.previousSibling?.previousSibling)
-//		XCTAssertEqual(last.previousSibling!.previousSibling!.previousSibling!.name!, "comment")
-//	}
-//	
-//	func testPreviousSiblingKeepTextNode() {
-//		let secondFood = rootNode.children[1]
-//		XCTAssertNotNil(secondFood)
-//		
-//		secondFood.keepTextNode = true
-//		let previouTextNode = secondFood.previousSibling
-//		XCTAssertNotNil(previouTextNode)
-//		XCTAssertEqual(previouTextNode!.keepTextNode, secondFood.keepTextNode)
-//		XCTAssertEqual(previouTextNode!.name!, "text")
-//		XCTAssertEqual(previouTextNode!.content!, "some text")
-//	}
-//	
-//	// MARK: - Content
-//	func testRawContent() {
-//		let node = rootNode.children[2].lastChild!
-//		var expectedString = "  spaces before and tabs after\t\t"
-//		XCTAssertEqual(node.rawContent!, expectedString)
-//		
-//		let not_foodNode = rootNode.children[2]
-//		expectedString = "\n\t\tfoo\n\t\tfoo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar\n\t\t  spaces before and tabs after\t\t\n\t"
-//		XCTAssertEqual(not_foodNode.rawContent!, expectedString)
-//		
-//		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
-//		XCTAssertEqual(commentNode.rawContent!, " Dummy Comments 1 ")
-//	}
-//	
-//	func testContent() {
-//		let node = rootNode.children[2].lastChild!
-//		var expectedString = "spaces before and tabs after"
-//		XCTAssertEqual(node.content!, expectedString)
-//		
-//		let not_foodNode = rootNode.children[2]
-//		expectedString = "foo\n\t\tfoo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar\n\t\t  spaces before and tabs after"
-//		XCTAssertEqual(not_foodNode.content!, expectedString)
-//		
-//		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
-//		XCTAssertEqual(commentNode.content!, "Dummy Comments 1")
-//	}
-//	
-//	func testContentTextNode() {
-//		rootNode.keepTextNode = true
-//		let textNode = rootNode.children[2]
-//		XCTAssertEqual(textNode.content!, "some text")
-//	}
-//	
-//	// MARK: - Value
-//	func testRawValue() {
-//		var node = rootNode.children[2].lastChild!
-//		var expectedString = "  spaces before and tabs after\t\t"
-//		XCTAssertEqual(node.rawValue!, expectedString)
-//		
-//		node = rootNode.children[2].children[1]
-//		expectedString = "foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar"
-//		XCTAssertEqual(node.rawValue!, expectedString)
-//		
-//		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
-//		XCTAssertNil(commentNode.rawValue)
-//	}
-//	
-//	func testValue() {
-//		var node = rootNode.children[2].lastChild!
-//		var expectedString = "spaces before and tabs after"
-//		XCTAssertEqual(node.value!, expectedString)
-//		
-//		node = rootNode.children[2].children[1]
-//		expectedString = "foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar"
-//		XCTAssertEqual(node.value!, expectedString)
-//		
-//		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
-//		XCTAssertNil(commentNode.value)
-//	}
-//	
-//	func testValueTextNode() {
-//		rootNode.keepTextNode = true
-//		let textNode = rootNode.children[2]
-//		XCTAssertNil(textNode.value)
-//	}
-//	
+	
+	func testHasChildren() {
+		XCTAssertTrue(rootNode.hasChildren)
+		
+		let nodeHasNoChildren = rootNode.searchWithXPathQuery("./head/meta").first!
+		XCTAssertFalse(nodeHasNoChildren.hasChildren)
+	}
+	
+	// MARK: - firstChild
+	func testFirstChildNotNil() {
+		XCTAssertNotNil(rootNode.firstChild)
+		XCTAssertEqual(rootNode.firstChild!.name!, "head")
+		
+		XCTAssertNotNil(rootNode.firstChild!.firstChild)
+		XCTAssertEqual(rootNode.firstChild!.firstChild!.name!, "meta")
+		XCTAssertEqual(rootNode.firstChild!.firstChild!.content!, "")
+	}
+	
+	func testFirstChildIsNil() {
+		XCTAssertNil(rootNode.firstChild!.firstChild!.firstChild)
+	}
+	
+	func testFirstChildKeppTextNode() {
+		rootNode.keepTextNode = false
+		XCTAssertNotNil(rootNode.firstChild)
+		XCTAssertNotEqual(rootNode.firstChild!.name!, "text")
+		
+		rootNode.keepTextNode = true
+		XCTAssertNotNil(rootNode.firstChild)
+		XCTAssertEqual(rootNode.firstChild!.keepTextNode, rootNode.keepTextNode)
+		XCTAssertEqual(rootNode.firstChild!.name!, "text")
+		
+		XCTAssertNil(rootNode.firstChild!.firstChild)
+	}
+	
+	// MARK: - lastChild
+	func testLastChildNotNil() {
+		XCTAssertNotNil(rootNode.lastChild)
+		XCTAssertEqual(rootNode.lastChild!.name!, "body")
+		
+		XCTAssertNotNil(rootNode.lastChild!.lastChild)
+		XCTAssertEqual(rootNode.lastChild!.lastChild!.name!, "div")
+	}
+	
+	func testLastChildIsNil() {
+		let node = rootNode.searchWithXPathQuery("./body/div/div/div/ul[@class='piped']/li[last()]/a").first!
+		XCTAssertEqual(node.name!, "a")
+		XCTAssertNil(node.lastChild)
+	}
+	
+	func testLastChilddKeppTextNode() {
+		rootNode.keepTextNode = false
+		XCTAssertNotNil(rootNode.lastChild)
+		XCTAssertNotEqual(rootNode.lastChild!.name!, "text")
+		
+		rootNode.keepTextNode = true
+		XCTAssertNotNil(rootNode.lastChild)
+		XCTAssertEqual(rootNode.lastChild!.name!, "text")
+		
+		XCTAssertNil(rootNode.lastChild!.lastChild)
+	}
+	
+	// MARK: - parent
+	func testRootNodeParentTypeIsDoc() {
+		XCTAssertEqual(rootNode.parent!.type, JiNodeType.HtmlDocument)
+	}
+	
+	func testLastChildNodeParentIsRootNode() {
+		XCTAssertTrue(rootNode.lastChild?.parent == rootNode)
+	}
+	
+	// MARK: - nextSibling
+	func testNextSibling() {
+		let head = rootNode.firstChild!
+		XCTAssertNotNil(head.nextSibling)
+		XCTAssertEqual(head.nextSibling!.name!, "body")
+	}
+	
+	func testNextSiblingKeepTextNode() {
+		var head = rootNode.firstChild!
+		XCTAssertNotNil(head.nextSibling)
+		XCTAssertEqual(head.nextSibling!.name!, "body")
+		
+		rootNode.keepTextNode = true
+		head = rootNode.searchWithXPathQuery("./head").first!
+		XCTAssertEqual(head.keepTextNode, rootNode.keepTextNode)
+		let textNode = head.nextSibling
+		XCTAssertNotNil(textNode)
+		XCTAssertEqual(textNode!.name!, "text")
+	}
+	
+	// MARK: - previousSibling
+	func testLastPreviousSibling() {
+		let secondMeta = rootNode.searchWithXPathQuery("./head/meta[2]").first!
+		XCTAssertNotNil(secondMeta.previousSibling)
+		XCTAssertEqual(secondMeta.previousSibling!["http-equiv"]!, "content-type")
+	}
+	
+	func testPreviousSiblingKeepTextNode() {
+		var head = rootNode.searchWithXPathQuery("./head").first!
+		XCTAssertNotNil(head)
+		
+		rootNode.keepTextNode = true
+		head = rootNode.searchWithXPathQuery("./head").first!
+		let previouTextNode = head.previousSibling
+		XCTAssertNotNil(previouTextNode)
+		XCTAssertEqual(previouTextNode!.keepTextNode, rootNode.keepTextNode)
+		XCTAssertEqual(previouTextNode!.name!, "text")
+	}
+	
+	// MARK: - Content
+	func testRawContent() {
+		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		XCTAssertEqual(macNode.rawContent!, " Mac ")
+	}
+	
+	func testContent() {
+		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		XCTAssertEqual(macNode.content!, "Mac")
+	}
+	
+	// MARK: - Value
+	func testRawValue() {
+		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		XCTAssertEqual(macNode.rawValue!, " Mac ")
+	}
+	
+	func testValue() {
+		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		XCTAssertEqual(macNode.value!, "Mac")
+	}
+	
 	// MARK: - Attribute
 	func testSubscriptAttribute() {
 		XCTAssertEqual(rootNode["xmlns"]!, "http://www.w3.org/1999/xhtml")
 		XCTAssertEqual(rootNode["xml:lang"]!, "en-US")
 		XCTAssertEqual(rootNode["lang"]!, "en-US")
 		XCTAssertEqual(rootNode["class"]!, "no-js")
-//		XCTAssertEqual(node["description"]!, "for testing purpose")
-//		XCTAssertEqual(node["price"]!, "infinite")
-//		
-//		XCTAssertEqual(node.firstChild!["gender"]!, "Women's")
+		XCTAssertEqual(rootNode.firstChild!.firstChild!["http-equiv"]!, "content-type")
 	}
-//
-//	func testAttributes() {
-//		XCTAssertEqual(rootNode.attributes.count, 0)
-//		
-//		var node = rootNode.children[2]
-//		XCTAssertEqual(node.attributes.count, 2)
-//		XCTAssertEqual(node.attributes["description"]!, "for testing purpose")
-//		XCTAssertEqual(node.attributes["price"]!, "infinite")
-//		
-//		XCTAssertEqual(node.firstChild!.attributes.count, 1)
-//		XCTAssertEqual(node.firstChild!.attributes["gender"]!, "Women's")
-//	}
+
+	func testAttributes() {
+		XCTAssertEqual(rootNode.attributes.count, 4)
+		
+		XCTAssertEqual(rootNode.attributes["xmlns"]!, "http://www.w3.org/1999/xhtml")
+		XCTAssertEqual(rootNode.attributes["xml:lang"]!, "en-US")
+		XCTAssertEqual(rootNode.attributes["lang"]!, "en-US")
+		XCTAssertEqual(rootNode.attributes["class"]!, "no-js")
+	}
+	
+	// MARK: - Search Children
+	func testFirstChildWithName() {
+		let head = rootNode.firstChild!
+		XCTAssertNil(head.firstChildWithName("head"))
+		
+		let linkNode = head.firstChildWithName("link")
+		XCTAssertNotNil(linkNode)
+		XCTAssertEqual(linkNode!["type"]!, "text/css")
+	}
+	
+	func testChildrenWithName() {
+		let head = rootNode.firstChild!
+		XCTAssertEqual(head.childrenWithName("meta").count, 8)
+		XCTAssertEqual(head.childrenWithName("title").count, 1)
+	}
+	
+	func testFirstChildWithAttributeValue() {
+		let head = rootNode.firstChild!
+		XCTAssertEqual(head.firstChildWithAttributeName("name", attributeValue: "Keywords")!.name!, "meta")
+	}
+	
+	func testChildrenWithAttributeNameValue() {
+		let head = rootNode.firstChild!
+		XCTAssertEqual(head.childrenWithAttributeName("rel", attributeValue: "stylesheet").count, 3)
+	}
+	
+	// MARK: - Search Descendants
+	func testFirstDescendantWithName() {
+		XCTAssertNil(rootNode.firstDescendantWithName("html"))
+		XCTAssertEqual(rootNode.firstDescendantWithName("link")!["id"]!, "global-font")
+	}
+	
+	func testDescendantsWithName() {
+		XCTAssertEqual(rootNode.descendantsWithName("html").count, 0)
+		XCTAssertEqual(rootNode.descendantsWithName("link").count, 3)
+	}
+	
+	func testFirstDescendantWithAttributeValue() {
+		XCTAssertEqual(rootNode.firstDescendantWithAttributeName("id", attributeValue: "globalheader")!.name!, "nav")
+	}
+	
+	func testDescendantsWithAttributeNameValue() {
+		XCTAssertEqual(rootNode.descendantsWithAttributeName("rel", attributeValue: "stylesheet").count, 3)
+	}
+	
+	// MARK: - Generator
+	func testSequenceGenerator() {
+		let head = rootNode.firstChild!
+		for (index, node) in enumerate(head) {
+			if index == 0 {
+				XCTAssertEqual(node["http-equiv"]!, "content-type")
+			} else if index == 1 {
+				XCTAssertEqual(node["http-equiv"]!, "X-UA-Compatible")
+			} else if index == 2 {
+				XCTAssertEqual(node["http-equiv"]!, "Cache-Control")
+			} else if index == 3 {
+				XCTAssertEqual(node["name"]!, "viewport")
+			}
+		}
+	}
 }
