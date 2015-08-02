@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+JiNode types, these match element types in tree.h
+
+*/
 public enum JiNodeType: Int {
 	case Element = 1
 	case Attribute = 2
@@ -32,14 +36,29 @@ public enum JiNodeType: Int {
 	case DocbDocument = 21
 }
 
+/// Ji node
 public class JiNode {
+	/// The xmlNodePtr for this node.
 	public let xmlNode: xmlNodePtr
+	/// The Ji document contians this node.
 	public let document: Ji
+	/// Node type.
 	public let type: JiNodeType
 	
+	/// A helper flag to get whether keepTextNode has been changed.
 	private var _keepTextNodePrevious = false
+	/// Whether should remove text node. By default, keepTextNode is false.
 	public var keepTextNode = false
 	
+	/**
+	Initializes a JiNode object with the supplied xmlNodePtr, Ji document and keepTextNode boolean flag.
+	
+	:param: xmlNode      The xmlNodePtr for a node.
+	:param: jiDocument   The Ji document contains this node.
+	:param: keepTextNode Whether it should keep text node, by default, it's false.
+	
+	:returns: The initialized JiNode object.
+	*/
 	init(xmlNode: xmlNodePtr, jiDocument: Ji, keepTextNode: Bool = false) {
 		self.xmlNode = xmlNode
 		document = jiDocument
@@ -47,14 +66,19 @@ public class JiNode {
 		self.keepTextNode = keepTextNode
 	}
 	
+	/// The tag name of this node.
 	public var tagName: String? { return name }
 	
+	/// The tag name of this node.
 	public lazy var name: String? = {
 		return String.fromXmlChar(self.xmlNode.memory.name)
 	}()
 	
+	/// Helper property for avoiding unneeded calculations.
 	private var _children: [JiNode] = []
+	/// A helper flag for avoiding unneeded calculations.
 	private var _childrenHasBeenCalculated = false
+	/// The children of this node. keepTextNode property affects the results
 	public var children: [JiNode] {
 		if _childrenHasBeenCalculated && keepTextNode == _keepTextNodePrevious {
 			return _children
@@ -76,6 +100,7 @@ public class JiNode {
 		}
 	}
 	
+	/// The first child of this node, nil if the node has no child.
 	public var firstChild: JiNode? {
 		var first = xmlNode.memory.children
 		if first == nil { return nil }
@@ -90,6 +115,7 @@ public class JiNode {
 		}
 	}
 	
+	/// The last child of this node, nil if the node has no child.
 	public var lastChild: JiNode? {
 		var last = xmlNode.memory.last
 		if last == nil { return nil }
@@ -104,15 +130,18 @@ public class JiNode {
 		}
 	}
 	
+	/// Whether this node has children.
 	public var hasChildren: Bool {
 		return firstChild != nil
 	}
 	
+	/// The parent of this node.
 	public lazy var parent: JiNode? = {
 		if self.xmlNode.memory.parent == nil { return nil }
 		return JiNode(xmlNode: self.xmlNode.memory.parent, jiDocument: self.document)
 	}()
 	
+	/// The next sibling of this node.
 	public var nextSibling: JiNode? {
 		var next = xmlNode.memory.next
 		if next == nil { return nil }
@@ -127,6 +156,7 @@ public class JiNode {
 		}
 	}
 	
+	/// The previous sibling of this node.
 	public var previousSibling: JiNode? {
 		var prev = xmlNode.memory.prev
 		if prev == nil { return nil }
@@ -141,6 +171,7 @@ public class JiNode {
 		}
 	}
 	
+	/// Raw content of this node. Leading/trailing white spaces, new lines are kept.
 	public lazy var rawContent: String? = {
 		let contentChars = xmlNodeGetContent(self.xmlNode)
 		if contentChars == nil { return nil }
@@ -149,6 +180,7 @@ public class JiNode {
 		return contentString
 	}()
 	
+	/// Trimmed content of this node. Leading/trailing white spaces, new lines are trimmed.
 	public lazy var content: String? = {
 		let contentChars = xmlNodeGetContent(self.xmlNode)
 		if contentChars == nil { return nil }
@@ -157,6 +189,7 @@ public class JiNode {
 		return contentString
 	}()
 	
+	/// Raw value of this node. Leading/trailing white spaces, new lines are kept.
 	public lazy var rawValue: String? = {
 		let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
 		if valueChars == nil { return nil }
@@ -165,6 +198,7 @@ public class JiNode {
 		return valueString
 	}()
 	
+	/// Trimmed value of this node. Leading/trailing white spaces, new lines are trimmed.
 	public lazy var value: String? = {
 		let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
 		if valueChars == nil { return nil }
@@ -174,11 +208,11 @@ public class JiNode {
 	}()
 	
 	/**
-	Get attribute with key
+	Get attribute value with key.
 	
-	:param: key attribute key string
+	:param: key An attribute key string.
 	
-	:returns: attribute
+	:returns: The attribute value for the key.
 	*/
 	public subscript(key: String) -> String? {
 		get {
@@ -195,6 +229,7 @@ public class JiNode {
 		}
 	}
 	
+	/// The attributes dictionary of this node.
 	public lazy var attributes: [String: String] = {
 		var result = [String: String]()
 		for var attribute: xmlAttrPtr = self.xmlNode.memory.properties;
@@ -216,6 +251,17 @@ public class JiNode {
 		return result
 	}()
 	
+	
+	
+	// MARK: - XPath query
+	
+	/**
+	Perform XPath query on this node.
+	
+	:param: xPathQuery XPath query string.
+	
+	:returns: An array of JiNode, an empty array will be returned if XPath matches no nodes.
+	*/
 	public func searchWithXPathQuery(xPathQuery: String) -> [JiNode] {
 		let xPathContext = xmlXPathNewContext(self.document.xmlDoc)
 		if xPathContext == nil {
@@ -249,7 +295,17 @@ public class JiNode {
 		return resultNodes
 	}
 	
+	
+	
 	// MARK: - Handy search methods: Children
+	
+	/**
+	Find the first child with the tag name of this node.
+	
+	:param: name A tag name string.
+	
+	:returns: The JiNode object found or nil if it doesn't exist.
+	*/
 	public func firstChildWithName(name: String) -> JiNode? {
 		var node = firstChild
 		while (node != nil) {
@@ -261,10 +317,25 @@ public class JiNode {
 		return nil
 	}
 	
+	/**
+	Find the children with the tag name of this node.
+	
+	:param: name A tag name string.
+	
+	:returns: An array of JiNode.
+	*/
 	public func childrenWithName(name: String) -> [JiNode] {
 		return children.filter { $0.name == name }
 	}
 	
+	/**
+	Find the first child with the attribute name and value of this node.
+	
+	:param: attributeName  An attribute name.
+	:param: attributeValue The attribute value for the attribute name.
+	
+	:returns: The JiNode object found or nil if it doesn't exist.
+	*/
 	public func firstChildWithAttributeName(attributeName: String, attributeValue: String) -> JiNode? {
 		var node = firstChild
 		while (node != nil) {
@@ -276,15 +347,42 @@ public class JiNode {
 		return nil
 	}
 	
+	/**
+	Find the children with the attribute name and value of this node.
+	
+	:param: attributeName  An attribute name.
+	:param: attributeValue The attribute value for the attribute name.
+	
+	:returns: An array of JiNode.
+	*/
 	public func childrenWithAttributeName(attributeName: String, attributeValue: String) -> [JiNode] {
 		return children.filter { $0.attributes[attributeName] == attributeValue }
 	}
 	
+	
+	
 	// MARK: - Handy search methods: Descendants
+	
+	/**
+	Find the first descendant with the tag name of this node.
+	
+	:param: name A tag name string.
+	
+	:returns: The JiNode object found or nil if it doesn't exist.
+	*/
 	public func firstDescendantWithName(name: String) -> JiNode? {
 		return firstDescendantWithName(name, node: self)
 	}
 	
+	
+	/**
+	Helper method: Find the first descendant with the tag name of the node provided.
+	
+	:param: name A tag name string.
+	:param: node The node from which to find.
+	
+	:returns: The JiNode object found or nil if it doesn't exist.
+	*/
 	private func firstDescendantWithName(name: String, node: JiNode) -> JiNode? {
 		if !node.hasChildren {
 			return nil
@@ -301,10 +399,25 @@ public class JiNode {
 		return nil
 	}
 	
+	/**
+	Find the descendant with the tag name of this node.
+	
+	:param: name A tag name string.
+	
+	:returns: An array of JiNode.
+	*/
 	public func descendantsWithName(name: String) -> [JiNode] {
 		return descendantsWithName(name, node: self)
 	}
 	
+	/**
+	Helper method: Find the descendant with the tag name of the node provided.
+	
+	:param: name A tag name string.
+	:param: node The node from which to find.
+	
+	:returns: An array of JiNode.
+	*/
 	private func descendantsWithName(name: String, node: JiNode) -> [JiNode] {
 		if !node.hasChildren {
 			return []
@@ -320,10 +433,27 @@ public class JiNode {
 		return results
 	}
 	
+	/**
+	Find the first descendant with the attribute name and value of this node.
+	
+	:param: attributeName  An attribute name.
+	:param: attributeValue The attribute value for the attribute name.
+	
+	:returns: The JiNode object found or nil if it doesn't exist.
+	*/
 	public func firstDescendantWithAttributeName(attributeName: String, attributeValue: String) -> JiNode? {
 		return firstDescendantWithAttributeName(attributeName, attributeValue: attributeValue, node: self)
 	}
 	
+	/**
+	Helper method: Find the first descendant with the attribute name and value of the node provided.
+	
+	:param: attributeName  An attribute name.
+	:param: attributeValue The attribute value for the attribute name.
+	:param: node           The node from which to find.
+	
+	:returns: The JiNode object found or nil if it doesn't exist.
+	*/
 	private func firstDescendantWithAttributeName(attributeName: String, attributeValue: String, node: JiNode) -> JiNode? {
 		if !node.hasChildren {
 			return nil
@@ -340,10 +470,27 @@ public class JiNode {
 		return nil
 	}
 	
+	/**
+	Find the descendants with the attribute name and value of this node.
+	
+	:param: attributeName  An attribute name.
+	:param: attributeValue The attribute value for the attribute name.
+	
+	:returns: An array of JiNode.
+	*/
 	public func descendantsWithAttributeName(attributeName: String, attributeValue: String) -> [JiNode] {
 		return descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: self)
 	}
 	
+	/**
+	Helper method: Find the descendants with the attribute name and value of the node provided.
+	
+	:param: attributeName  An attribute name.
+	:param: attributeValue The attribute value for the attribute name.
+	:param: node           The node from which to find.
+	
+	:returns: An array of JiNode.
+	*/
 	private func descendantsWithAttributeName(attributeName: String, attributeValue: String, node: JiNode) -> [JiNode] {
 		if !node.hasChildren {
 			return []
@@ -376,6 +523,7 @@ extension JiNode: SequenceType {
 	}
 }
 
+/// JiNodeGenerator
 public class JiNodeGenerator: GeneratorType {
 	private var node: JiNode?
 	private var started = false
