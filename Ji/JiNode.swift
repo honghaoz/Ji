@@ -104,6 +104,10 @@ public class JiNode {
 		}
 	}
 	
+	public var hasChildren: Bool {
+		return firstChild != nil
+	}
+	
 	public lazy var parent: JiNode? = {
 		if self.xmlNode.memory.parent == nil { return nil }
 		return JiNode(xmlNode: self.xmlNode.memory.parent, jiDocument: self.document)
@@ -245,6 +249,7 @@ public class JiNode {
 		return resultNodes
 	}
 	
+	// MARK: - Handy search methods: Children
 	public func firstChildWithName(name: String) -> JiNode? {
 		var node = firstChild
 		while (node != nil) {
@@ -273,6 +278,85 @@ public class JiNode {
 	
 	public func childrenWithAttributeName(attributeName: String, attributeValue: String) -> [JiNode] {
 		return children.filter { $0.attributes[attributeName] == attributeValue }
+	}
+	
+	// MARK: - Handy search methods: Descendants
+	public func firstDescendantWithName(name: String) -> JiNode? {
+		return firstDescendantWithName(name, node: self)
+	}
+	
+	private func firstDescendantWithName(name: String, node: JiNode) -> JiNode? {
+		if !node.hasChildren {
+			return nil
+		}
+		
+		for child in node {
+			if child.name == name {
+				return child
+			}
+			if let nodeFound = firstDescendantWithName(name, node: child) {
+				return nodeFound
+			}
+		}
+		return nil
+	}
+	
+	public func descendantsWithName(name: String) -> [JiNode] {
+		return descendantsWithName(name, node: self)
+	}
+	
+	private func descendantsWithName(name: String, node: JiNode) -> [JiNode] {
+		if !node.hasChildren {
+			return []
+		}
+		
+		var results = [JiNode]()
+		for child in node {
+			if child.name == name {
+				results.append(child)
+			}
+			results.extend(descendantsWithName(name, node: child))
+		}
+		return results
+	}
+	
+	public func firstDescendantWithAttributeName(attributeName: String, attributeValue: String) -> JiNode? {
+		return firstDescendantWithAttributeName(attributeName, attributeValue: attributeValue, node: self)
+	}
+	
+	private func firstDescendantWithAttributeName(attributeName: String, attributeValue: String, node: JiNode) -> JiNode? {
+		if !node.hasChildren {
+			return nil
+		}
+		
+		for child in node {
+			if child[attributeName] == attributeValue {
+				return child
+			}
+			if let nodeFound = firstDescendantWithAttributeName(attributeName, attributeValue: attributeValue, node: child) {
+				return nodeFound
+			}
+		}
+		return nil
+	}
+	
+	public func descendantsWithAttributeName(attributeName: String, attributeValue: String) -> [JiNode] {
+		return descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: self)
+	}
+	
+	private func descendantsWithAttributeName(attributeName: String, attributeValue: String, node: JiNode) -> [JiNode] {
+		if !node.hasChildren {
+			return []
+		}
+		
+		var results = [JiNode]()
+		for child in node {
+			if child[attributeName] == attributeValue {
+				results.append(child)
+			}
+			results.extend(descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: child))
+		}
+		return results
 	}
 }
 

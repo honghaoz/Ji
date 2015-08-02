@@ -107,6 +107,13 @@ class JiNodeXMLTests: XCTestCase {
 		XCTAssertEqual(textNode.content!, "some text")
 	}
 	
+	func testHasChildren() {
+		XCTAssertTrue(rootNode.hasChildren)
+		
+		let nodeHasNoChildren = rootNode.firstChild!.firstChild!
+		XCTAssertFalse(nodeHasNoChildren.hasChildren)
+	}
+	
 	// MARK: - firstChild
 	func testFirstChildNotNil() {
 		XCTAssertNotNil(rootNode.firstChild)
@@ -309,6 +316,44 @@ class JiNodeXMLTests: XCTestCase {
 		XCTAssertEqual(node.firstChild!.attributes["gender"]!, "Women's")
 	}
 	
+	// MARK: - Search Children
+	func testFirstChildWithName() {
+		XCTAssertNil(rootNode.firstChildWithName("breakfast_menu"))
+		XCTAssertEqual(rootNode.firstChildWithName("comment")!.content!, "Dummy Comments")
+	}
+	
+	func testChildrenWithName() {
+		XCTAssertEqual(rootNode.childrenWithName("breakfast_menu").count, 0)
+		XCTAssertEqual(rootNode.childrenWithName("comment").count, 2)
+	}
+	
+	func testFirstChildWithAttributeValue() {
+		XCTAssertEqual(rootNode.firstChildWithAttributeName("price", attributeValue: "infinite")!.name!, "not_food")
+	}
+	
+	func testChildrenWithAttributeNameValue() {
+		XCTAssertEqual(rootNode.childrenWithAttributeName("price", attributeValue: "infinite").count, 2)
+	}
+	
+	// MARK: - Search Descendants
+	func testFirstDescendantWithName() {
+		XCTAssertNil(rootNode.firstDescendantWithName("breakfast_menu"))
+		XCTAssertEqual(rootNode.firstDescendantWithName("test_content")!.content!, "foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar")
+	}
+	
+	func testDescendantsWithName() {
+		XCTAssertEqual(rootNode.descendantsWithName("breakfast_menu").count, 0)
+		XCTAssertEqual(rootNode.descendantsWithName("test_content").count, 2)
+	}
+	
+	func testFirstDescendantWithAttributeValue() {
+		XCTAssertEqual(rootNode.firstDescendantWithAttributeName("gender", attributeValue: "Women's")!.name!, "name")
+	}
+	
+	func testDescendantsWithAttributeNameValue() {
+		XCTAssertEqual(rootNode.descendantsWithAttributeName("price", attributeValue: "infinite").count, 3)
+	}
+	
 	// MARK: - Generator
 	func testSequenceGenerator() {
 		for (index, node) in enumerate(rootNode!) {
@@ -320,6 +365,7 @@ class JiNodeXMLTests: XCTestCase {
 				XCTAssertEqual(node.name!, "comment")
 			} else if index == 5 {
 				XCTAssertEqual(node.name!, "comment")
+				XCTAssertEqual(node.content!, "Dummy Comments 1")
 			} else {
 				XCTAssertEqual(node.name!, "food")
 			}
