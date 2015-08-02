@@ -24,8 +24,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a Swift XML/HTML Parser" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="tjo-T3-b20">
-                    <rect key="frame" x="107.5" y="191" width="266" height="29"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                    <rect key="frame" x="129" y="191" width="222.5" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
