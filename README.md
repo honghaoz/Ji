@@ -1,5 +1,5 @@
 <h3 align="center">
-    <img src="Ji.png" alt="Ji: a Swift XML/HTML parser" />
+    <img src="Ji.png" width=220 alt="Ji: a Swift XML/HTML parser" />
 </h3>
 
 # Ji 戟 
