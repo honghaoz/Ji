@@ -33,7 +33,7 @@ class htmlXPathTests: XCTestCase {
 	
 	// $x("//a[@class='gh-tab-link']")
 	func testSearchesWithXPath() {
-		var results = sampleHTML.rootNode?.searchWithXPathQuery("//a[@class='gh-tab-link']")
+		var results = sampleHTML.rootNode?.xPath("//a[@class='gh-tab-link']")
 		XCTAssertEqual(results!.count, 8)
 		
 		XCTAssertEqual(results![2].name!, "a")
@@ -43,7 +43,7 @@ class htmlXPathTests: XCTestCase {
 	
 	// $x("//a[@class='gh-tab-link'][@href='/mac/']")
 	func testSearchesWithXPath1() {
-		var results = sampleHTML.rootNode?.searchWithXPathQuery("//a[@class='gh-tab-link'][@href='/mac/']")
+		var results = sampleHTML.rootNode?.xPath("//a[@class='gh-tab-link'][@href='/mac/']")
 		XCTAssertEqual(results!.count, 1)
 		
 		XCTAssertEqual(results!.first!.name!, "a")
@@ -53,7 +53,7 @@ class htmlXPathTests: XCTestCase {
 	
 	// $x("//a[@class='gh-tab-link'][@href='/mac/']//span")
 	func testSearchesWithXPath2() {
-		var results = sampleHTML.rootNode?.searchWithXPathQuery("//a[@class='gh-tab-link'][@href='/mac/']//span")
+		var results = sampleHTML.rootNode?.xPath("//a[@class='gh-tab-link'][@href='/mac/']//span")
 		XCTAssertEqual(results!.count, 2)
 		
 		XCTAssertEqual(results!.first!.name!, "span")
@@ -63,7 +63,7 @@ class htmlXPathTests: XCTestCase {
 	
 	// $x("//a[@class='gh-tab-link'][@href='/mac/']/span")
 	func testSearchesWithXPath3() {
-		var results = sampleHTML.rootNode?.searchWithXPathQuery("//a[@class='gh-tab-link'][@href='/mac/']/span")
+		var results = sampleHTML.rootNode?.xPath("//a[@class='gh-tab-link'][@href='/mac/']/span")
 		XCTAssertEqual(results!.count, 1)
 		
 		XCTAssertEqual(results!.first!.name!, "span")

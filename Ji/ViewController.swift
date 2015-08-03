@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 		if let googleIndexData = googleIndexData {
 			let jiGoogleIndexDoc = Ji(htmlData: googleIndexData)!
 			
-			let nodes = jiGoogleIndexDoc.searchWithXPathQuery("//body")
+			let nodes = jiGoogleIndexDoc.xPath("//body")
 			println("tag name: \(nodes?.first?.name)")
 		} else {
 			println("google.com is inaccessible")
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 		
 		// Init with URL
 		let jiAppleSupportDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
-		let titleNode = jiAppleSupportDoc?.searchWithXPathQuery("//head/title")?.first
+		let titleNode = jiAppleSupportDoc?.xPath("//head/title")?.first
 		println("title: \(titleNode?.content)")
 		
 		// Init with String

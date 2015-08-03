@@ -3,10 +3,6 @@
 //  Ji
 //
 //  Created by Honghao Zhang on 2015-07-21.
-//  Copyright (c) 2015 Honghao Zhang. All rights reserved.
-//
-//  The MIT License (MIT)
-//
 //  Copyright (c) 2015 Honghao Zhang (张宏昊)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy

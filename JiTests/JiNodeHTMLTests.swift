@@ -59,7 +59,7 @@ class JiNodeHTMLTests: XCTestCase {
 	func testHasChildren() {
 		XCTAssertTrue(rootNode.hasChildren)
 		
-		let nodeHasNoChildren = rootNode.searchWithXPathQuery("./head/meta").first!
+		let nodeHasNoChildren = rootNode.xPath("./head/meta").first!
 		XCTAssertFalse(nodeHasNoChildren.hasChildren)
 	}
 	
@@ -100,7 +100,7 @@ class JiNodeHTMLTests: XCTestCase {
 	}
 	
 	func testLastChildIsNil() {
-		let node = rootNode.searchWithXPathQuery("./body/div/div/div/ul[@class='piped']/li[last()]/a").first!
+		let node = rootNode.xPath("./body/div/div/div/ul[@class='piped']/li[last()]/a").first!
 		XCTAssertEqual(node.name!, "a")
 		XCTAssertNil(node.lastChild)
 	}
@@ -139,7 +139,7 @@ class JiNodeHTMLTests: XCTestCase {
 		XCTAssertEqual(head.nextSibling!.name!, "body")
 		
 		rootNode.keepTextNode = true
-		head = rootNode.searchWithXPathQuery("./head").first!
+		head = rootNode.xPath("./head").first!
 		XCTAssertEqual(head.keepTextNode, rootNode.keepTextNode)
 		let textNode = head.nextSibling
 		XCTAssertNotNil(textNode)
@@ -148,17 +148,17 @@ class JiNodeHTMLTests: XCTestCase {
 	
 	// MARK: - previousSibling
 	func testLastPreviousSibling() {
-		let secondMeta = rootNode.searchWithXPathQuery("./head/meta[2]").first!
+		let secondMeta = rootNode.xPath("./head/meta[2]").first!
 		XCTAssertNotNil(secondMeta.previousSibling)
 		XCTAssertEqual(secondMeta.previousSibling!["http-equiv"]!, "content-type")
 	}
 	
 	func testPreviousSiblingKeepTextNode() {
-		var head = rootNode.searchWithXPathQuery("./head").first!
+		var head = rootNode.xPath("./head").first!
 		XCTAssertNotNil(head)
 		
 		rootNode.keepTextNode = true
-		head = rootNode.searchWithXPathQuery("./head").first!
+		head = rootNode.xPath("./head").first!
 		let previouTextNode = head.previousSibling
 		XCTAssertNotNil(previouTextNode)
 		XCTAssertEqual(previouTextNode!.keepTextNode, rootNode.keepTextNode)
@@ -167,23 +167,23 @@ class JiNodeHTMLTests: XCTestCase {
 	
 	// MARK: - Content
 	func testRawContent() {
-		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
 		XCTAssertEqual(macNode.rawContent!, " Mac ")
 	}
 	
 	func testContent() {
-		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
 		XCTAssertEqual(macNode.content!, "Mac")
 	}
 	
 	// MARK: - Value
 	func testRawValue() {
-		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
 		XCTAssertEqual(macNode.rawValue!, " Mac ")
 	}
 	
 	func testValue() {
-		let macNode = rootNode.searchWithXPathQuery("//a[@href='/support/mac/']/p").first!
+		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
 		XCTAssertEqual(macNode.value!, "Mac")
 	}
 	

@@ -17,13 +17,21 @@ Pod::Spec.new do |s|
 
   s.osx.deployment_target = "10.9"
   s.ios.deployment_target = "8.0"
-  # s.platform     	 = :ios, '8.0'
-  # s.platform     	 = :osx, "10.9"
 
   s.requires_arc 	 = true
+  s.module_name      = "Ji"
+  s.ios.libraries 	 = 'xml2'
+  # s.xcconfig 		     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2', 'OTHER_LDFLAGS' => '-lxml2' }
 
-  s.source_files 	 = 'Pod/Classes/**/*'
-  s.ios.libraries 	 = 'xml2', 'xml2.2'
-  s.xcconfig 		 = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2', 'OTHER_LDFLAGS' => '-lxml2' }
+  s.default_subspecs = 'Ji'
+
+  s.subspec 'Ji' do |ss|
+    ss.source_files = 'Source/*.{swift}'
+    ss.dependency 'Ji/Ji-libxml'
+  end
+
+  s.subspec 'Ji-libxml' do |ss|
+    ss.source_files = 'Source/Ji-libxml/*.{h}'
+  end
 
 end

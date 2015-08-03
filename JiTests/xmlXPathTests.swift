@@ -32,7 +32,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	
 	func testBasicSelecting() {
 		let xPath = "//name"
-		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		let resultNodes = rootNode.xPath(xPath)
 		
 		XCTAssertEqual(resultNodes.count, 6)
 		XCTAssertEqual(resultNodes[0].name!, "name")
@@ -45,7 +45,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	
 	func testPreDicates1() {
 		let xPath = "//name[2]"
-		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		let resultNodes = rootNode.xPath(xPath)
 		
 		XCTAssertEqual(resultNodes.count, 1)
 		XCTAssertEqual(resultNodes[0].name!, "name")
@@ -54,7 +54,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	
 	func testPreDicates2() {
 		let xPath = "//description[last() - 1]"
-		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		let resultNodes = rootNode.xPath(xPath)
 		
 		XCTAssertEqual(resultNodes.count, 1)
 		XCTAssertEqual(resultNodes[0].name!, "description")
@@ -63,7 +63,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	
 	func testPreDicates3() {
 		let xPath = "//description[position()<3]"
-		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		let resultNodes = rootNode.xPath(xPath)
 	
 		XCTAssertEqual(resultNodes.count, 2)
 		XCTAssertEqual(resultNodes[0].name!, "description")
@@ -75,7 +75,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	
 	func testPreDicates4() {
 		let xPath = "//name[@gender=\"Women\'s\"]"
-		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		let resultNodes = rootNode.xPath(xPath)
 
 		XCTAssertEqual(resultNodes.count, 1)
 		XCTAssertEqual(resultNodes[0].name!, "name")
@@ -83,14 +83,14 @@ class JiNodeXMLXPathTests: XCTestCase {
 	}
 	
 	func testCurrentNode() {
-		let resultNodes = rootNode.searchWithXPathQuery(".")
+		let resultNodes = rootNode.xPath(".")
 
 		XCTAssertEqual(resultNodes.count, 1)
 		XCTAssertEqual(resultNodes[0], rootNode)
 	}
 	
 	func testParentNode() {
-		let resultNodes = rootNode.searchWithXPathQuery("..")
+		let resultNodes = rootNode.xPath("..")
 
 		XCTAssertEqual(resultNodes.count, 1)
 		XCTAssertEqual(resultNodes[0], rootNode.parent!)
@@ -98,7 +98,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	
 	func testPath() {
 		let xPath = "//not_food[@description]/test_content[last()]"
-		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		let resultNodes = rootNode.xPath(xPath)
 		
 		XCTAssertEqual(resultNodes.count, 1)
 		XCTAssertEqual(resultNodes[0].name!, "test_content")
@@ -108,7 +108,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	func testKeepTextNodePropertyIsKept() {
 		rootNode.keepTextNode = true
 		let xPath = "//name"
-		let resultNodes = rootNode.searchWithXPathQuery(xPath)
+		let resultNodes = rootNode.xPath(xPath)
 		
 		XCTAssertEqual(resultNodes.count, 6)
 		for node in resultNodes {

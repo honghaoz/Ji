@@ -3,10 +3,6 @@
 //  Ji
 //
 //  Created by Honghao Zhang on 2015-07-20.
-//  Copyright (c) 2015 Honghao Zhang. All rights reserved.
-//
-//  The MIT License (MIT)
-//
 //  Copyright (c) 2015 Honghao Zhang (张宏昊)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -279,11 +275,11 @@ public class JiNode {
 	/**
 	Perform XPath query on this node.
 	
-	:param: xPathQuery XPath query string.
+	:param: xPath XPath query string.
 	
 	:returns: An array of JiNode, an empty array will be returned if XPath matches no nodes.
 	*/
-	public func searchWithXPathQuery(xPathQuery: String) -> [JiNode] {
+	public func xPath(xPath: String) -> [JiNode] {
 		let xPathContext = xmlXPathNewContext(self.document.xmlDoc)
 		if xPathContext == nil {
 			// Unable to create XPath context.
@@ -292,7 +288,7 @@ public class JiNode {
 		
 		xPathContext.memory.node = self.xmlNode
 		
-		let xPathObject = xmlXPathEvalExpression(UnsafePointer<xmlChar>(xPathQuery.cStringUsingEncoding(NSUTF8StringEncoding)!), xPathContext)
+		let xPathObject = xmlXPathEvalExpression(UnsafePointer<xmlChar>(xPath.cStringUsingEncoding(NSUTF8StringEncoding)!), xPathContext)
 		xmlXPathFreeContext(xPathContext)
 		if xPathObject == nil {
 			// Unable to evaluate XPath.
