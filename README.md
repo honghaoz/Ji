@@ -10,8 +10,15 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML. (Ji to Swift is wha
 - Evaluate XPath expression and get results nodes
 
 # Installation
+- Add `libxml2.dylib`:
+    - Open project, select the target, under **General**, in **Linked Frameworks and Libraries**, add `libxml2.2.dylib` and `libxml2.dylib`
+    - Under **Build Settings**, in *Header Search Paths*, add `$(SDKROOT)/usr/include/libxml2`
+    - Under **Build Settings**, in *Other Linker Flags*, add `-lxml2`
+- Import `libxml` headers:
+    - Copy the content in `Ji-Bridging-Header.h` to your `[Modulename]-Bridging-Header.h`
 
 # Usage
+TODO
 
 # License
 
