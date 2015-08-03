@@ -14,11 +14,15 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Init with data
-		let googleIndexData = NSData(contentsOfURL: NSURL(string: "http://www.google.com")!)!
-		let jiGoogleIndexDoc = Ji(htmlData: googleIndexData)!
-		
-		let nodes = jiGoogleIndexDoc.searchWithXPathQuery("//body")
-		println("tag name: \(nodes?.first?.name)")
+		let googleIndexData = NSData(contentsOfURL: NSURL(string: "http://www.google.com")!)
+		if let googleIndexData = googleIndexData {
+			let jiGoogleIndexDoc = Ji(htmlData: googleIndexData)!
+			
+			let nodes = jiGoogleIndexDoc.searchWithXPathQuery("//body")
+			println("tag name: \(nodes?.first?.name)")
+		} else {
+			println("google.com is inaccessible")
+		}
 		
 		// Init with URL
 		let jiAppleSupportDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
