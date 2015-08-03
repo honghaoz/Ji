@@ -1,5 +1,5 @@
 //
-//  JiHelpers.swift
+//  JiHelper.swift
 //  Ji
 //
 //  Created by Honghao Zhang on 2015-07-21.
