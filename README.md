@@ -26,12 +26,6 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML. (Ji to Swift is wha
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
 
-CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
 To integrate **Ji** into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
@@ -69,38 +63,38 @@ And that's it!
 > ```
 
 - Init with `NSURL`:
-    ```swift
-	let jiAppleSupportDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
-	let titleNode = jiAppleSupportDoc?.xPath("//head/title")?.first
-	println("title: \(titleNode?.content)") // title: Optional("Official Apple Support")
-    ```
+```swift
+let jiDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
+let titleNode = jiDoc?.xPath("//head/title")?.first
+println("title: \(titleNode?.content)") // title: Optional("Official Apple Support")
+```
 
 - Init with `String`:
-    ```swift
-	let xmlString = "<?xml version='1.0' encoding='UTF-8'?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>"
-	let xmlDoc = Ji(xmlString: xmlString)
-	let bodyNode = xmlDoc?.rootNode?.firstChildWithName("body")
-	println("body: \(bodyNode?.content)") // body: Optional("Don\'t forget me this weekend!")
-    ```
+```swift
+let xmlString = "<?xml version='1.0' encoding='UTF-8'?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>"
+let jiDoc = Ji(xmlString: xmlString)
+let bodyNode = jiDoc?.rootNode?.firstChildWithName("body")
+println("body: \(bodyNode?.content)") // body: Optional("Don\'t forget me this weekend!")
+```
 
 - Init with `NSData`:
-    ```swift
-    let googleIndexData = NSData(contentsOfURL: NSURL(string: "http://www.google.com")!)
-    if let googleIndexData = googleIndexData {
-		let jiDoc = Ji(htmlData: googleIndexData)!
-		let htmlNode = jiDoc.rootNode!
-		println("html tagName: \(htmlNode.tagName)") // html tagName: Optional("html")
-		
-		let aNodes = jiDoc.xPath("//body//a")
-		if let firstANode = aNodes?.first {
-			println("first a node tagName: \(firstANode.name)") // first a node tagName: Optional("a")
-			let href = firstANode["href"]
-			println("first a node href: \(href)") // first a node href: Optional("http://www.google.ca/imghp?hl=en&tab=wi")
-		}
-	} else {
-		println("google.com is inaccessible")
+```swift
+let googleIndexData = NSData(contentsOfURL: NSURL(string: "http://www.google.com")!)
+if let googleIndexData = googleIndexData {
+	let jiDoc = Ji(htmlData: googleIndexData)!
+	let htmlNode = jiDoc.rootNode!
+	println("html tagName: \(htmlNode.tagName)") // html tagName: Optional("html")
+	
+	let aNodes = jiDoc.xPath("//body//a")
+	if let firstANode = aNodes?.first {
+		println("first a node tagName: \(firstANode.name)") // first a node tagName: Optional("a")
+		let href = firstANode["href"]
+		println("first a node href: \(href)") // first a node href: Optional("http://www.google.ca/imghp?hl=en&tab=wi")
 	}
-    ```
+} else {
+	println("google.com is inaccessible")
+}
+```
 
 ## License
 
