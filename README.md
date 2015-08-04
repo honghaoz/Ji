@@ -43,7 +43,7 @@ $ pod install
 
 ### Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate Ji into your project manually.
+If you prefer not to use a dependency manager, you can integrate Ji into your project manually.
 
 - Configure Xcode project:
     - Open project, select the target, under **General**, in **Linked Frameworks and Libraries**, add `libxml2.2.dylib` and `libxml2.dylib`
