@@ -32,7 +32,7 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 0.1.0'
+pod 'Ji', '~> 1.0'
 ```
 
 Then, run the following command:

@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   s.author           = { "Honghao Zhang" => "zhh358@gmail.com" }
   s.source           = { :git => "https://github.com/honghaoz/Ji.git", :tag => s.version.to_s }
 
-  s.osx.deployment_target = "10.9"
   s.ios.deployment_target = "8.0"
+  s.osx.deployment_target = "10.9"
 
   s.requires_arc 	 = true
   s.module_name      = "Ji"
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Ji'
 
   s.subspec 'Ji' do |ss|
-    ss.source_files = 'Source/*.*'
+    ss.source_files = 'Source/*.swift'
     ss.dependency 'Ji/Ji-libxml'
   end
 
