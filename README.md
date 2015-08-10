@@ -47,8 +47,8 @@ If you prefer not to use a dependency manager, you can integrate Ji into your pr
 
 - Configure Xcode project:
     - Open project, select the target, under **General**, in **Linked Frameworks and Libraries**, add `libxml2.2.dylib` and `libxml2.dylib`
-    - Under **Build Settings**, in *Header Search Paths*, add `$(SDKROOT)/usr/include/libxml2`
-    - Under **Build Settings**, in *Other Linker Flags*, add `-lxml2`
+    - Under **Build Settings**, in **Header Search Paths**, add `$(SDKROOT)/usr/include/libxml2`
+    - Under **Build Settings**, in **Other Linker Flags**, add `-lxml2`
 - Import `libxml` headers:
     - Copy the those import statements:
     ```swift
