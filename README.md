@@ -50,8 +50,18 @@ If you prefer not to use a dependency manager, you can integrate Ji into your pr
     - Under **Build Settings**, in *Header Search Paths*, add `$(SDKROOT)/usr/include/libxml2`
     - Under **Build Settings**, in *Other Linker Flags*, add `-lxml2`
 - Import `libxml` headers:
-    - Copy the content in `Ji-Bridging-Header.h` to your `[Modulename]-Bridging-Header.h`
-- Drag **Ji.swift**, **JiNode.swift** and **JiHelper.swift** into your project.
+    - Copy the those import statements:
+    ```swift
+    #import <libxml/tree.h>
+    #import <libxml/parser.h>
+    #import <libxml/HTMLtree.h>
+    #import <libxml/HTMLparser.h>
+    #import <libxml/xpath.h>
+    #import <libxml/xpathInternals.h>
+    #import <libxml/xmlerror.h>
+    ```
+    and paste them into your `[Modulename]-Bridging-Header.h`
+- Drag files in **Source** folder into your project.
 
 And that's it!
 
