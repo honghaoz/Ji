@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Ji"
-  s.version          = "0.1.0"
+  s.version          = "1.0"
   s.summary          = "Ji (戟) is a Swift XML/HTML parser."
   s.description      = <<-DESC
                        Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML. (Ji to Swift is what hpple to Objective-C)
@@ -8,6 +8,7 @@ Pod::Spec.new do |s|
                        Features
                        * Build an XML/HTML tree and navigate the tree
                        * Evaluate XPath expression and get results nodes
+                       * Comprehensive Unit Test Coverage
 
                        DESC
   s.homepage         = "https://github.com/honghaoz/Ji"
@@ -26,12 +27,12 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Ji'
 
   s.subspec 'Ji' do |ss|
-    ss.source_files = 'Source/*.{swift}'
+    ss.source_files = 'Source/*.*'
     ss.dependency 'Ji/Ji-libxml'
   end
 
   s.subspec 'Ji-libxml' do |ss|
-    ss.source_files = 'Source/Ji-libxml/*.{h}'
+    ss.source_files = 'Ji-libxml/*.{h}'
   end
 
 end
