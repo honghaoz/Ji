@@ -61,7 +61,7 @@ If you prefer not to use a dependency manager, you can integrate Ji into your pr
     #import <libxml/xmlerror.h>
     ```
     and paste them into your `[Modulename]-Bridging-Header.h`
-- Drag files in **Source** folder into your project.
+- Drag files in [**Source**](https://github.com/honghaoz/Ji/tree/master/Source) folder into your project.
 
 And that's it!
 
