@@ -557,3 +557,10 @@ public class JiNodeGenerator: GeneratorType {
 		return node
 	}
 }
+
+// MARK: - Printable
+extension JiNode: Printable {
+	public var description: String {
+		return rawContent ?? "nil"
+	}
+}

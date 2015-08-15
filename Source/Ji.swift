@@ -289,3 +289,10 @@ extension Ji: Equatable { }
 public func ==(lhs: Ji, rhs: Ji) -> Bool {
 	return lhs.xmlDoc == rhs.xmlDoc
 }
+
+// MARK: - Printable
+extension Ji: Printable {
+	public var description: String {
+		return rootNode?.rawContent ?? "nil"
+	}
+}

@@ -50,4 +50,12 @@ class JiTests: XCTestCase {
 		let document = Ji(xmlURL: url)
 		XCTAssertNotNil(document!.rootNode)
 	}
+	
+	// MARK: - Printable
+	func testPrintable() {
+		let url = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: self.dynamicType).resourceURL)!
+		let document = Ji(xmlURL: url)
+		XCTAssertNotNil(document)
+		XCTAssertEqual("\(document!)", document!.rootNode!.rawContent!)
+	}
 }

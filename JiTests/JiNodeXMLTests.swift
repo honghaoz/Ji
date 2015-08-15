@@ -371,4 +371,11 @@ class JiNodeXMLTests: XCTestCase {
 			}
 		}
 	}
+	
+	// MARK: - Printable
+	func testPrintable() {
+		let node = rootNode.firstChild?.firstChildWithName("description")
+		XCTAssertNotNil(node)
+		XCTAssertEqual("\(node!)", node!.rawContent!)
+	}
 }

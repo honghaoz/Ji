@@ -260,4 +260,9 @@ class JiNodeHTMLTests: XCTestCase {
 			}
 		}
 	}
+	
+	// MARK: - Printable
+	func testPrintable() {
+		XCTAssertEqual("\(rootNode)", rootNode!.rawContent!)
+	}
 }
