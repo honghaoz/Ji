@@ -84,6 +84,9 @@ public class JiNode {
 	}
 	
 	/// The tag name of this node.
+	public var tag: String? { return name }
+	
+	/// The tag name of this node.
 	public var tagName: String? { return name }
 	
 	/// The tag name of this node.
@@ -188,8 +191,22 @@ public class JiNode {
 		}
 	}
 	
-	/// Raw content of this node. Leading/trailing white spaces, new lines are kept.
+	/// Raw content of this node. Children, tags are also included.
 	public lazy var rawContent: String? = {
+		let buffer = xmlBufferCreate()
+		if self.document.isXML {
+			xmlNodeDump(buffer, self.document.xmlDoc, self.xmlNode, 0, 0)
+		} else {
+			htmlNodeDump(buffer, self.document.htmlDoc, self.xmlNode)
+		}
+		
+		let result = String.fromXmlChar(buffer.memory.content)
+		xmlBufferFree(buffer)
+		return result
+	}()
+	
+	/// Content of this node. Tags are removed, leading/trailing white spaces, new lines are kept.
+	public lazy var content: String? = {
 		let contentChars = xmlNodeGetContent(self.xmlNode)
 		if contentChars == nil { return nil }
 		let contentString = String.fromXmlChar(contentChars)
@@ -197,29 +214,11 @@ public class JiNode {
 		return contentString
 	}()
 	
-	/// Trimmed content of this node. Leading/trailing white spaces, new lines are trimmed.
-	public lazy var content: String? = {
-		let contentChars = xmlNodeGetContent(self.xmlNode)
-		if contentChars == nil { return nil }
-		let contentString = String.fromXmlChar(contentChars)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-		free(contentChars)
-		return contentString
-	}()
-	
 	/// Raw value of this node. Leading/trailing white spaces, new lines are kept.
-	public lazy var rawValue: String? = {
-		let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
-		if valueChars == nil { return nil }
-		let valueString = String.fromXmlChar(valueChars)
-		free(valueChars)
-		return valueString
-	}()
-	
-	/// Trimmed value of this node. Leading/trailing white spaces, new lines are trimmed.
 	public lazy var value: String? = {
 		let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
 		if valueChars == nil { return nil }
-		let valueString = String.fromXmlChar(valueChars)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		let valueString = String.fromXmlChar(valueChars)
 		free(valueChars)
 		return valueString
 	}()

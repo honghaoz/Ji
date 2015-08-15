@@ -28,7 +28,7 @@ import Foundation
 /// Ji document
 public class Ji {
 	/// A flag specifies whether the data is XML or not.
-	private var isXML: Bool = true
+	internal var isXML: Bool = true
 	/// The XML/HTML data.
 	private(set) public var data: NSData?
 	/// The encoding used by in this document.
