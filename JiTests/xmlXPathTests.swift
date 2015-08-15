@@ -102,7 +102,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 		
 		XCTAssertEqual(resultNodes.count, 1)
 		XCTAssertEqual(resultNodes[0].name!, "test_content")
-		XCTAssertEqual(resultNodes[0].value!, "spaces before and tabs after")
+		XCTAssertEqual(resultNodes[0].content!, "  spaces before and tabs after\t\t")
 	}
 	
 	func testKeepTextNodePropertyIsKept() {

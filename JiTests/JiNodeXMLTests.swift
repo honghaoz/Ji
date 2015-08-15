@@ -104,7 +104,7 @@ class JiNodeXMLTests: XCTestCase {
 		rootNode.keepTextNode = true
 		let textNode = rootNode.children[2]
 		XCTAssertEqual(textNode.name!, "text")
-		XCTAssertEqual(textNode.content!, "some text")
+		XCTAssertEqual(textNode.content!, "some text\n\t")
 	}
 	
 	func testHasChildren() {
@@ -200,7 +200,7 @@ class JiNodeXMLTests: XCTestCase {
 		let textNode = firstFoodNode.nextSibling
 		XCTAssertNotNil(textNode)
 		XCTAssertEqual(textNode!.name!, "text")
-		XCTAssertEqual(textNode!.content!, "some text")
+		XCTAssertEqual(textNode!.content!, "some text\n\t")
 	}
 	
 	// MARK: - previousSibling
@@ -225,59 +225,46 @@ class JiNodeXMLTests: XCTestCase {
 		XCTAssertNotNil(previouTextNode)
 		XCTAssertEqual(previouTextNode!.keepTextNode, secondFood.keepTextNode)
 		XCTAssertEqual(previouTextNode!.name!, "text")
-		XCTAssertEqual(previouTextNode!.content!, "some text")
+		XCTAssertEqual(previouTextNode!.content!, "some text\n\t")
 	}
 	
 	// MARK: - Content
 	func testRawContent() {
 		let node = rootNode.children[2].lastChild!
-		var expectedString = "  spaces before and tabs after\t\t"
+		var expectedString = "<test_content>  spaces before and tabs after\t\t</test_content>"
 		XCTAssertEqual(node.rawContent!, expectedString)
 		
 		let not_foodNode = rootNode.children[2]
-		expectedString = "\n\t\tfoo\n\t\tfoo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar\n\t\t  spaces before and tabs after\t\t\n\t"
+		expectedString = "<not_food description=\"for testing purpose\" price=\"infinite\">\n\t\t<name gender=\"Women's\">foo</name>\n\t\t<test_content>foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar</test_content>\n\t\t<test_content>  spaces before and tabs after\t\t</test_content>\n\t</not_food>"
 		XCTAssertEqual(not_foodNode.rawContent!, expectedString)
 		
 		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
-		XCTAssertEqual(commentNode.rawContent!, " Dummy Comments 1 ")
+		XCTAssertEqual(commentNode.rawContent!, "<!-- Dummy Comments 1 -->")
 	}
 	
 	func testContent() {
 		let node = rootNode.children[2].lastChild!
-		var expectedString = "spaces before and tabs after"
+		var expectedString = "  spaces before and tabs after\t\t"
 		XCTAssertEqual(node.content!, expectedString)
 		
 		let not_foodNode = rootNode.children[2]
-		expectedString = "foo\n\t\tfoo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar\n\t\t  spaces before and tabs after"
+		expectedString = "\n\t\tfoo\n\t\tfoo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar\n\t\t  spaces before and tabs after\t\t\n\t"
 		XCTAssertEqual(not_foodNode.content!, expectedString)
 		
 		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
-		XCTAssertEqual(commentNode.content!, "Dummy Comments 1")
+		XCTAssertEqual(commentNode.content!, " Dummy Comments 1 ")
 	}
 	
 	func testContentTextNode() {
 		rootNode.keepTextNode = true
 		let textNode = rootNode.children[2]
-		XCTAssertEqual(textNode.content!, "some text")
+		XCTAssertEqual(textNode.content!, "some text\n\t")
 	}
 	
 	// MARK: - Value
-	func testRawValue() {
-		var node = rootNode.children[2].lastChild!
-		var expectedString = "  spaces before and tabs after\t\t"
-		XCTAssertEqual(node.rawValue!, expectedString)
-		
-		node = rootNode.children[2].children[1]
-		expectedString = "foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar"
-		XCTAssertEqual(node.rawValue!, expectedString)
-		
-		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
-		XCTAssertNil(commentNode.rawValue)
-	}
-	
 	func testValue() {
 		var node = rootNode.children[2].lastChild!
-		var expectedString = "spaces before and tabs after"
+		var expectedString = "  spaces before and tabs after\t\t"
 		XCTAssertEqual(node.value!, expectedString)
 		
 		node = rootNode.children[2].children[1]
@@ -287,6 +274,19 @@ class JiNodeXMLTests: XCTestCase {
 		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
 		XCTAssertNil(commentNode.value)
 	}
+	
+//	func testValue() {
+//		var node = rootNode.children[2].lastChild!
+//		var expectedString = "spaces before and tabs after"
+//		XCTAssertEqual(node.value!, expectedString)
+//		
+//		node = rootNode.children[2].children[1]
+//		expectedString = "foo_following_Tab\tfooo_following_Endline_then_three_Tabs\n\t\t\tbar"
+//		XCTAssertEqual(node.value!, expectedString)
+//		
+//		let commentNode = rootNode.lastChild!.previousSibling!.previousSibling!.previousSibling!
+//		XCTAssertNil(commentNode.value)
+//	}
 	
 	func testValueTextNode() {
 		rootNode.keepTextNode = true
@@ -319,7 +319,7 @@ class JiNodeXMLTests: XCTestCase {
 	// MARK: - Search Children
 	func testFirstChildWithName() {
 		XCTAssertNil(rootNode.firstChildWithName("breakfast_menu"))
-		XCTAssertEqual(rootNode.firstChildWithName("comment")!.content!, "Dummy Comments")
+		XCTAssertEqual(rootNode.firstChildWithName("comment")!.content!, " Dummy Comments ")
 	}
 	
 	func testChildrenWithName() {
@@ -365,7 +365,7 @@ class JiNodeXMLTests: XCTestCase {
 				XCTAssertEqual(node.name!, "comment")
 			} else if index == 5 {
 				XCTAssertEqual(node.name!, "comment")
-				XCTAssertEqual(node.content!, "Dummy Comments 1")
+				XCTAssertEqual(node.content!, " Dummy Comments 1 ")
 			} else {
 				XCTAssertEqual(node.name!, "food")
 			}

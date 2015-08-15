@@ -168,23 +168,18 @@ class JiNodeHTMLTests: XCTestCase {
 	// MARK: - Content
 	func testRawContent() {
 		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
-		XCTAssertEqual(macNode.rawContent!, " Mac ")
+		XCTAssertEqual(macNode.rawContent!, "<p> Mac </p>")
 	}
 	
 	func testContent() {
 		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
-		XCTAssertEqual(macNode.content!, "Mac")
+		XCTAssertEqual(macNode.content!, " Mac ")
 	}
 	
 	// MARK: - Value
-	func testRawValue() {
-		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
-		XCTAssertEqual(macNode.rawValue!, " Mac ")
-	}
-	
 	func testValue() {
 		let macNode = rootNode.xPath("//a[@href='/support/mac/']/p").first!
-		XCTAssertEqual(macNode.value!, "Mac")
+		XCTAssertEqual(macNode.value!, " Mac ")
 	}
 	
 	// MARK: - Attribute
