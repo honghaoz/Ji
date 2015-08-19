@@ -98,8 +98,6 @@ class JiNodeXMLTests: XCTestCase {
 	
 	func testTextChildrenValueMatched() {
 		rootNode.keepTextNode = false
-		// Let node calculates children first
-		let dummyChildren = rootNode.children
 		
 		rootNode.keepTextNode = true
 		let textNode = rootNode.children[2]
@@ -296,7 +294,7 @@ class JiNodeXMLTests: XCTestCase {
 	
 	// MARK: - Attribute
 	func testSubscriptAttribute() {
-		var node = rootNode.children[2]
+		let node = rootNode.children[2]
 		XCTAssertNil(node["foo"])
 		XCTAssertEqual(node["description"]!, "for testing purpose")
 		XCTAssertEqual(node["price"]!, "infinite")
@@ -307,7 +305,7 @@ class JiNodeXMLTests: XCTestCase {
 	func testAttributes() {
 		XCTAssertEqual(rootNode.attributes.count, 0)
 		
-		var node = rootNode.children[2]
+		let node = rootNode.children[2]
 		XCTAssertEqual(node.attributes.count, 2)
 		XCTAssertEqual(node.attributes["description"]!, "for testing purpose")
 		XCTAssertEqual(node.attributes["price"]!, "infinite")
@@ -356,7 +354,7 @@ class JiNodeXMLTests: XCTestCase {
 	
 	// MARK: - Generator
 	func testSequenceGenerator() {
-		for (index, node) in enumerate(rootNode!) {
+		for (index, node) in rootNode!.enumerate() {
 			if index == 2 {
 				XCTAssertEqual(node.name!, "not_food")
 			} else if index == 3 {
@@ -372,8 +370,8 @@ class JiNodeXMLTests: XCTestCase {
 		}
 	}
 	
-	// MARK: - Printable
-	func testPrintable() {
+	// MARK: - CustomStringConvertible
+	func testCustomStringConvertible() {
 		let node = rootNode.firstChild?.firstChildWithName("description")
 		XCTAssertNotNil(node)
 		XCTAssertEqual("\(node!)", node!.rawContent!)

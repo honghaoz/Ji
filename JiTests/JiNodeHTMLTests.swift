@@ -248,7 +248,7 @@ class JiNodeHTMLTests: XCTestCase {
 	// MARK: - Generator
 	func testSequenceGenerator() {
 		let head = rootNode.firstChild!
-		for (index, node) in enumerate(head) {
+		for (index, node) in head.enumerate() {
 			if index == 0 {
 				XCTAssertEqual(node["http-equiv"]!, "content-type")
 			} else if index == 1 {
@@ -261,8 +261,8 @@ class JiNodeHTMLTests: XCTestCase {
 		}
 	}
 	
-	// MARK: - Printable
-	func testPrintable() {
+	// MARK: - CustomStringConvertible
+	func testCustomStringConvertible() {
 		XCTAssertEqual("\(rootNode)", rootNode!.rawContent!)
 	}
 }
