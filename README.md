@@ -3,7 +3,7 @@
 </h3>
 
 # Ji 戟 
-[![CI Status](http://img.shields.io/travis/honghaoz/Ji.svg?style=flat)](https://travis-ci.org/honghaoz/Ji)
+[![CI Status](https://travis-ci.org/honghaoz/Ji.svg?branch=master)](https://travis-ci.org/honghaoz/Ji)
 [![Cocoapods Version](https://img.shields.io/cocoapods/v/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
 [![License](https://img.shields.io/cocoapods/l/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
 [![Platform](https://img.shields.io/cocoapods/p/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
