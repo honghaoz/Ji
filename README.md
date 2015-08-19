@@ -24,7 +24,7 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML. (Ji to Swift is wha
 
 ### Swift 2 Support
 
-The `swift-2.0` branch is updated for Swift 2. Since Xcode 7 is still in beta. You have to install `Ji` manually. 
+The `swift-2.0` branch is updated for Swift 2. Since Xcode 7 is still in beta, you have to install `Ji` manually. 
 
 ### Cocoapods
 
