@@ -25,6 +25,8 @@
 
 import Foundation
 
+typealias 戟节点 = JiNode
+
 /**
 JiNode types, these match element types in tree.h
 

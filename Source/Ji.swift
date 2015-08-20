@@ -25,6 +25,8 @@
 
 import Foundation
 
+typealias 戟 = Ji
+
 /// Ji document
 public class Ji {
 	/// A flag specifies whether the data is XML or not.

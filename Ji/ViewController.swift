@@ -44,5 +44,12 @@ class ViewController: UIViewController {
 		let xmlDoc = Ji(xmlString: xmlString)
 		let bodyNode = xmlDoc?.rootNode?.firstChildWithName("body")
 		println("body: \(bodyNode?.content)")
+		
+		println()
+		
+		// Just for fun
+		let 戟文档 = 戟(htmlURL: NSURL(string: "https://cocoapods.org/pods/Ji")!)
+		let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
+		println("作者(Author): \(attribution?.content)")
 	}
 }
