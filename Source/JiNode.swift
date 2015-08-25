@@ -444,7 +444,7 @@ public class JiNode {
 			if child.name == name {
 				results.append(child)
 			}
-			results.extend(descendantsWithName(name, node: child))
+			results.appendContentsOf(descendantsWithName(name, node: child))
 		}
 		return results
 	}
@@ -517,7 +517,7 @@ public class JiNode {
 			if child[attributeName] == attributeValue {
 				results.append(child)
 			}
-			results.extend(descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: child))
+			results.appendContentsOf(descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: child))
 		}
 		return results
 	}

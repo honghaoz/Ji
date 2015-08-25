@@ -44,7 +44,8 @@ class JiNodeXMLXPathTests: XCTestCase {
 	}
 	
 	func testPreDicates1() {
-		let xPath = "//name[2]"
+		// http://stackoverflow.com/questions/3674569/how-to-select-specified-node-within-xpath-node-sets-by-index-with-selenium
+		let xPath = "(//name)[2]"
 		let resultNodes = rootNode.xPath(xPath)
 		
 		XCTAssertEqual(resultNodes.count, 1)
@@ -53,7 +54,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	}
 	
 	func testPreDicates2() {
-		let xPath = "//description[last() - 1]"
+		let xPath = "(//description)[last() - 1]"
 		let resultNodes = rootNode.xPath(xPath)
 		
 		XCTAssertEqual(resultNodes.count, 1)
@@ -62,7 +63,7 @@ class JiNodeXMLXPathTests: XCTestCase {
 	}
 	
 	func testPreDicates3() {
-		let xPath = "//description[position()<3]"
+		let xPath = "(//description)[position()<3]"
 		let resultNodes = rootNode.xPath(xPath)
 	
 		XCTAssertEqual(resultNodes.count, 2)
