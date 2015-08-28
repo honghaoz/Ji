@@ -1,2 +1,2 @@
-JiTests/TestData/* linguist-vendored
-Ji-libxml/* linguist-vendored
+Tests/TestData/* linguist-vendored
+Source/Ji-libxml/* linguist-vendored
