@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Ji-libxml' do |ss|
-    ss.source_files = 'Ji-libxml/*.{h}'
+    ss.source_files = 'Source/Ji-libxml/*.{h}'
   end
 
 end
