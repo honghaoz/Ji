@@ -84,7 +84,7 @@
 /* Begin PBXFileReference section */
 		E43D74D61B8FBBBF00702114 /* Ji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43D74DA1B8FBBBF00702114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
-		E43D74DB1B8FBBBF00702114 /* Ji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Ji.h; path = ../Source/Ji.h; sourceTree = "<group>"; };
+		E43D74DB1B8FBBBF00702114 /* Ji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ji.h; sourceTree = "<group>"; };
 		E43D75061B8FE82100702114 /* JiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43D75091B8FE82100702114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E43D751D1B8FE8A100702114 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -196,7 +196,8 @@
 				E43D75411B8FEC3B00702114 /* Ji-libxml */,
 				E43D74D91B8FBBBF00702114 /* Supporting Files */,
 			);
-			path = Ji;
+			name = Ji;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		E43D74D91B8FBBBF00702114 /* Supporting Files */ = {
@@ -675,6 +676,7 @@
 				E43D75111B8FE82100702114 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
