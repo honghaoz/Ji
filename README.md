@@ -116,6 +116,10 @@ if let googleIndexData = googleIndexData {
 } else {
 	println("google.com is inaccessible")
 }
+
+let 戟文档 = 戟(htmlURL: NSURL(string: "https://cocoapods.org/pods/Ji")!)
+let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
+println("作者(Author): \(attribution?.content)")
 ```
 
 ## License
