@@ -36,13 +36,21 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 1.1'
+pod 'Ji', '~> 1.1.1'
 ```
 
 Then, run the following command:
 
 ```bash
 $ pod install
+```
+
+### Carthage
+
+To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "honghaoz/Ji" >= 1.1.1
 ```
 
 ### Manually
@@ -65,7 +73,7 @@ If you prefer not to use a dependency manager, you can integrate Ji into your pr
     #import <libxml/xmlerror.h>
     ```
     and paste them into your `[Modulename]-Bridging-Header.h`
-- Drag files in [**Source**](https://github.com/honghaoz/Ji/tree/master/Source) folder into your project.
+- Drag `Ji.swift`, `JiHelper.swift` and `JiNode.swift` in [**Source**](https://github.com/honghaoz/Ji/tree/master/Source) folder into your project.
 
 And that's it!
 
