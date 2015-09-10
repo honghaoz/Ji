@@ -18,38 +18,38 @@ class ViewController: UIViewController {
 		if let googleIndexData = googleIndexData {
 			let jiDoc = Ji(htmlData: googleIndexData)!
 			let htmlNode = jiDoc.rootNode!
-			println("html tagName: \(htmlNode.tagName)")
+			print("html tagName: \(htmlNode.tagName)")
 			
 			let aNodes = jiDoc.xPath("//body//a")
 			if let firstANode = aNodes?.first {
-				println("first a node tagName: \(firstANode.name)")
+				print("first a node tagName: \(firstANode.name)")
 				let href = firstANode["href"]
-				println("first a node href: \(href)")
+				print("first a node href: \(href)")
 			}
 		} else {
-			println("google.com is inaccessible")
+			print("google.com is inaccessible")
 		}
 		
-		println()
+		print("")
 		
 		// Init with URL
 		let jiAppleSupportDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
 		let titleNode = jiAppleSupportDoc?.xPath("//head/title")?.first
-		println("title: \(titleNode?.content)")
+		print("title: \(titleNode?.content)")
 		
-		println()
+		print("")
 		
 		// Init with String
 		let xmlString = "<?xml version='1.0' encoding='UTF-8'?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>"
 		let xmlDoc = Ji(xmlString: xmlString)
 		let bodyNode = xmlDoc?.rootNode?.firstChildWithName("body")
-		println("body: \(bodyNode?.content)")
+		print("body: \(bodyNode?.content)")
 		
-		println()
+		print("")
 		
 		// Just for fun
 		let 戟文档 = 戟(htmlURL: NSURL(string: "https://cocoapods.org/pods/Ji")!)
 		let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
-		println("作者(Author): \(attribution?.content)")
+		print("作者(Author): \(attribution?.content)")
 	}
 }

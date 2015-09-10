@@ -72,16 +72,16 @@ public class JiNode {
 	/**
 	Initializes a JiNode object with the supplied xmlNodePtr, Ji document and keepTextNode boolean flag.
 	
-	:param: xmlNode      The xmlNodePtr for a node.
-	:param: jiDocument   The Ji document contains this node.
-	:param: keepTextNode Whether it should keep text node, by default, it's false.
+	- parameter xmlNode:      The xmlNodePtr for a node.
+	- parameter jiDocument:   The Ji document contains this node.
+	- parameter keepTextNode: Whether it should keep text node, by default, it's false.
 	
-	:returns: The initialized JiNode object.
+	- returns: The initialized JiNode object.
 	*/
 	init(xmlNode: xmlNodePtr, jiDocument: Ji, keepTextNode: Bool = false) {
 		self.xmlNode = xmlNode
 		document = jiDocument
-		type = JiNodeType(rawValue: Int(xmlNode.memory.type.value))!
+		type = JiNodeType(rawValue: Int(xmlNode.memory.type.rawValue))!
 		self.keepTextNode = keepTextNode
 	}
 	
@@ -228,9 +228,9 @@ public class JiNode {
 	/**
 	Get attribute value with key.
 	
-	:param: key An attribute key string.
+	- parameter key: An attribute key string.
 	
-	:returns: The attribute value for the key.
+	- returns: The attribute value for the key.
 	*/
 	public subscript(key: String) -> String? {
 		get {
@@ -276,9 +276,9 @@ public class JiNode {
 	/**
 	Perform XPath query on this node.
 	
-	:param: xPath XPath query string.
+	- parameter xPath: XPath query string.
 	
-	:returns: An array of JiNode, an empty array will be returned if XPath matches no nodes.
+	- returns: An array of JiNode, an empty array will be returned if XPath matches no nodes.
 	*/
 	public func xPath(xPath: String) -> [JiNode] {
 		let xPathContext = xmlXPathNewContext(self.document.xmlDoc)
@@ -320,9 +320,9 @@ public class JiNode {
 	/**
 	Find the first child with the tag name of this node.
 	
-	:param: name A tag name string.
+	- parameter name: A tag name string.
 	
-	:returns: The JiNode object found or nil if it doesn't exist.
+	- returns: The JiNode object found or nil if it doesn't exist.
 	*/
 	public func firstChildWithName(name: String) -> JiNode? {
 		var node = firstChild
@@ -338,9 +338,9 @@ public class JiNode {
 	/**
 	Find the children with the tag name of this node.
 	
-	:param: name A tag name string.
+	- parameter name: A tag name string.
 	
-	:returns: An array of JiNode.
+	- returns: An array of JiNode.
 	*/
 	public func childrenWithName(name: String) -> [JiNode] {
 		return children.filter { $0.name == name }
@@ -349,10 +349,10 @@ public class JiNode {
 	/**
 	Find the first child with the attribute name and value of this node.
 	
-	:param: attributeName  An attribute name.
-	:param: attributeValue The attribute value for the attribute name.
+	- parameter attributeName:  An attribute name.
+	- parameter attributeValue: The attribute value for the attribute name.
 	
-	:returns: The JiNode object found or nil if it doesn't exist.
+	- returns: The JiNode object found or nil if it doesn't exist.
 	*/
 	public func firstChildWithAttributeName(attributeName: String, attributeValue: String) -> JiNode? {
 		var node = firstChild
@@ -368,10 +368,10 @@ public class JiNode {
 	/**
 	Find the children with the attribute name and value of this node.
 	
-	:param: attributeName  An attribute name.
-	:param: attributeValue The attribute value for the attribute name.
+	- parameter attributeName:  An attribute name.
+	- parameter attributeValue: The attribute value for the attribute name.
 	
-	:returns: An array of JiNode.
+	- returns: An array of JiNode.
 	*/
 	public func childrenWithAttributeName(attributeName: String, attributeValue: String) -> [JiNode] {
 		return children.filter { $0.attributes[attributeName] == attributeValue }
@@ -384,9 +384,9 @@ public class JiNode {
 	/**
 	Find the first descendant with the tag name of this node.
 	
-	:param: name A tag name string.
+	- parameter name: A tag name string.
 	
-	:returns: The JiNode object found or nil if it doesn't exist.
+	- returns: The JiNode object found or nil if it doesn't exist.
 	*/
 	public func firstDescendantWithName(name: String) -> JiNode? {
 		return firstDescendantWithName(name, node: self)
@@ -396,10 +396,10 @@ public class JiNode {
 	/**
 	Helper method: Find the first descendant with the tag name of the node provided.
 	
-	:param: name A tag name string.
-	:param: node The node from which to find.
+	- parameter name: A tag name string.
+	- parameter node: The node from which to find.
 	
-	:returns: The JiNode object found or nil if it doesn't exist.
+	- returns: The JiNode object found or nil if it doesn't exist.
 	*/
 	private func firstDescendantWithName(name: String, node: JiNode) -> JiNode? {
 		if !node.hasChildren {
@@ -420,9 +420,9 @@ public class JiNode {
 	/**
 	Find the descendant with the tag name of this node.
 	
-	:param: name A tag name string.
+	- parameter name: A tag name string.
 	
-	:returns: An array of JiNode.
+	- returns: An array of JiNode.
 	*/
 	public func descendantsWithName(name: String) -> [JiNode] {
 		return descendantsWithName(name, node: self)
@@ -431,10 +431,10 @@ public class JiNode {
 	/**
 	Helper method: Find the descendant with the tag name of the node provided.
 	
-	:param: name A tag name string.
-	:param: node The node from which to find.
+	- parameter name: A tag name string.
+	- parameter node: The node from which to find.
 	
-	:returns: An array of JiNode.
+	- returns: An array of JiNode.
 	*/
 	private func descendantsWithName(name: String, node: JiNode) -> [JiNode] {
 		if !node.hasChildren {
@@ -446,7 +446,7 @@ public class JiNode {
 			if child.name == name {
 				results.append(child)
 			}
-			results.extend(descendantsWithName(name, node: child))
+			results.appendContentsOf(descendantsWithName(name, node: child))
 		}
 		return results
 	}
@@ -454,10 +454,10 @@ public class JiNode {
 	/**
 	Find the first descendant with the attribute name and value of this node.
 	
-	:param: attributeName  An attribute name.
-	:param: attributeValue The attribute value for the attribute name.
+	- parameter attributeName:  An attribute name.
+	- parameter attributeValue: The attribute value for the attribute name.
 	
-	:returns: The JiNode object found or nil if it doesn't exist.
+	- returns: The JiNode object found or nil if it doesn't exist.
 	*/
 	public func firstDescendantWithAttributeName(attributeName: String, attributeValue: String) -> JiNode? {
 		return firstDescendantWithAttributeName(attributeName, attributeValue: attributeValue, node: self)
@@ -466,11 +466,11 @@ public class JiNode {
 	/**
 	Helper method: Find the first descendant with the attribute name and value of the node provided.
 	
-	:param: attributeName  An attribute name.
-	:param: attributeValue The attribute value for the attribute name.
-	:param: node           The node from which to find.
+	- parameter attributeName:  An attribute name.
+	- parameter attributeValue: The attribute value for the attribute name.
+	- parameter node:           The node from which to find.
 	
-	:returns: The JiNode object found or nil if it doesn't exist.
+	- returns: The JiNode object found or nil if it doesn't exist.
 	*/
 	private func firstDescendantWithAttributeName(attributeName: String, attributeValue: String, node: JiNode) -> JiNode? {
 		if !node.hasChildren {
@@ -491,10 +491,10 @@ public class JiNode {
 	/**
 	Find the descendants with the attribute name and value of this node.
 	
-	:param: attributeName  An attribute name.
-	:param: attributeValue The attribute value for the attribute name.
+	- parameter attributeName:  An attribute name.
+	- parameter attributeValue: The attribute value for the attribute name.
 	
-	:returns: An array of JiNode.
+	- returns: An array of JiNode.
 	*/
 	public func descendantsWithAttributeName(attributeName: String, attributeValue: String) -> [JiNode] {
 		return descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: self)
@@ -503,11 +503,11 @@ public class JiNode {
 	/**
 	Helper method: Find the descendants with the attribute name and value of the node provided.
 	
-	:param: attributeName  An attribute name.
-	:param: attributeValue The attribute value for the attribute name.
-	:param: node           The node from which to find.
+	- parameter attributeName:  An attribute name.
+	- parameter attributeValue: The attribute value for the attribute name.
+	- parameter node:           The node from which to find.
 	
-	:returns: An array of JiNode.
+	- returns: An array of JiNode.
 	*/
 	private func descendantsWithAttributeName(attributeName: String, attributeValue: String, node: JiNode) -> [JiNode] {
 		if !node.hasChildren {
@@ -519,7 +519,7 @@ public class JiNode {
 			if child[attributeName] == attributeValue {
 				results.append(child)
 			}
-			results.extend(descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: child))
+			results.appendContentsOf(descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: child))
 		}
 		return results
 	}
@@ -560,8 +560,8 @@ public class JiNodeGenerator: GeneratorType {
 	}
 }
 
-// MARK: - Printable
-extension JiNode: Printable {
+// MARK: - CustomStringConvertible
+extension JiNode: CustomStringConvertible {
 	public var description: String {
 		return rawContent ?? "nil"
 	}

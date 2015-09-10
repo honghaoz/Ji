@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4067A021BA22F34003F111B /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4067A011BA22F34003F111B /* libxml2.2.tbd */; };
+		E4067A041BA22F3B003F111B /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4067A031BA22F3B003F111B /* libxml2.tbd */; };
 		E43D74DC1B8FBBBF00702114 /* Ji.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D74DB1B8FBBBF00702114 /* Ji.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E43D750C1B8FE82100702114 /* Ji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43D74D61B8FBBBF00702114 /* Ji.framework */; };
 		E43D751F1B8FE8A100702114 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E43D751D1B8FE8A100702114 /* index.html */; };
@@ -19,8 +21,6 @@
 		E43D75381B8FEB0300702114 /* Ji.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75351B8FEB0300702114 /* Ji.swift */; };
 		E43D75391B8FEB0300702114 /* JiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75361B8FEB0300702114 /* JiHelper.swift */; };
 		E43D753A1B8FEB0300702114 /* JiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75371B8FEB0300702114 /* JiNode.swift */; };
-		E43D753C1B8FEB3200702114 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E43D753B1B8FEB3200702114 /* libxml2.2.dylib */; };
-		E43D753E1B8FEB3800702114 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E43D753D1B8FEB3800702114 /* libxml2.dylib */; };
 		E43D75701B8FEC3B00702114 /* c14n.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75421B8FEC3B00702114 /* c14n.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E43D75711B8FEC3B00702114 /* catalog.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75431B8FEC3B00702114 /* catalog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E43D75721B8FEC3B00702114 /* chvalid.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75441B8FEC3B00702114 /* chvalid.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -82,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E4067A011BA22F34003F111B /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		E4067A031BA22F3B003F111B /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		E43D74D61B8FBBBF00702114 /* Ji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43D74DA1B8FBBBF00702114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
 		E43D74DB1B8FBBBF00702114 /* Ji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ji.h; sourceTree = "<group>"; };
@@ -97,8 +99,6 @@
 		E43D75351B8FEB0300702114 /* Ji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ji.swift; path = Source/Ji.swift; sourceTree = SOURCE_ROOT; };
 		E43D75361B8FEB0300702114 /* JiHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JiHelper.swift; path = Source/JiHelper.swift; sourceTree = SOURCE_ROOT; };
 		E43D75371B8FEB0300702114 /* JiNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JiNode.swift; path = Source/JiNode.swift; sourceTree = SOURCE_ROOT; };
-		E43D753B1B8FEB3200702114 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
-		E43D753D1B8FEB3800702114 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		E43D75421B8FEC3B00702114 /* c14n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c14n.h; sourceTree = "<group>"; };
 		E43D75431B8FEC3B00702114 /* catalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = catalog.h; sourceTree = "<group>"; };
 		E43D75441B8FEC3B00702114 /* chvalid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chvalid.h; sourceTree = "<group>"; };
@@ -152,8 +152,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E43D753E1B8FEB3800702114 /* libxml2.dylib in Frameworks */,
-				E43D753C1B8FEB3200702114 /* libxml2.2.dylib in Frameworks */,
+				E4067A041BA22F3B003F111B /* libxml2.tbd in Frameworks */,
+				E4067A021BA22F34003F111B /* libxml2.2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,8 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				E43D74DA1B8FBBBF00702114 /* Info.plist */,
-				E43D753D1B8FEB3800702114 /* libxml2.dylib */,
-				E43D753B1B8FEB3200702114 /* libxml2.2.dylib */,
+				E4067A031BA22F3B003F111B /* libxml2.tbd */,
+				E4067A011BA22F34003F111B /* libxml2.2.tbd */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -398,7 +398,9 @@
 		E43D74CD1B8FBBBF00702114 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Honghao Zhang";
 				TargetAttributes = {
 					E43D74D51B8FBBBF00702114 = {
@@ -504,6 +506,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -589,6 +592,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -614,6 +618,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -633,6 +638,7 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -646,6 +652,7 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
