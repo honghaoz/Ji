@@ -29,7 +29,7 @@ class JiTests: XCTestCase {
 	}
 
 	func testInitWithRemoteXMLURLSucceed() {
-		var xmlFileURL = NSURL(string: "http://www.w3schools.com/xml/simple.xml")
+		let xmlFileURL = NSURL(string: "http://www.w3schools.com/xml/simple.xml")
 		if let xmlFileURL = xmlFileURL {
 			let ji = Ji(xmlURL: xmlFileURL)
 			XCTAssertNotNil(ji)

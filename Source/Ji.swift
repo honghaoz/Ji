@@ -52,11 +52,11 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the supplied data, encoding and boolean flag.
 	
-	:param: data     The XML/HTML data.
-	:param: encoding The encoding used by data.
-	:param: isXML    Whether this is a XML data, true for XML, false for HTML.
+	- parameter data:     The XML/HTML data.
+	- parameter encoding: The encoding used by data.
+	- parameter isXML:    Whether this is a XML data, true for XML, false for HTML.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public required init?(data: NSData?, encoding: NSStringEncoding, isXML: Bool) {
 		if let data = data where data.length > 0 {
@@ -71,10 +71,10 @@ public class Ji {
 			let cEncoding: UnsafePointer<CChar> = CFStringGetCStringPtr(cfEncodingAsString, 0)
 			
 			if isXML {
-				let options = CInt(XML_PARSE_RECOVER.value)
+				let options = CInt(XML_PARSE_RECOVER.rawValue)
 				xmlDoc = xmlReadMemory(cBuffer, cSize, nil, cEncoding, options)
 			} else {
-				let options = CInt(HTML_PARSE_RECOVER.value | HTML_PARSE_NOWARNING.value | HTML_PARSE_NOERROR.value)
+				let options = CInt(HTML_PARSE_RECOVER.rawValue | HTML_PARSE_NOWARNING.rawValue | HTML_PARSE_NOERROR.rawValue)
 				htmlDoc = htmlReadMemory(cBuffer, cSize, nil, cEncoding, options)
 			}
 			if xmlDoc == nil { return nil }
@@ -86,10 +86,10 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the supplied data and boolean flag, using NSUTF8StringEncoding.
 	
-	:param: data  The XML/HTML data.
-	:param: isXML Whether this is a XML data, true for XML, false for HTML.
+	- parameter data:  The XML/HTML data.
+	- parameter isXML: Whether this is a XML data, true for XML, false for HTML.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(data: NSData?, isXML: Bool) {
 		self.init(data: data, encoding: NSUTF8StringEncoding, isXML: isXML)
@@ -102,10 +102,10 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the supplied XML data and encoding.
 	
-	:param: xmlData  The XML data.
-	:param: encoding The encoding used by data.
+	- parameter xmlData:  The XML data.
+	- parameter encoding: The encoding used by data.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(xmlData: NSData, encoding: NSStringEncoding) {
 		self.init(data: xmlData, encoding: encoding, isXML: true)
@@ -114,9 +114,9 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the supplied XML data, using NSUTF8StringEncoding.
 	
-	:param: xmlData The XML data.
+	- parameter xmlData: The XML data.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(xmlData: NSData) {
 		self.init(data: xmlData, isXML: true)
@@ -125,10 +125,10 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the supplied HTML data and encoding.
 	
-	:param: htmlData The HTML data.
-	:param: encoding The encoding used by data.
+	- parameter htmlData: The HTML data.
+	- parameter encoding: The encoding used by data.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(htmlData: NSData, encoding: NSStringEncoding) {
 		self.init(data: htmlData, encoding: encoding, isXML: false)
@@ -137,9 +137,9 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the supplied HTML data, using NSUTF8StringEncoding.
 	
-	:param: htmlData The HTML data.
+	- parameter htmlData: The HTML data.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(htmlData: NSData) {
 		self.init(data: htmlData, isXML: false)
@@ -152,11 +152,11 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the contents of supplied URL, encoding and boolean flag.
 	
-	:param: url      The URL from which to read data.
-	:param: encoding The encoding used by data.
-	:param: isXML    Whether this is a XML data URL, true for XML, false for HTML.
+	- parameter url:      The URL from which to read data.
+	- parameter encoding: The encoding used by data.
+	- parameter isXML:    Whether this is a XML data URL, true for XML, false for HTML.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(contentsOfURL url: NSURL, encoding: NSStringEncoding, isXML: Bool) {
 		let data = NSData(contentsOfURL: url)
@@ -166,10 +166,10 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the contents of supplied URL, and boolean flag, using NSUTF8StringEncoding.
 	
-	:param: url   The URL from which to read data.
-	:param: isXML Whether this is a XML data URL, true for XML, false for HTML.
+	- parameter url:   The URL from which to read data.
+	- parameter isXML: Whether this is a XML data URL, true for XML, false for HTML.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(contentsOfURL url: NSURL, isXML: Bool) {
 		self.init(contentsOfURL: url, encoding: NSUTF8StringEncoding, isXML: isXML)
@@ -178,9 +178,9 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the contents of supplied XML URL, using NSUTF8StringEncoding.
 	
-	:param: xmlURL The XML URL from which to read data.
+	- parameter xmlURL: The XML URL from which to read data.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(xmlURL: NSURL) {
 		self.init(contentsOfURL: xmlURL, isXML: true)
@@ -189,9 +189,9 @@ public class Ji {
 	/**
 	Initializes a Ji document object with the contents of supplied HTML URL, using NSUTF8StringEncoding.
 	
-	:param: htmlURL The HTML URL from which to read data.
+	- parameter htmlURL: The HTML URL from which to read data.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(htmlURL: NSURL) {
 		self.init(contentsOfURL: htmlURL, isXML: false)
@@ -204,10 +204,10 @@ public class Ji {
 	/**
 	Initializes a Ji document object with a XML string and it's encoding.
 	
-	:param: xmlString XML string.
-	:param: encoding  The encoding used by xmlString.
+	- parameter xmlString: XML string.
+	- parameter encoding:  The encoding used by xmlString.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(xmlString: String, encoding: NSStringEncoding) {
 		let data = xmlString.dataUsingEncoding(encoding, allowLossyConversion: false)
@@ -217,10 +217,10 @@ public class Ji {
 	/**
 	Initializes a Ji document object with a HTML string and it's encoding.
 	
-	:param: htmlString HTML string.
-	:param: encoding   The encoding used by htmlString.
+	- parameter htmlString: HTML string.
+	- parameter encoding:   The encoding used by htmlString.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(htmlString: String, encoding: NSStringEncoding) {
 		let data = htmlString.dataUsingEncoding(encoding, allowLossyConversion: false)
@@ -230,9 +230,9 @@ public class Ji {
 	/**
 	Initializes a Ji document object with a XML string, using NSUTF8StringEncoding.
 	
-	:param: xmlString XML string.
+	- parameter xmlString: XML string.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(xmlString: String) {
 		let data = xmlString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
@@ -242,9 +242,9 @@ public class Ji {
 	/**
 	Initializes a Ji document object with a HTML string, using NSUTF8StringEncoding.
 	
-	:param: htmlString HTML string.
+	- parameter htmlString: HTML string.
 	
-	:returns: The initialized Ji document object or nil if the object could not be initialized.
+	- returns: The initialized Ji document object or nil if the object could not be initialized.
 	*/
 	public convenience init?(htmlString: String) {
 		let data = htmlString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
@@ -275,9 +275,9 @@ public class Ji {
 	/**
 	Perform XPath query on this document.
 	
-	:param: xPath XPath query string.
+	- parameter xPath: XPath query string.
 	
-	:returns: An array of JiNode or nil if rootNode is nil. An empty array will be returned if XPath matches no nodes.
+	- returns: An array of JiNode or nil if rootNode is nil. An empty array will be returned if XPath matches no nodes.
 	*/
 	public func xPath(xPath: String) -> [JiNode]? {
 		return self.rootNode?.xPath(xPath)
@@ -292,8 +292,8 @@ public func ==(lhs: Ji, rhs: Ji) -> Bool {
 	return lhs.xmlDoc == rhs.xmlDoc
 }
 
-// MARK: - Printable
-extension Ji: Printable {
+// MARK: - CustomStringConvertible
+extension Ji: CustomStringConvertible {
 	public var description: String {
 		return rootNode?.rawContent ?? "nil"
 	}
