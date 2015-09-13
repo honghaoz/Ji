@@ -58,7 +58,7 @@ public class JiNode {
 	/// The xmlNodePtr for this node.
 	public let xmlNode: xmlNodePtr
 	/// The Ji document contians this node.
-	public let document: Ji
+	public unowned let document: Ji
 	/// Node type.
 	public let type: JiNodeType
 	
@@ -297,6 +297,7 @@ public class JiNode {
 		let nodeSet = xPathObject.memory.nodesetval
 		if nodeSet == nil || nodeSet.memory.nodeNr == 0 || nodeSet.memory.nodeTab == nil {
 			// NodeSet is nil.
+            xmlXPathFreeContext(xPathContext)
 			return []
 		}
 		
