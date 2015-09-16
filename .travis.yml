@@ -8,6 +8,7 @@ env:
   - LANG=en_US.UTF-8
   matrix:
   - SCHEME=Ji SDK=iphonesimulator9.0
+  - SCHEME=Demo SDK=iphonesimulator8.4
 # - SCHEME=Ji SDK=macosx10.11
 
 before_install:
