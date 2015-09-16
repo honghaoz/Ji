@@ -18,13 +18,9 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML. (Ji to Swift is wha
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.9+
-- Xcode 6.4
+- Xcode 7.0
 
 ## Installation
-
-### Swift 2 Support
-
-The `swift-2.0` branch is updated for Swift 2. Since Xcode 7 is still in beta, you have to install `Ji` manually. 
 
 ### Cocoapods
 
@@ -36,7 +32,7 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 1.1.1'
+pod 'Ji', '~> 1.1.2'
 ```
 
 Then, run the following command:
@@ -50,7 +46,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" >= 1.1.1
+github "honghaoz/Ji" >= 1.1.2
 ```
 
 ### Manually
