@@ -8,7 +8,7 @@ env:
   - LANG=en_US.UTF-8
   matrix:
   - SCHEME=Ji SDK=iphonesimulator9.0
-  - SCHEME=Ji SDK=macosx10.11
+  # - SCHEME=Ji SDK=macosx10.11
 
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
