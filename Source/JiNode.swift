@@ -299,6 +299,7 @@ public class JiNode {
 		let nodeSet = xPathObject.memory.nodesetval
 		if nodeSet == nil || nodeSet.memory.nodeNr == 0 || nodeSet.memory.nodeTab == nil {
 			// NodeSet is nil.
+            xmlXPathFreeObject(xPathObject)
 			return []
 		}
 		
