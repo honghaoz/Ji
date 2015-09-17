@@ -60,7 +60,7 @@ public class JiNode {
 	/// The xmlNodePtr for this node.
 	public let xmlNode: xmlNodePtr
 	/// The Ji document contians this node.
-	public let document: Ji
+	public unowned let document: Ji
 	/// Node type.
 	public let type: JiNodeType
 	
