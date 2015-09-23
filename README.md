@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/cocoapods/l/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
 [![Platform](https://img.shields.io/cocoapods/p/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
 
-Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML. (Ji to Swift is what [hpple](https://github.com/topfunky/hpple) to Objective-C)
+Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 
 ## Features
 - [x] Build XML/HTML Tree and Navigate
