@@ -69,4 +69,16 @@ class htmlXPathTests: XCTestCase {
 		XCTAssertEqual(results!.first!.name!, "span")
 		XCTAssertEqual(results!.first!.children.count, 1)
 	}
+	
+	// $x("//div[starts-with(@class,'gh')]")
+	func testStartsWith() {
+		let results = sampleHTML.xPath("//div[starts-with(@class,'gh')]")
+		XCTAssertEqual(results!.count, 5)
+	}
+	
+	// $x("//script[starts-with(@type,'te')]")
+	func testStartsWith1() {
+		let results = sampleHTML.xPath("//script[starts-with(@type,'te')] | //div[starts-with(@class,'gh')]")
+		XCTAssertEqual(results!.count, 17 + 5)
+	}
 }
