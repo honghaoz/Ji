@@ -25,7 +25,7 @@
 
 import Foundation
 
-typealias 戟 = Ji
+public typealias 戟 = Ji
 
 /// Ji document
 public class Ji {
