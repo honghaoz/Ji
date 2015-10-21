@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Ji"
-  s.version          = "1.1.2"
+  s.version          = "1.2.0"
   s.summary          = "Ji (戟) is a Swift XML/HTML parser."
   s.description      = <<-DESC
                        Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML. (Ji to Swift is what hpple to Objective-C)
@@ -18,10 +18,12 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
+  s.watchos.deployment_target = "2.0"
+  s.tvos.deployment_target = "9.0"
 
   s.requires_arc     = true
   s.module_name      = "Ji"
-  s.ios.libraries    = 'xml2'
+  s.libraries        = "xml2"
   s.xcconfig         = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2', 'OTHER_LDFLAGS' => '-lxml2' }
 
   s.default_subspecs = 'Ji'
