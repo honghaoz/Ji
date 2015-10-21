@@ -135,7 +135,8 @@
 		E4F340EB1B5B420300032A3B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Honghao Zhang";
 				TargetAttributes = {
 					E4F340F21B5B420300032A3B = {
@@ -230,6 +231,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -302,6 +304,7 @@
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Example;
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/Ji-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -320,6 +323,7 @@
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Example;
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/Ji-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
