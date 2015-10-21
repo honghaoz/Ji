@@ -9,10 +9,15 @@ env:
   matrix:
   - SCHEME="Ji iOS" SDK=iphonesimulator9.0
   - SCHEME="Ji OSX" SDK=macosx10.11
+  # - SCHEME="Ji watchOS" SDK=watchos2.0
 
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 script:
-  - xctool -project Ji.xcodeproj -scheme $SCHEME -sdk $SDK ONLY_ACTIVE_ARCH=NO
+  # - set -o pipefail
+  # - xcodebuild -version
+  # - xcodebuild -project Ji.xcodeproj -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
+  #   -configuration Debug ONLY_ACTIVE_ARCH=NO test | xcpretty -c
+  - xctool -project Ji.xcodeproj -scheme "$SCHEME" -sdk "$SDK" ONLY_ACTIVE_ARCH=NO
