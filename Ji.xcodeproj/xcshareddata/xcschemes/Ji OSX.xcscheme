@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E43D74D51B8FBBBF00702114"
+               BlueprintIdentifier = "E43A4D821BD838FC003CB3D7"
                BuildableName = "Ji.framework"
-               BlueprintName = "Ji"
-               ReferencedContainer = "container:Ji.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E43D75051B8FE82100702114"
-               BuildableName = "JiTests.xctest"
-               BlueprintName = "JiTests"
+               BlueprintName = "Ji OSX"
                ReferencedContainer = "container:Ji.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E43D75051B8FE82100702114"
-               BuildableName = "JiTests.xctest"
-               BlueprintName = "JiTests"
+               BlueprintIdentifier = "E43A4D8B1BD838FD003CB3D7"
+               BuildableName = "Ji OSX Tests.xctest"
+               BlueprintName = "Ji OSX Tests"
                ReferencedContainer = "container:Ji.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E43D74D51B8FBBBF00702114"
+            BlueprintIdentifier = "E43A4D821BD838FC003CB3D7"
             BuildableName = "Ji.framework"
-            BlueprintName = "Ji"
+            BlueprintName = "Ji OSX"
             ReferencedContainer = "container:Ji.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E43D74D51B8FBBBF00702114"
+            BlueprintIdentifier = "E43A4D821BD838FC003CB3D7"
             BuildableName = "Ji.framework"
-            BlueprintName = "Ji"
+            BlueprintName = "Ji OSX"
             ReferencedContainer = "container:Ji.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E43D74D51B8FBBBF00702114"
+            BlueprintIdentifier = "E43A4D821BD838FC003CB3D7"
             BuildableName = "Ji.framework"
-            BlueprintName = "Ji"
+            BlueprintName = "Ji OSX"
             ReferencedContainer = "container:Ji.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

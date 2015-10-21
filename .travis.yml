@@ -7,12 +7,16 @@ env:
   - LC_CTYPE=en_US.UTF-8
   - LANG=en_US.UTF-8
   matrix:
-  - SCHEME=Ji SDK=iphonesimulator9.0
-# - SCHEME=Ji SDK=macosx10.11
+  - SCHEME="Ji iOS" SDK=iphonesimulator9.0
+  - SCHEME="Ji OSX" SDK=macosx10.11
+  # - SCHEME="Ji watchOS" SDK=watchsimulator2.0
+  # - SCHEME="Ji tvOS" SDK=appletvos9.0
 
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 script:
-  - xctool -project Ji.xcodeproj -scheme $SCHEME -sdk $SDK ONLY_ACTIVE_ARCH=NO
+  - set -o pipefail
+  - xcodebuild -version
+  - xctool -project Ji.xcodeproj -scheme "$SCHEME" -sdk "$SDK" ONLY_ACTIVE_ARCH=NO
