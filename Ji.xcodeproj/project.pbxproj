@@ -123,6 +123,68 @@
 		E43A4E171BD84146003CB3D7 /* JiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75371B8FEB0300702114 /* JiNode.swift */; };
 		E43A4E191BD84155003CB3D7 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E43A4E181BD84155003CB3D7 /* libxml2.2.tbd */; };
 		E43A4E1B1BD84159003CB3D7 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E43A4E1A1BD84159003CB3D7 /* libxml2.tbd */; };
+		E43A4E2E1BD842B6003CB3D7 /* Ji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43A4E241BD842B6003CB3D7 /* Ji.framework */; };
+		E43A4E3C1BD84366003CB3D7 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E43A4E3B1BD84366003CB3D7 /* libxml2.2.tbd */; };
+		E43A4E3E1BD84369003CB3D7 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E43A4E3D1BD84369003CB3D7 /* libxml2.tbd */; };
+		E43A4E401BD8439D003CB3D7 /* Ji.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D74DB1B8FBBBF00702114 /* Ji.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E411BD843A2003CB3D7 /* Ji.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75351B8FEB0300702114 /* Ji.swift */; };
+		E43A4E421BD843A2003CB3D7 /* JiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75361B8FEB0300702114 /* JiHelper.swift */; };
+		E43A4E431BD843A2003CB3D7 /* JiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75371B8FEB0300702114 /* JiNode.swift */; };
+		E43A4E441BD843A7003CB3D7 /* c14n.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75421B8FEC3B00702114 /* c14n.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E451BD843A7003CB3D7 /* catalog.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75431B8FEC3B00702114 /* catalog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E461BD843A7003CB3D7 /* chvalid.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75441B8FEC3B00702114 /* chvalid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E471BD843A7003CB3D7 /* debugXML.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75451B8FEC3B00702114 /* debugXML.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E481BD843A7003CB3D7 /* dict.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75461B8FEC3B00702114 /* dict.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E491BD843A7003CB3D7 /* encoding.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75471B8FEC3B00702114 /* encoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E4A1BD843A7003CB3D7 /* entities.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75481B8FEC3B00702114 /* entities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E4B1BD843A7003CB3D7 /* globals.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75491B8FEC3B00702114 /* globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E4C1BD843A7003CB3D7 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D754A1B8FEC3B00702114 /* hash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E4D1BD843A7003CB3D7 /* HTMLparser.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D754B1B8FEC3B00702114 /* HTMLparser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E4E1BD843A7003CB3D7 /* HTMLtree.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D754C1B8FEC3B00702114 /* HTMLtree.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E4F1BD843A7003CB3D7 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D754D1B8FEC3B00702114 /* list.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E501BD843A7003CB3D7 /* nanoftp.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D754E1B8FEC3B00702114 /* nanoftp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E511BD843A7003CB3D7 /* nanohttp.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D754F1B8FEC3B00702114 /* nanohttp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E521BD843A7003CB3D7 /* parser.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75501B8FEC3B00702114 /* parser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E531BD843A7003CB3D7 /* parserInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75511B8FEC3B00702114 /* parserInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E541BD843A7003CB3D7 /* pattern.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75521B8FEC3B00702114 /* pattern.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E551BD843A7003CB3D7 /* relaxng.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75531B8FEC3B00702114 /* relaxng.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E561BD843A7003CB3D7 /* SAX.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75541B8FEC3B00702114 /* SAX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E571BD843A7003CB3D7 /* SAX2.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75551B8FEC3B00702114 /* SAX2.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E581BD843A7003CB3D7 /* schemasInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75561B8FEC3B00702114 /* schemasInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E591BD843A7003CB3D7 /* schematron.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75571B8FEC3B00702114 /* schematron.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E5A1BD843A7003CB3D7 /* threads.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75581B8FEC3B00702114 /* threads.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E5B1BD843A7003CB3D7 /* tree.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75591B8FEC3B00702114 /* tree.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E5C1BD843A7003CB3D7 /* uri.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D755A1B8FEC3B00702114 /* uri.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E5D1BD843A7003CB3D7 /* valid.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D755B1B8FEC3B00702114 /* valid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E5E1BD843A7003CB3D7 /* xinclude.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D755C1B8FEC3B00702114 /* xinclude.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E5F1BD843A7003CB3D7 /* xlink.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D755D1B8FEC3B00702114 /* xlink.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E601BD843A7003CB3D7 /* xmlautomata.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D755E1B8FEC3B00702114 /* xmlautomata.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E611BD843A7003CB3D7 /* xmlerror.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D755F1B8FEC3B00702114 /* xmlerror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E621BD843A7003CB3D7 /* xmlexports.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75601B8FEC3B00702114 /* xmlexports.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E631BD843A7003CB3D7 /* xmlIO.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75611B8FEC3B00702114 /* xmlIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E641BD843A7003CB3D7 /* xmlmemory.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75621B8FEC3B00702114 /* xmlmemory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E651BD843A7003CB3D7 /* xmlmodule.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75631B8FEC3B00702114 /* xmlmodule.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E661BD843A7003CB3D7 /* xmlreader.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75641B8FEC3B00702114 /* xmlreader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E671BD843A7003CB3D7 /* xmlregexp.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75651B8FEC3B00702114 /* xmlregexp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E681BD843A7003CB3D7 /* xmlsave.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75661B8FEC3B00702114 /* xmlsave.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E691BD843A7003CB3D7 /* xmlschemas.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75671B8FEC3B00702114 /* xmlschemas.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E6A1BD843A7003CB3D7 /* xmlschemastypes.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75681B8FEC3B00702114 /* xmlschemastypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E6B1BD843A7003CB3D7 /* xmlstring.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D75691B8FEC3B00702114 /* xmlstring.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E6C1BD843A7003CB3D7 /* xmlunicode.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D756A1B8FEC3B00702114 /* xmlunicode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E6D1BD843A7003CB3D7 /* xmlversion.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D756B1B8FEC3B00702114 /* xmlversion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E6E1BD843A7003CB3D7 /* xmlwriter.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D756C1B8FEC3B00702114 /* xmlwriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E6F1BD843A7003CB3D7 /* xpath.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D756D1B8FEC3B00702114 /* xpath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E701BD843A7003CB3D7 /* xpathInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D756E1B8FEC3B00702114 /* xpathInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E711BD843A7003CB3D7 /* xpointer.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D756F1B8FEC3B00702114 /* xpointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E43A4E721BD843B4003CB3D7 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E43D751D1B8FE8A100702114 /* index.html */; };
+		E43A4E731BD843B4003CB3D7 /* sample-menu.xml in Resources */ = {isa = PBXBuildFile; fileRef = E43D751E1B8FE8A100702114 /* sample-menu.xml */; };
+		E43A4E741BD843B8003CB3D7 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E43D751D1B8FE8A100702114 /* index.html */; };
+		E43A4E751BD843B8003CB3D7 /* sample-menu.xml in Resources */ = {isa = PBXBuildFile; fileRef = E43D751E1B8FE8A100702114 /* sample-menu.xml */; };
+		E43A4E761BD843BC003CB3D7 /* JiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75281B8FEA5C00702114 /* JiTests.swift */; };
+		E43A4E771BD843BC003CB3D7 /* JiNodeXMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75271B8FEA5C00702114 /* JiNodeXMLTests.swift */; };
+		E43A4E781BD843BC003CB3D7 /* JiNodeHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75261B8FEA5C00702114 /* JiNodeHTMLTests.swift */; };
+		E43A4E791BD843BC003CB3D7 /* xmlXPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75291B8FEA5C00702114 /* xmlXPathTests.swift */; };
+		E43A4E7A1BD843BC003CB3D7 /* htmlXPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D75251B8FEA5C00702114 /* htmlXPathTests.swift */; };
 		E43D74DC1B8FBBBF00702114 /* Ji.h in Headers */ = {isa = PBXBuildFile; fileRef = E43D74DB1B8FBBBF00702114 /* Ji.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E43D750C1B8FE82100702114 /* Ji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43D74D61B8FBBBF00702114 /* Ji.framework */; };
 		E43D751F1B8FE8A100702114 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = E43D751D1B8FE8A100702114 /* index.html */; };
@@ -193,6 +255,13 @@
 			remoteGlobalIDString = E43A4D821BD838FC003CB3D7;
 			remoteInfo = "Ji OSX";
 		};
+		E43A4E2F1BD842B6003CB3D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E43D74CD1B8FBBBF00702114 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E43A4E231BD842B6003CB3D7;
+			remoteInfo = "Ji tvOS";
+		};
 		E43D750D1B8FE82100702114 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E43D74CD1B8FBBBF00702114 /* Project object */;
@@ -214,6 +283,14 @@
 		E43A4DE21BD83FBF003CB3D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E43A4E181BD84155003CB3D7 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
 		E43A4E1A1BD84159003CB3D7 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/usr/lib/libxml2.tbd; sourceTree = DEVELOPER_DIR; };
+		E43A4E241BD842B6003CB3D7 /* Ji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43A4E261BD842B6003CB3D7 /* Ji tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ji tvOS.h"; sourceTree = "<group>"; };
+		E43A4E281BD842B6003CB3D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E43A4E2D1BD842B6003CB3D7 /* Ji tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ji tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43A4E321BD842B6003CB3D7 /* Ji_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ji_tvOSTests.swift; sourceTree = "<group>"; };
+		E43A4E341BD842B6003CB3D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E43A4E3B1BD84366003CB3D7 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.0.sdk/usr/lib/libxml2.2.tbd; sourceTree = DEVELOPER_DIR; };
+		E43A4E3D1BD84369003CB3D7 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.0.sdk/usr/lib/libxml2.tbd; sourceTree = DEVELOPER_DIR; };
 		E43D74D61B8FBBBF00702114 /* Ji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43D74DA1B8FBBBF00702114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
 		E43D74DB1B8FBBBF00702114 /* Ji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ji.h; sourceTree = "<group>"; };
@@ -304,6 +381,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E43A4E201BD842B6003CB3D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43A4E3E1BD84369003CB3D7 /* libxml2.tbd in Frameworks */,
+				E43A4E3C1BD84366003CB3D7 /* libxml2.2.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43A4E2A1BD842B6003CB3D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43A4E2E1BD842B6003CB3D7 /* Ji.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E43D74D21B8FBBBF00702114 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,12 +454,41 @@
 			name = "iOS libxml";
 			sourceTree = "<group>";
 		};
+		E43A4E251BD842B6003CB3D7 /* Ji tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				E43A4E261BD842B6003CB3D7 /* Ji tvOS.h */,
+				E43A4E281BD842B6003CB3D7 /* Info.plist */,
+			);
+			path = "Ji tvOS";
+			sourceTree = "<group>";
+		};
+		E43A4E311BD842B6003CB3D7 /* Ji tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				E43A4E321BD842B6003CB3D7 /* Ji_tvOSTests.swift */,
+				E43A4E341BD842B6003CB3D7 /* Info.plist */,
+			);
+			path = "Ji tvOSTests";
+			sourceTree = "<group>";
+		};
+		E43A4E3F1BD84389003CB3D7 /* tvOS libxml */ = {
+			isa = PBXGroup;
+			children = (
+				E43A4E3D1BD84369003CB3D7 /* libxml2.tbd */,
+				E43A4E3B1BD84366003CB3D7 /* libxml2.2.tbd */,
+			);
+			name = "tvOS libxml";
+			sourceTree = "<group>";
+		};
 		E43D74CC1B8FBBBF00702114 = {
 			isa = PBXGroup;
 			children = (
 				E43D74D81B8FBBBF00702114 /* Ji */,
 				E43D75071B8FE82100702114 /* JiTests */,
 				E43A4DDF1BD83FBF003CB3D7 /* Ji watchOS */,
+				E43A4E251BD842B6003CB3D7 /* Ji tvOS */,
+				E43A4E311BD842B6003CB3D7 /* Ji tvOSTests */,
 				E43D74D71B8FBBBF00702114 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -378,6 +501,8 @@
 				E43A4D831BD838FC003CB3D7 /* Ji.framework */,
 				E43A4D8C1BD838FD003CB3D7 /* Ji OSX Tests.xctest */,
 				E43A4DDE1BD83FBF003CB3D7 /* Ji.framework */,
+				E43A4E241BD842B6003CB3D7 /* Ji.framework */,
+				E43A4E2D1BD842B6003CB3D7 /* Ji tvOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -402,6 +527,7 @@
 				E43D74DA1B8FBBBF00702114 /* Info.plist */,
 				E43A4E1E1BD84188003CB3D7 /* iOS libxml */,
 				E43A4E1D1BD84181003CB3D7 /* OSX libxml */,
+				E43A4E3F1BD84389003CB3D7 /* tvOS libxml */,
 				E43A4E1C1BD84170003CB3D7 /* watchOS libxml */,
 			);
 			name = "Supporting Files";
@@ -604,6 +730,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E43A4E211BD842B6003CB3D7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43A4E5B1BD843A7003CB3D7 /* tree.h in Headers */,
+				E43A4E551BD843A7003CB3D7 /* relaxng.h in Headers */,
+				E43A4E501BD843A7003CB3D7 /* nanoftp.h in Headers */,
+				E43A4E4F1BD843A7003CB3D7 /* list.h in Headers */,
+				E43A4E6F1BD843A7003CB3D7 /* xpath.h in Headers */,
+				E43A4E5E1BD843A7003CB3D7 /* xinclude.h in Headers */,
+				E43A4E561BD843A7003CB3D7 /* SAX.h in Headers */,
+				E43A4E471BD843A7003CB3D7 /* debugXML.h in Headers */,
+				E43A4E6A1BD843A7003CB3D7 /* xmlschemastypes.h in Headers */,
+				E43A4E671BD843A7003CB3D7 /* xmlregexp.h in Headers */,
+				E43A4E5C1BD843A7003CB3D7 /* uri.h in Headers */,
+				E43A4E6E1BD843A7003CB3D7 /* xmlwriter.h in Headers */,
+				E43A4E4B1BD843A7003CB3D7 /* globals.h in Headers */,
+				E43A4E641BD843A7003CB3D7 /* xmlmemory.h in Headers */,
+				E43A4E621BD843A7003CB3D7 /* xmlexports.h in Headers */,
+				E43A4E571BD843A7003CB3D7 /* SAX2.h in Headers */,
+				E43A4E4A1BD843A7003CB3D7 /* entities.h in Headers */,
+				E43A4E631BD843A7003CB3D7 /* xmlIO.h in Headers */,
+				E43A4E661BD843A7003CB3D7 /* xmlreader.h in Headers */,
+				E43A4E5A1BD843A7003CB3D7 /* threads.h in Headers */,
+				E43A4E4C1BD843A7003CB3D7 /* hash.h in Headers */,
+				E43A4E4D1BD843A7003CB3D7 /* HTMLparser.h in Headers */,
+				E43A4E461BD843A7003CB3D7 /* chvalid.h in Headers */,
+				E43A4E681BD843A7003CB3D7 /* xmlsave.h in Headers */,
+				E43A4E5F1BD843A7003CB3D7 /* xlink.h in Headers */,
+				E43A4E441BD843A7003CB3D7 /* c14n.h in Headers */,
+				E43A4E6D1BD843A7003CB3D7 /* xmlversion.h in Headers */,
+				E43A4E6B1BD843A7003CB3D7 /* xmlstring.h in Headers */,
+				E43A4E521BD843A7003CB3D7 /* parser.h in Headers */,
+				E43A4E5D1BD843A7003CB3D7 /* valid.h in Headers */,
+				E43A4E451BD843A7003CB3D7 /* catalog.h in Headers */,
+				E43A4E701BD843A7003CB3D7 /* xpathInternals.h in Headers */,
+				E43A4E581BD843A7003CB3D7 /* schemasInternals.h in Headers */,
+				E43A4E531BD843A7003CB3D7 /* parserInternals.h in Headers */,
+				E43A4E541BD843A7003CB3D7 /* pattern.h in Headers */,
+				E43A4E481BD843A7003CB3D7 /* dict.h in Headers */,
+				E43A4E601BD843A7003CB3D7 /* xmlautomata.h in Headers */,
+				E43A4E511BD843A7003CB3D7 /* nanohttp.h in Headers */,
+				E43A4E611BD843A7003CB3D7 /* xmlerror.h in Headers */,
+				E43A4E401BD8439D003CB3D7 /* Ji.h in Headers */,
+				E43A4E711BD843A7003CB3D7 /* xpointer.h in Headers */,
+				E43A4E651BD843A7003CB3D7 /* xmlmodule.h in Headers */,
+				E43A4E491BD843A7003CB3D7 /* encoding.h in Headers */,
+				E43A4E591BD843A7003CB3D7 /* schematron.h in Headers */,
+				E43A4E4E1BD843A7003CB3D7 /* HTMLtree.h in Headers */,
+				E43A4E691BD843A7003CB3D7 /* xmlschemas.h in Headers */,
+				E43A4E6C1BD843A7003CB3D7 /* xmlunicode.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E43D74D31B8FBBBF00702114 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -715,6 +895,42 @@
 			productReference = E43A4DDE1BD83FBF003CB3D7 /* Ji.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		E43A4E231BD842B6003CB3D7 /* Ji tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E43A4E351BD842B6003CB3D7 /* Build configuration list for PBXNativeTarget "Ji tvOS" */;
+			buildPhases = (
+				E43A4E1F1BD842B6003CB3D7 /* Sources */,
+				E43A4E201BD842B6003CB3D7 /* Frameworks */,
+				E43A4E211BD842B6003CB3D7 /* Headers */,
+				E43A4E221BD842B6003CB3D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Ji tvOS";
+			productName = "Ji tvOS";
+			productReference = E43A4E241BD842B6003CB3D7 /* Ji.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E43A4E2C1BD842B6003CB3D7 /* Ji tvOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E43A4E381BD842B6003CB3D7 /* Build configuration list for PBXNativeTarget "Ji tvOS Tests" */;
+			buildPhases = (
+				E43A4E291BD842B6003CB3D7 /* Sources */,
+				E43A4E2A1BD842B6003CB3D7 /* Frameworks */,
+				E43A4E2B1BD842B6003CB3D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E43A4E301BD842B6003CB3D7 /* PBXTargetDependency */,
+			);
+			name = "Ji tvOS Tests";
+			productName = "Ji tvOSTests";
+			productReference = E43A4E2D1BD842B6003CB3D7 /* Ji tvOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E43D74D51B8FBBBF00702114 /* Ji iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E43D74EC1B8FBBBF00702114 /* Build configuration list for PBXNativeTarget "Ji iOS" */;
@@ -771,6 +987,12 @@
 					E43A4DDD1BD83FBF003CB3D7 = {
 						CreatedOnToolsVersion = 7.1;
 					};
+					E43A4E231BD842B6003CB3D7 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					E43A4E2C1BD842B6003CB3D7 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 					E43D74D51B8FBBBF00702114 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -793,9 +1015,11 @@
 			targets = (
 				E43D74D51B8FBBBF00702114 /* Ji iOS */,
 				E43A4D821BD838FC003CB3D7 /* Ji OSX */,
+				E43A4E231BD842B6003CB3D7 /* Ji tvOS */,
 				E43A4DDD1BD83FBF003CB3D7 /* Ji watchOS */,
 				E43D75051B8FE82100702114 /* Ji iOS Tests */,
 				E43A4D8B1BD838FD003CB3D7 /* Ji OSX Tests */,
+				E43A4E2C1BD842B6003CB3D7 /* Ji tvOS Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -823,6 +1047,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43A4E221BD842B6003CB3D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43A4E731BD843B4003CB3D7 /* sample-menu.xml in Resources */,
+				E43A4E721BD843B4003CB3D7 /* index.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43A4E2B1BD842B6003CB3D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43A4E751BD843B8003CB3D7 /* sample-menu.xml in Resources */,
+				E43A4E741BD843B8003CB3D7 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,6 +1121,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E43A4E1F1BD842B6003CB3D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43A4E421BD843A2003CB3D7 /* JiHelper.swift in Sources */,
+				E43A4E431BD843A2003CB3D7 /* JiNode.swift in Sources */,
+				E43A4E411BD843A2003CB3D7 /* Ji.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43A4E291BD842B6003CB3D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43A4E771BD843BC003CB3D7 /* JiNodeXMLTests.swift in Sources */,
+				E43A4E781BD843BC003CB3D7 /* JiNodeHTMLTests.swift in Sources */,
+				E43A4E7A1BD843BC003CB3D7 /* htmlXPathTests.swift in Sources */,
+				E43A4E761BD843BC003CB3D7 /* JiTests.swift in Sources */,
+				E43A4E791BD843BC003CB3D7 /* xmlXPathTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E43D74D11B8FBBBF00702114 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -908,6 +1172,11 @@
 			isa = PBXTargetDependency;
 			target = E43A4D821BD838FC003CB3D7 /* Ji OSX */;
 			targetProxy = E43A4D8E1BD838FD003CB3D7 /* PBXContainerItemProxy */;
+		};
+		E43A4E301BD842B6003CB3D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E43A4E231BD842B6003CB3D7 /* Ji tvOS */;
+			targetProxy = E43A4E2F1BD842B6003CB3D7 /* PBXContainerItemProxy */;
 		};
 		E43D750E1B8FE82100702114 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1035,6 +1304,74 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		E43A4E361BD842B6003CB3D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.Ji;
+				PRODUCT_MODULE_NAME = Ji;
+				PRODUCT_NAME = Ji;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		E43A4E371BD842B6003CB3D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.honghaoz.Ji;
+				PRODUCT_MODULE_NAME = Ji;
+				PRODUCT_NAME = Ji;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		E43A4E391BD842B6003CB3D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.Ji-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		E43A4E3A1BD842B6003CB3D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.honghaoz.Ji-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -1235,6 +1572,22 @@
 			buildConfigurations = (
 				E43A4DE41BD83FBF003CB3D7 /* Debug */,
 				E43A4DE51BD83FBF003CB3D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E43A4E351BD842B6003CB3D7 /* Build configuration list for PBXNativeTarget "Ji tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43A4E361BD842B6003CB3D7 /* Debug */,
+				E43A4E371BD842B6003CB3D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E43A4E381BD842B6003CB3D7 /* Build configuration list for PBXNativeTarget "Ji tvOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43A4E391BD842B6003CB3D7 /* Debug */,
+				E43A4E3A1BD842B6003CB3D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
