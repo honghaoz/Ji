@@ -20,11 +20,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2015 Honghao Zhang. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 </dict>
