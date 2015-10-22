@@ -84,7 +84,7 @@ And that's it!
 ```swift
 let jiDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
 let titleNode = jiDoc?.xPath("//head/title")?.first
-println("title: \(titleNode?.content)") // title: Optional("Official Apple Support")
+print("title: \(titleNode?.content)") // title: Optional("Official Apple Support")
 ```
 
 - Init with `String`:
@@ -92,7 +92,7 @@ println("title: \(titleNode?.content)") // title: Optional("Official Apple Suppo
 let xmlString = "<?xml version='1.0' encoding='UTF-8'?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>"
 let jiDoc = Ji(xmlString: xmlString)
 let bodyNode = jiDoc?.rootNode?.firstChildWithName("body")
-println("body: \(bodyNode?.content)") // body: Optional("Don\'t forget me this weekend!")
+print("body: \(bodyNode?.content)") // body: Optional("Don\'t forget me this weekend!")
 ```
 
 - Init with `NSData`:
@@ -101,21 +101,21 @@ let googleIndexData = NSData(contentsOfURL: NSURL(string: "http://www.google.com
 if let googleIndexData = googleIndexData {
 	let jiDoc = Ji(htmlData: googleIndexData)!
 	let htmlNode = jiDoc.rootNode!
-	println("html tagName: \(htmlNode.tagName)") // html tagName: Optional("html")
+	print("html tagName: \(htmlNode.tagName)") // html tagName: Optional("html")
 	
 	let aNodes = jiDoc.xPath("//body//a")
 	if let firstANode = aNodes?.first {
-		println("first a node tagName: \(firstANode.name)") // first a node tagName: Optional("a")
+		print("first a node tagName: \(firstANode.name)") // first a node tagName: Optional("a")
 		let href = firstANode["href"]
-		println("first a node href: \(href)") // first a node href: Optional("http://www.google.ca/imghp?hl=en&tab=wi")
+		print("first a node href: \(href)") // first a node href: Optional("http://www.google.ca/imghp?hl=en&tab=wi")
 	}
 } else {
-	println("google.com is inaccessible")
+	print("google.com is inaccessible")
 }
 
 let 戟文档 = 戟(htmlURL: NSURL(string: "https://cocoapods.org/pods/Ji")!)
 let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
-println("作者(Author): \(attribution?.content)")
+print("作者(Author): \(attribution?.content)")
 ```
 
 ## License
