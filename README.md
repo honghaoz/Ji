@@ -24,9 +24,7 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 
 ## Installation
 
-### Cocoapods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
+### [CocoaPods](http://cocoapods.org)
 
 To integrate **Ji** into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
@@ -43,7 +41,7 @@ Then, run the following command:
 $ pod install
 ```
 
-### Carthage
+### [Carthage](http://github.com/Carthage/Carthage)
 
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
