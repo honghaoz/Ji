@@ -46,7 +46,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" >= 1.2.0
+github "honghaoz/Ji" ~> 1.2.0
 ```
 
 ### Manually
