@@ -10,9 +10,9 @@
 #ifndef __XML_RELAX_NG__
 #define __XML_RELAX_NG__
 
-#include <Ji/xmlversion.h>
-#include <Ji/hash.h>
-#include <Ji/xmlstring.h>
+#include "xmlversion.h"
+#include "hash.h"
+#include "xmlstring.h"
 
 #ifdef LIBXML_SCHEMAS_ENABLED
 

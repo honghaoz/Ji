@@ -14,8 +14,8 @@
 
 #include <stdio.h>
 #include <limits.h>
-#include <Ji/xmlversion.h>
-#include <Ji/xmlstring.h>
+#include "xmlversion.h"
+#include "xmlstring.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -329,7 +329,7 @@ typedef enum {
 #ifdef __cplusplus
 }
 #endif
-#include <Ji/xmlregexp.h>
+#include "xmlregexp.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -1296,7 +1296,7 @@ XMLPUBFUN xmlNodePtr XMLCALL
 }
 #endif
 #ifndef __XML_PARSER_H__
-#include <Ji/xmlmemory.h>
+#include "xmlmemory.h"
 #endif
 
 #endif /* __XML_TREE_H__ */

@@ -11,7 +11,7 @@
 #define __XML_IO_H__
 
 #include <stdio.h>
-#include <Ji/xmlversion.h>
+#include "xmlversion.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -114,10 +114,10 @@ typedef int (XMLCALL *xmlOutputCloseCallback) (void * context);
 }
 #endif
 
-#include <Ji/globals.h>
-#include <Ji/tree.h>
-#include <Ji/parser.h>
-#include <Ji/encoding.h>
+#include "globals.h"
+#include "tree.h"
+#include "parser.h"
+#include "encoding.h"
 
 #ifdef __cplusplus
 extern "C" {

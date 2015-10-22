@@ -12,10 +12,10 @@
 #ifndef __XML_PARSER_INTERNALS_H__
 #define __XML_PARSER_INTERNALS_H__
 
-#include <Ji/xmlversion.h>
-#include <Ji/parser.h>
-#include <Ji/HTMLparser.h>
-#include <Ji/chvalid.h>
+#include "xmlversion.h"
+#include "parser.h"
+#include "HTMLparser.h"
+#include "chvalid.h"
 
 #ifdef __cplusplus
 extern "C" {

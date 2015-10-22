@@ -14,8 +14,8 @@
 #ifndef __XML_CHVALID_H__
 #define __XML_CHVALID_H__
 
-#include <Ji/xmlversion.h>
-#include <Ji/xmlstring.h>
+#include "xmlversion.h"
+#include "xmlstring.h"
 
 #ifdef __cplusplus
 extern "C" {

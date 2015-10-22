@@ -11,12 +11,12 @@
 #ifndef __XML_VALID_H__
 #define __XML_VALID_H__
 
-#include <Ji/xmlversion.h>
-#include <Ji/xmlerror.h>
-#include <Ji/tree.h>
-#include <Ji/list.h>
-#include <Ji/xmlautomata.h>
-#include <Ji/xmlregexp.h>
+#include "xmlversion.h"
+#include "xmlerror.h"
+#include "tree.h"
+#include "list.h"
+#include "xmlautomata.h"
+#include "xmlregexp.h"
 
 #ifdef __cplusplus
 extern "C" {

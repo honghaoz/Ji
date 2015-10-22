@@ -12,14 +12,14 @@
 
 #include <stdarg.h>
 
-#include <Ji/xmlversion.h>
-#include <Ji/tree.h>
-#include <Ji/dict.h>
-#include <Ji/hash.h>
-#include <Ji/valid.h>
-#include <Ji/entities.h>
-#include <Ji/xmlerror.h>
-#include <Ji/xmlstring.h>
+#include "xmlversion.h"
+#include "tree.h"
+#include "dict.h"
+#include "hash.h"
+#include "valid.h"
+#include "entities.h"
+#include "xmlerror.h"
+#include "xmlstring.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -807,9 +807,9 @@ typedef xmlParserInputPtr (*xmlExternalEntityLoader) (const char *URL,
 }
 #endif
 
-#include <Ji/encoding.h>
-#include <Ji/xmlIO.h>
-#include <Ji/globals.h>
+#include "encoding.h"
+#include "xmlIO.h"
+#include "globals.h"
 
 #ifdef __cplusplus
 extern "C" {

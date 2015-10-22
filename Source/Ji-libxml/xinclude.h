@@ -13,8 +13,8 @@
 #ifndef __XML_XINCLUDE_H__
 #define __XML_XINCLUDE_H__
 
-#include <Ji/xmlversion.h>
-#include <Ji/tree.h>
+#include "xmlversion.h"
+#include "tree.h"
 
 #ifdef LIBXML_XINCLUDE_ENABLED
 
