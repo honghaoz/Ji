@@ -5,6 +5,7 @@
 # Ji 戟 
 [![CI Status](https://travis-ci.org/honghaoz/Ji.svg?branch=master)](https://travis-ci.org/honghaoz/Ji)
 [![Cocoapods Version](https://img.shields.io/cocoapods/v/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
 [![Platform](https://img.shields.io/cocoapods/p/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
 
@@ -17,8 +18,8 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 
 ## Requirements
 
-- iOS 8.0+ / Mac OS X 10.9+
-- Xcode 7.0
+- iOS 8.0+ / Mac OS X 10.9+ / watchOS 2.0+ / tvOS 9.0+
+- Xcode 7.0+
 
 ## Installation
 
@@ -32,7 +33,7 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 1.1.2'
+pod 'Ji', '~> 1.2.0'
 ```
 
 Then, run the following command:
@@ -46,7 +47,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" >= 1.1.2
+github "honghaoz/Ji" >= 1.2.0
 ```
 
 ### Manually
