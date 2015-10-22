@@ -19,13 +19,13 @@
 #ifndef __XML_XPATH_H__
 #define __XML_XPATH_H__
 
-#include <Ji/xmlversion.h>
+#include "xmlversion.h"
 
 #ifdef LIBXML_XPATH_ENABLED
 
-#include <Ji/xmlerror.h>
-#include <Ji/tree.h>
-#include <Ji/hash.h>
+#include "xmlerror.h"
+#include "tree.h"
+#include "hash.h"
 #endif /* LIBXML_XPATH_ENABLED */
 
 #if defined(LIBXML_XPATH_ENABLED) || defined(LIBXML_SCHEMAS_ENABLED)

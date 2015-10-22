@@ -14,13 +14,13 @@
 #ifndef __XML_SCHEMA_INTERNALS_H__
 #define __XML_SCHEMA_INTERNALS_H__
 
-#include <Ji/xmlversion.h>
+#include "xmlversion.h"
 
 #ifdef LIBXML_SCHEMAS_ENABLED
 
-#include <Ji/xmlregexp.h>
-#include <Ji/hash.h>
-#include <Ji/dict.h>
+#include "xmlregexp.h"
+#include "hash.h"
+#include "dict.h"
 
 #ifdef __cplusplus
 extern "C" {

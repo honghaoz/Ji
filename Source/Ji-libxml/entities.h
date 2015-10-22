@@ -11,8 +11,8 @@
 #ifndef __XML_ENTITIES_H__
 #define __XML_ENTITIES_H__
 
-#include <Ji/xmlversion.h>
-#include <Ji/tree.h>
+#include "xmlversion.h"
+#include "tree.h"
 
 #ifdef __cplusplus
 extern "C" {

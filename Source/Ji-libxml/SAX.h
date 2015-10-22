@@ -14,9 +14,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <Ji/xmlversion.h>
-#include <Ji/parser.h>
-#include <Ji/xlink.h>
+#include "xmlversion.h"
+#include "parser.h"
+#include "xlink.h"
 
 #ifdef LIBXML_LEGACY_ENABLED
 

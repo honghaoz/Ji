@@ -25,9 +25,9 @@ typedef xmlHashTable *xmlHashTablePtr;
 }
 #endif
 
-#include <Ji/xmlversion.h>
-#include <Ji/parser.h>
-#include <Ji/dict.h>
+#include "xmlversion.h"
+#include "parser.h"
+#include "dict.h"
 
 #ifdef __cplusplus
 extern "C" {
