@@ -15,6 +15,7 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 - [x] Build XML/HTML Tree and Navigate
 - [x] XPath Query Supported
 - [x] Comprehensive Unit Test Coverage
+- [ ] CSS Selector (on going)
 
 ## Requirements
 
