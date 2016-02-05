@@ -298,3 +298,10 @@ extension Ji: CustomStringConvertible {
 		return rootNode?.rawContent ?? "nil"
 	}
 }
+
+// MARK: - CustomDebugStringConvertible
+extension Ji: CustomDebugStringConvertible {
+	public var debugDescription: String {
+		return description
+	}
+}

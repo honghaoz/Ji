@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import Ji
+@testable import Ji
 
 class JiNodeHTMLTests: XCTestCase {
 	var sampleHTMLDocument: Ji!

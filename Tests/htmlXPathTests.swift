@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-import Ji
+@testable import Ji
 
 class htmlXPathTests: XCTestCase {
 	var sampleHTML: Ji!

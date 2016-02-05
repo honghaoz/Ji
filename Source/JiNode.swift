@@ -567,3 +567,10 @@ extension JiNode: CustomStringConvertible {
 		return rawContent ?? "nil"
 	}
 }
+
+// MARK: - CustomDebugStringConvertible
+extension JiNode: CustomDebugStringConvertible {
+	public var debugDescription: String {
+		return description
+	}
+}
