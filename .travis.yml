@@ -19,4 +19,4 @@ before_install:
 script:
   - set -o pipefail
   - xcodebuild -version
-  - xctool -project Ji.xcodeproj -scheme "$SCHEME" -sdk "$SDK" ONLY_ACTIVE_ARCH=NO
+  - xctool -project Ji.xcodeproj -scheme "$SCHEME" -sdk "$SDK" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
