@@ -13,6 +13,8 @@ env:
   - SCHEME="Ji tvOS" SDK=appletvsimulator9.1
 
 before_install:
+  - brew update
+  - brew upgrade xctool
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
