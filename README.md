@@ -15,23 +15,6 @@ LibXML is a Swift wrapper on libxml2 for parsing XML/HTML.
 - [x] Comprehensive Unit Test Coverage
 - [ ] CSS Selector (on going)
 
-## Installation
-
-```bash
-brew install libxml2
-brew link --force libxml2
-```
-
-```swift
-import PackageDescription
-
-let package = Package(
-    dependencies: [
-        .Package(url: "https://github.com/antonmes/LibXML2.git", majorVersion: 0, minor: 1)
-    ]
-)
-```
-
 ## Usage
 
 - Init with `String`:
@@ -63,29 +46,32 @@ if let googleIndexData = googleIndexData {
 
 ```
 
+## Installation
+
+```bash
+brew install libxml2
+brew link --force libxml2
+```
+
+```swift
+import PackageDescription
+
+let package = Package(
+    dependencies: [
+        .Package(url: "https://github.com/antonmes/LibXML2.git", majorVersion: 0, minor: 1)
+    ]
+)
+```
+
+## Community
+
+[![Slack][slack-image]][slack-url]
+
+The entire Zewo code base is licensed under MIT. By contributing to Zewo you are contributing to an open and engaged community of brilliant Swift programmers. Join us on [Slack](http://slack.zewo.io) to get to know us!
+
 ## License
 
-The MIT License (MIT)
-
-Copyright (c) 2015 Honghao Zhang (张宏昊)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+**LibXML2** is released under the MIT license. See LICENSE for details.
 
 [swift-badge]: https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat
 [swift-url]: https://swift.org
