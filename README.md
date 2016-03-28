@@ -1,4 +1,4 @@
-LibXML2
+XML
 ==========
 
 [![Zewo][zewo-image]][zewo-url]
@@ -7,7 +7,7 @@ LibXML2
 [![License][mit-badge]][mit-url]
 [![Slack][slack-badge]][slack-url]
 
-LibXML is a Swift wrapper on libxml2 for parsing XML/HTML.
+XML is a Swift wrapper on libxml2 for parsing XML/HTML. 
 
 ## Features
 - [x] Build XML/HTML Tree and Navigate
@@ -58,7 +58,7 @@ import PackageDescription
 
 let package = Package(
     dependencies: [
-        .Package(url: "https://github.com/antonmes/LibXML2.git", majorVersion: 0, minor: 1)
+        .Package(url: "https://github.com/Zewo/XML.git", majorVersion: 0, minor: 2)
     ]
 )
 ```
