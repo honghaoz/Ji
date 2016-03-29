@@ -36,7 +36,7 @@ extension String {
     */
     static func fromXmlChar(char: UnsafePointer<xmlChar>) -> String? {
         if char != nil {
-            return String.fromCString(UnsafePointer<CChar>(char))
+            return String(cString: UnsafePointer<CChar>(char))
         } else {
             return nil
         }

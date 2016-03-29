@@ -80,7 +80,7 @@ public class XMLNode {
     init(xmlNode: xmlNodePtr, xmlDocument: XMLDocument, keepTextNode: Bool = false) {
         self.xmlNode = xmlNode
         document = xmlDocument
-        type = XMLNodeType(rawValue: Int(xmlNode.memory.type.rawValue))!
+        type = XMLNodeType(rawValue: Int(xmlNode.pointee.type.rawValue))!
         self.keepTextNode = keepTextNode
     }
     
@@ -92,7 +92,7 @@ public class XMLNode {
     
     /// The tag name of this node.
     public lazy var name: String? = {
-        return String.fromXmlChar(self.xmlNode.memory.name)
+        return String.fromXmlChar(self.xmlNode.pointee.name)
     }()
     
     /// Helper property for avoiding unneeded calculations.
@@ -106,13 +106,13 @@ public class XMLNode {
         } else {
             _children = [XMLNode]()
 
-            var childNodePointer = xmlNode.memory.children
+            var childNodePointer = xmlNode.pointee.children
             while childNodePointer != nil {
                 if keepTextNode || xmlNodeIsText(childNodePointer) == 0 {
                     let childNode = XMLNode(xmlNode: childNodePointer, xmlDocument: document, keepTextNode: keepTextNode)
                     _children.append(childNode)
                 }
-                childNodePointer = childNodePointer.memory.next
+                childNodePointer = childNodePointer.pointee.next
             }
             _childrenHasBeenCalculated = true
             _keepTextNodePrevious = keepTextNode
@@ -122,13 +122,13 @@ public class XMLNode {
     
     /// The first child of this node, nil if the node has no child.
     public var firstChild: XMLNode? {
-        var first = xmlNode.memory.children
+        var first = xmlNode.pointee.children
         if first == nil { return nil }
         if keepTextNode {
             return XMLNode(xmlNode: first, xmlDocument: document, keepTextNode: keepTextNode)
         } else {
             while xmlNodeIsText(first) != 0 {
-                first = first.memory.next
+                first = first.pointee.next
                 if first == nil { return nil }
             }
             return XMLNode(xmlNode: first, xmlDocument: document, keepTextNode: keepTextNode)
@@ -137,13 +137,13 @@ public class XMLNode {
     
     /// The last child of this node, nil if the node has no child.
     public var lastChild: XMLNode? {
-        var last = xmlNode.memory.last
+        var last = xmlNode.pointee.last
         if last == nil { return nil }
         if keepTextNode {
             return XMLNode(xmlNode: last, xmlDocument: document, keepTextNode: keepTextNode)
         } else {
             while xmlNodeIsText(last) != 0 {
-                last = last.memory.prev
+                last = last.pointee.prev
                 if last == nil { return nil }
             }
             return XMLNode(xmlNode: last, xmlDocument: document, keepTextNode: keepTextNode)
@@ -157,19 +157,19 @@ public class XMLNode {
     
     /// The parent of this node.
     public lazy var parent: XMLNode? = {
-        if self.xmlNode.memory.parent == nil { return nil }
-        return XMLNode(xmlNode: self.xmlNode.memory.parent, xmlDocument: self.document)
+        if self.xmlNode.pointee.parent == nil { return nil }
+        return XMLNode(xmlNode: self.xmlNode.pointee.parent, xmlDocument: self.document)
     }()
     
     /// The next sibling of this node.
     public var nextSibling: XMLNode? {
-        var next = xmlNode.memory.next
+        var next = xmlNode.pointee.next
         if next == nil { return nil }
         if keepTextNode {
             return XMLNode(xmlNode: next, xmlDocument: document, keepTextNode: keepTextNode)
         } else {
             while xmlNodeIsText(next) != 0 {
-                next = next.memory.next
+                next = next.pointee.next
                 if next == nil { return nil }
             }
             return XMLNode(xmlNode: next, xmlDocument: document, keepTextNode: keepTextNode)
@@ -178,13 +178,13 @@ public class XMLNode {
     
     /// The previous sibling of this node.
     public var previousSibling: XMLNode? {
-        var prev = xmlNode.memory.prev
+        var prev = xmlNode.pointee.prev
         if prev == nil { return nil }
         if keepTextNode {
             return XMLNode(xmlNode: prev, xmlDocument: document, keepTextNode: keepTextNode)
         } else {
             while xmlNodeIsText(prev) != 0 {
-                prev = prev.memory.prev
+                prev = prev.pointee.prev
                 if prev == nil { return nil }
             }
             return XMLNode(xmlNode: prev, xmlDocument: document, keepTextNode: keepTextNode)
@@ -200,7 +200,7 @@ public class XMLNode {
             htmlNodeDump(buffer, self.document.htmlDoc, self.xmlNode)
         }
         
-        let result = String.fromXmlChar(buffer.memory.content)
+        let result = String.fromXmlChar(buffer.pointee.content)
         xmlBufferFree(buffer)
         return result
     }()
@@ -216,7 +216,7 @@ public class XMLNode {
     
     /// Raw value of this node. Leading/trailing white spaces, new lines are kept.
     public lazy var value: String? = {
-        let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.memory.children, 1)
+        let valueChars = xmlNodeListGetString(self.document.xmlDoc, self.xmlNode.pointee.children, 1)
         if valueChars == nil { return nil }
         let valueString = String.fromXmlChar(valueChars)
         free(valueChars)
@@ -232,16 +232,16 @@ public class XMLNode {
     */
     public subscript(key: String) -> String? {
         get {
-            var attribute: xmlAttrPtr = self.xmlNode.memory.properties
+            var attribute: xmlAttrPtr = self.xmlNode.pointee.properties
             while attribute != nil {
-                if key == String.fromXmlChar(attribute.memory.name) {
-                    let contentChars = xmlNodeGetContent(attribute.memory.children)
+                if key == String.fromXmlChar(attribute.pointee.name) {
+                    let contentChars = xmlNodeGetContent(attribute.pointee.children)
                     if contentChars == nil { return nil }
                     let contentString = String.fromXmlChar(contentChars)
                     free(contentChars)
                     return contentString
                 }
-                attribute = attribute.memory.next
+                attribute = attribute.pointee.next
             }
             return nil
         }
@@ -250,11 +250,11 @@ public class XMLNode {
     /// The attributes dictionary of this node.
     public lazy var attributes: [String: String] = {
         var result = [String: String]()
-        var attribute: xmlAttrPtr = self.xmlNode.memory.properties;
+        var attribute: xmlAttrPtr = self.xmlNode.pointee.properties;
         while attribute != nil {
-            let key = String.fromXmlChar(attribute.memory.name)
+            let key = String.fromXmlChar(attribute.pointee.name)
             assert(key != nil, "key doesn't exist")
-            let valueChars = xmlNodeGetContent(attribute.memory.children)
+            let valueChars = xmlNodeGetContent(attribute.pointee.children)
             var value: String? = ""
             if valueChars != nil {
                 value = String.fromXmlChar(valueChars)
@@ -264,7 +264,7 @@ public class XMLNode {
             
             result[key!] = value!
 
-            attribute = attribute.memory.next
+            attribute = attribute.pointee.next
         }
         return result
     }()
@@ -287,7 +287,7 @@ public class XMLNode {
             return []
         }
         
-        xPathContext.memory.node = self.xmlNode
+        xPathContext.pointee.node = self.xmlNode
 
         let xPathObject = xPath.withCString { xPathPtr in
             xmlXPathEvalExpression(UnsafePointer<xmlChar>(xPathPtr), xPathContext)
@@ -299,16 +299,16 @@ public class XMLNode {
             return []
         }
         
-        let nodeSet = xPathObject.memory.nodesetval
-        if nodeSet == nil || nodeSet.memory.nodeNr == 0 || nodeSet.memory.nodeTab == nil {
+        let nodeSet = xPathObject.pointee.nodesetval
+        if nodeSet == nil || nodeSet.pointee.nodeNr == 0 || nodeSet.pointee.nodeTab == nil {
             // NodeSet is nil.
             xmlXPathFreeObject(xPathObject)
             return []
         }
         
         var resultNodes = [XMLNode]()
-        for i in 0 ..< Int(nodeSet.memory.nodeNr) {
-            let xmlNode = XMLNode(xmlNode: nodeSet.memory.nodeTab[i], xmlDocument: self.document, keepTextNode: keepTextNode)
+        for i in 0 ..< Int(nodeSet.pointee.nodeNr) {
+            let xmlNode = XMLNode(xmlNode: nodeSet.pointee.nodeTab[i], xmlDocument: self.document, keepTextNode: keepTextNode)
             resultNodes.append(xmlNode)
         }
         
@@ -450,7 +450,7 @@ public class XMLNode {
             if child.name == name {
                 results.append(child)
             }
-            results.appendContentsOf(descendantsWithName(name, node: child))
+            results.append(contentsOf: descendantsWithName(name, node: child))
         }
         return results
     }
@@ -523,7 +523,7 @@ public class XMLNode {
             if child[attributeName] == attributeValue {
                 results.append(child)
             }
-            results.appendContentsOf(descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: child))
+            results.append(contentsOf: descendantsWithAttributeName(attributeName, attributeValue: attributeValue, node: child))
         }
         return results
     }
@@ -539,14 +539,14 @@ public func ==(lhs: XMLNode, rhs: XMLNode) -> Bool {
 }
 
 // MARK: - SequenceType
-extension XMLNode: SequenceType {
-    public func generate() -> XMLNodeGenerator {
+extension XMLNode: Sequence {
+    public func makeIterator() -> XMLNodeGenerator {
         return XMLNodeGenerator(node: self)
     }
 }
 
 /// XMLNodeGenerator
-public class XMLNodeGenerator: GeneratorType {
+public class XMLNodeGenerator: IteratorProtocol {
     private var node: XMLNode?
     private var started = false
     public init(node: XMLNode) {
