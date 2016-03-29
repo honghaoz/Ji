@@ -71,7 +71,7 @@ The entire Zewo code base is licensed under MIT. By contributing to Zewo you are
 
 ## License
 
-**LibXML2** is released under the MIT license. See LICENSE for details.
+**XML** is released under the MIT license. See LICENSE for details.
 
 [swift-badge]: https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat
 [swift-url]: https://swift.org
