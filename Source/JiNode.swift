@@ -106,16 +106,14 @@ public class JiNode {
 			return _children
 		} else {
 			_children = [JiNode]()
-			
-			for var childNodePointer = xmlNode.memory.children;
-				childNodePointer != nil;
-				childNodePointer = childNodePointer.memory.next
-			{
-				if keepTextNode || xmlNodeIsText(childNodePointer) == 0 {
-					let childNode = JiNode(xmlNode: childNodePointer, jiDocument: document, keepTextNode: keepTextNode)
-					_children.append(childNode)
-				}
-			}
+			var childNodePointer = xmlNode.memory.children
+            while childNodePointer != nil {
+                if keepTextNode || xmlNodeIsText(childNodePointer) == 0 {
+                    let childNode = JiNode(xmlNode: childNodePointer, jiDocument: document, keepTextNode: keepTextNode)
+                    _children.append(childNode)
+                }
+                childNodePointer = childNodePointer.memory.next
+            }
 			_childrenHasBeenCalculated = true
 			_keepTextNodePrevious = keepTextNode
 			return _children
@@ -234,15 +232,17 @@ public class JiNode {
 	*/
 	public subscript(key: String) -> String? {
 		get {
-			for var attribute: xmlAttrPtr = self.xmlNode.memory.properties; attribute != nil; attribute = attribute.memory.next {
-				if key == String.fromXmlChar(attribute.memory.name) {
-					let contentChars = xmlNodeGetContent(attribute.memory.children)
-					if contentChars == nil { return nil }
-					let contentString = String.fromXmlChar(contentChars)
-					free(contentChars)
-					return contentString
-				}
-			}
+            var attribute: xmlAttrPtr = self.xmlNode.memory.properties
+            while attribute != nil {
+                if key == String.fromXmlChar(attribute.memory.name) {
+                    let contentChars = xmlNodeGetContent(attribute.memory.children)
+                    if contentChars == nil { return nil }
+                    let contentString = String.fromXmlChar(contentChars)
+                    free(contentChars)
+                    return contentString
+                }
+                attribute = attribute.memory.next
+            }
 			return nil
 		}
 	}
@@ -250,22 +250,21 @@ public class JiNode {
 	/// The attributes dictionary of this node.
 	public lazy var attributes: [String: String] = {
 		var result = [String: String]()
-		for var attribute: xmlAttrPtr = self.xmlNode.memory.properties;
-			attribute != nil;
-			attribute = attribute.memory.next
-		{
-			let key = String.fromXmlChar(attribute.memory.name)
-			assert(key != nil, "key doesn't exist")
-			let valueChars = xmlNodeGetContent(attribute.memory.children)
-			var value: String? = ""
-			if valueChars != nil {
-				value = String.fromXmlChar(valueChars)
-				assert(value != nil, "value doesn't exist")
-			}
-			free(valueChars)
-			
-			result[key!] = value!
-		}
+        var attribute: xmlAttrPtr = self.xmlNode.memory.properties
+        while attribute != nil {
+            let key = String.fromXmlChar(attribute.memory.name)
+            assert(key != nil, "key doesn't exist")
+            let valueChars = xmlNodeGetContent(attribute.memory.children)
+            var value: String? = ""
+            if valueChars != nil {
+                value = String.fromXmlChar(valueChars)
+                assert(value != nil, "value doesn't exist")
+            }
+            free(valueChars)
+            
+            result[key!] = value!
+            attribute = attribute.memory.next
+        }
 		return result
 	}()
 	
