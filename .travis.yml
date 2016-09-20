@@ -17,7 +17,7 @@ env:
     - OSX_FRAMEWORK_SCHEME="Ji OSX"
     - TVOS_FRAMEWORK_SCHEME="Ji tvOS"
     - WATCHOS_FRAMEWORK_SCHEME="Ji watchOS"
-    - EXAMPLE_SCHEME="iOS Example"
+    - EXAMPLE_SCHEME="Example"
 
   matrix:
     # iOS
