@@ -32,7 +32,7 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 1.2.0'
+pod 'Ji', '~> 1.3.0'
 ```
 
 Then, run the following command:
@@ -46,7 +46,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" ~> 1.2.0
+github "honghaoz/Ji" ~> 1.3.0
 ```
 
 ### Manually
