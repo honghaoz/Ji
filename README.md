@@ -20,7 +20,7 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.9+ / watchOS 2.0+ / tvOS 9.0+
-- Xcode 7.0+
+- Xcode 8.0+
 
 ## Installation
 
@@ -32,7 +32,7 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 1.3.0'
+pod 'Ji', '~> 2.0.0'
 ```
 
 Then, run the following command:
@@ -46,7 +46,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" ~> 1.3.0
+github "honghaoz/Ji" ~> 2.0.0
 ```
 
 ### Manually
@@ -82,7 +82,7 @@ And that's it!
 
 - Init with `NSURL`:
 ```swift
-let jiDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
+let jiDoc = Ji(htmlURL: URL(string: "http://www.apple.com/support")!)
 let titleNode = jiDoc?.xPath("//head/title")?.first
 print("title: \(titleNode?.content)") // title: Optional("Official Apple Support")
 ```
@@ -97,7 +97,7 @@ print("body: \(bodyNode?.content)") // body: Optional("Don\'t forget me this wee
 
 - Init with `NSData`:
 ```swift
-let googleIndexData = NSData(contentsOfURL: NSURL(string: "http://www.google.com")!)
+let googleIndexData = try? Data(contentsOf: URL(string: "http://www.google.com")!)
 if let googleIndexData = googleIndexData {
 	let jiDoc = Ji(htmlData: googleIndexData)!
 	let htmlNode = jiDoc.rootNode!
