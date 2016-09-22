@@ -80,7 +80,7 @@ And that's it!
 > import Ji
 > ```
 
-- Init with `NSURL`:
+- Init with `URL`:
 ```swift
 let jiDoc = Ji(htmlURL: URL(string: "http://www.apple.com/support")!)
 let titleNode = jiDoc?.xPath("//head/title")?.first
@@ -95,7 +95,7 @@ let bodyNode = jiDoc?.rootNode?.firstChildWithName("body")
 print("body: \(bodyNode?.content)") // body: Optional("Don\'t forget me this weekend!")
 ```
 
-- Init with `NSData`:
+- Init with `Data`:
 ```swift
 let googleIndexData = try? Data(contentsOf: URL(string: "http://www.google.com")!)
 if let googleIndexData = googleIndexData {
