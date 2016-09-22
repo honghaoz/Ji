@@ -16,9 +16,9 @@ class JiNodeHTMLTests: XCTestCase {
 	
 	override func setUp() {
 		super.setUp()
-		let testBundle = NSBundle(forClass: self.dynamicType)
-		let fileURL = testBundle.URLForResource("index", withExtension: "html")!
-		let htmlData = NSData(contentsOfURL: fileURL)!
+		let testBundle = Bundle(for: type(of: self))
+		let fileURL = testBundle.url(forResource: "index", withExtension: "html")!
+		let htmlData = try! Data(contentsOf: fileURL)
 		sampleHTMLDocument = Ji(htmlData: htmlData)
 		rootNode = sampleHTMLDocument.rootNode
 	}
@@ -119,7 +119,7 @@ class JiNodeHTMLTests: XCTestCase {
 	
 	// MARK: - parent
 	func testRootNodeParentTypeIsDoc() {
-		XCTAssertEqual(rootNode.parent!.type, JiNodeType.HtmlDocument)
+		XCTAssertEqual(rootNode.parent!.type, JiNodeType.htmlDocument)
 	}
 	
 	func testLastChildNodeParentIsRootNode() {
@@ -248,7 +248,7 @@ class JiNodeHTMLTests: XCTestCase {
 	// MARK: - Generator
 	func testSequenceGenerator() {
 		let head = rootNode.firstChild!
-		for (index, node) in head.enumerate() {
+		for (index, node) in head.enumerated() {
 			if index == 0 {
 				XCTAssertEqual(node["http-equiv"]!, "content-type")
 			} else if index == 1 {
@@ -263,6 +263,6 @@ class JiNodeHTMLTests: XCTestCase {
 	
 	// MARK: - CustomStringConvertible
 	func testCustomStringConvertible() {
-		XCTAssertEqual("\(rootNode)", rootNode!.rawContent!)
+		XCTAssertEqual("\(rootNode!)", rootNode.rawContent!)
 	}
 }
