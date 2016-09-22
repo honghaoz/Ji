@@ -15,9 +15,9 @@ class htmlXPathTests: XCTestCase {
 	
 	override func setUp() {
 		super.setUp()
-		let testBundle = NSBundle(forClass: htmlXPathTests.self)
-		let testFileURL = testBundle.URLForResource("index", withExtension: "html", subdirectory: nil)
-		let data = NSData(contentsOfURL: testFileURL!)
+		let testBundle = Bundle(for: htmlXPathTests.self)
+		let testFileURL = testBundle.url(forResource: "index", withExtension: "html", subdirectory: nil)
+		let data = try? Data(contentsOf: testFileURL!)
 		sampleHTML = Ji(htmlData: data!)
 	}
 	

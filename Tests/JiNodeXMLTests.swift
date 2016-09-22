@@ -16,7 +16,7 @@ class JiNodeXMLTests: XCTestCase {
 	
 	override func setUp() {
 		super.setUp()
-		let xmlFileURL = NSURL(string: "sample-menu.xml", relativeToURL: NSBundle(forClass: self.dynamicType).resourceURL)!
+		let xmlFileURL = URL(string: "sample-menu.xml", relativeTo: Bundle(for: type(of: self)).resourceURL)!
 		sampleMenuXMLDocument = Ji(xmlURL: xmlFileURL)
 		rootNode = sampleMenuXMLDocument.rootNode
 	}
@@ -167,7 +167,7 @@ class JiNodeXMLTests: XCTestCase {
 	
 	// MARK: - parent
 	func testRootNodeParentTypeIsDoc() {
-		XCTAssertEqual(rootNode.parent!.type, JiNodeType.Document)
+		XCTAssertEqual(rootNode.parent!.type, JiNodeType.document)
 	}
 	
 	func testLastChildNodeParentIsRootNode() {
@@ -354,7 +354,7 @@ class JiNodeXMLTests: XCTestCase {
 	
 	// MARK: - Generator
 	func testSequenceGenerator() {
-		for (index, node) in rootNode!.enumerate() {
+		for (index, node) in rootNode!.enumerated() {
 			if index == 2 {
 				XCTAssertEqual(node.name!, "not_food")
 			} else if index == 3 {

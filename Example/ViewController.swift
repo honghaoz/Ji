@@ -14,7 +14,8 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Init with data
-		let googleIndexData = NSData(contentsOfURL: NSURL(string: "http://www.google.com")!)
+		
+		let googleIndexData = try? Data(contentsOf: URL(string: "http://www.google.com")!)
 		if let googleIndexData = googleIndexData {
 			let jiDoc = Ji(htmlData: googleIndexData)!
 			let htmlNode = jiDoc.rootNode!
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
 		print("")
 		
 		// Init with URL
-		let jiAppleSupportDoc = Ji(htmlURL: NSURL(string: "http://www.apple.com/support")!)
+		let jiAppleSupportDoc = Ji(htmlURL: URL(string: "http://www.apple.com/support")!)
 		let titleNode = jiAppleSupportDoc?.xPath("//head/title")?.first
 		print("title: \(titleNode?.content)")
 		
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
 		print("")
 		
 		// Just for fun
-		let 戟文档 = 戟(htmlURL: NSURL(string: "https://cocoapods.org/pods/Ji")!)
+		let 戟文档 = 戟(htmlURL: URL(string: "https://cocoapods.org/pods/Ji")!)
 		let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
 		print("作者(Author): \(attribution?.content)")
 	}
