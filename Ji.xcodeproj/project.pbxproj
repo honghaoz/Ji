@@ -579,8 +579,7 @@
 				E43D756E1B8FEC3B00702114 /* xpathInternals.h */,
 				E43D756F1B8FEC3B00702114 /* xpointer.h */,
 			);
-			name = "Ji-libxml";
-			path = "Source/Ji-libxml";
+			path = "Ji-libxml";
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
