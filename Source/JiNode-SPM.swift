@@ -24,6 +24,7 @@
 //  SOFTWARE.
 
 import Foundation
+import CLibXML2
 
 public typealias 戟节点 = JiNode
 

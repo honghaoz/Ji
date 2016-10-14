@@ -24,6 +24,7 @@
 //  SOFTWARE.
 
 import Foundation
+import CLibXML2
 
 extension String {
 	/**
