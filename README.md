@@ -15,7 +15,7 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 - [x] Build XML/HTML Tree and Navigate
 - [x] XPath Query Supported
 - [x] Comprehensive Unit Test Coverage
-- [ ] CSS Selector (on going)
+- [x] Support Swift Package Manager (SPM). Linux compatible.
 
 ## Requirements
 
@@ -49,8 +49,23 @@ To integrate `Ji` into your Xcode project using Carthage, specify it in your `Ca
 github "honghaoz/Ji" ~> 2.0.0
 ```
 
-### Swift Package Manager (SPM)
-You can use [The Swift Package Manager](https://swift.org/package-manager) to install `Ji` by adding the proper description to your `Package.swift` file:
+### [Swift Package Manager (SPM)](https://swift.org/package-manager)
+
+#### Prerequisites
+- OSX
+
+```sh
+brew install libxml2
+brew link --force libxml2
+```
+
+- Linux
+```
+$ apt-get install libxml2-dev
+```
+
+#### Update `Package.swift`
+To integrate `Ji` in your project, add the proper description to your `Package.swift` file:
 ```swift
 import PackageDescription
 
