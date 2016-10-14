@@ -26,6 +26,13 @@
 import Foundation
 import CLibXML2
 
+#if os(Linux)
+	import CoreFoundation
+	import Glibc
+#else
+	import Darwin.C
+#endif
+
 public typealias 戟节点 = JiNode
 
 /**

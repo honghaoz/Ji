@@ -26,6 +26,13 @@
 import Foundation
 import CLibXML2
 
+#if os(Linux)
+	import CoreFoundation
+	import Glibc
+#else
+	import Darwin.C
+#endif
+
 public typealias 戟 = Ji
 
 /// Ji document
@@ -65,7 +72,7 @@ open class Ji {
 			self.data = data
 			self.encoding = encoding
 			
-			let cBuffer = (data as NSData).bytes.bindMemory(to: CChar.self, capacity: data.count)
+			let cBuffer = (data as! NSData).bytes.bindMemory(to: CChar.self, capacity: data.count)
 			let cSize = CInt(data.count)
 			let cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding.rawValue)
 			let cfEncodingAsString: CFString = CFStringConvertEncodingToIANACharSetName(cfEncoding)
