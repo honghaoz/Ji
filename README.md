@@ -49,6 +49,19 @@ To integrate `Ji` into your Xcode project using Carthage, specify it in your `Ca
 github "honghaoz/Ji" ~> 2.0.0
 ```
 
+### Swift Package Manager (SPM)
+You can use [The Swift Package Manager](https://swift.org/package-manager) to install `Ji` by adding the proper description to your `Package.swift` file:
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "YOUR_PROJECT_NAME",
+    dependencies: [
+        .Package(url: "https://github.com/honghaoz/Ji.git", majorVersion: 2)
+    ]
+)
+```
+
 ### Manually
 
 If you prefer not to use a dependency manager, you can integrate Ji into your project manually.
