@@ -30,12 +30,12 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Ji'
 
   s.subspec 'Ji' do |ss|
-    ss.source_files = 'Source/*.swift'
+    ss.source_files = ['Source/Ji.swift', 'Source/JiHelper.swift', 'Source/JiNode.swift']
     ss.dependency 'Ji/Ji-libxml'
   end
 
   s.subspec 'Ji-libxml' do |ss|
-    ss.source_files = 'Source/Ji-libxml/*.{h}'
+    ss.source_files = 'Ji-libxml/*.{h}'
   end
 
 end
