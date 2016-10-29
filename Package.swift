@@ -11,6 +11,7 @@ let package = Package(
 		"Source/Ji.swift",
 		"Source/JiHelper.swift",
 		"Source/JiNode.swift",
+		"Tests/",
 		"Tests/Info.plist",
 		"Tests/TestData"
 	]
