@@ -54,13 +54,13 @@ github "honghaoz/Ji" ~> 2.0.0
 #### Prerequisites
 - OSX
 
-```sh
+```bash
 brew install libxml2
 brew link --force libxml2
 ```
 
 - Linux
-```
+```bash
 $ apt-get install libxml2-dev
 ```
 
@@ -87,7 +87,7 @@ If you prefer not to use a dependency manager, you can integrate Ji into your pr
     - Under **Build Settings**, in **Other Linker Flags**, add `-lxml2`
 - Import `libxml` headers:
     - Copy the those import statements:
-    ```swift
+    ```objective-c
     #import <libxml/tree.h>
     #import <libxml/parser.h>
     #import <libxml/HTMLtree.h>
