@@ -288,7 +288,7 @@ open class JiNode {
 		
 		xPathContext?.pointee.node = self.xmlNode
 		
-		let xPathObject = xmlXPathEvalExpression(UnsafeRawPointer(xPath.cString(using: String.Encoding.utf8)!).assumingMemoryBound(to: xmlChar.self), xPathContext)
+		let xPathObject = xmlXPathEvalExpression(xPath, xPathContext)
 		xmlXPathFreeContext(xPathContext)
 		if xPathObject == nil {
 			// Unable to evaluate XPath.
