@@ -9,7 +9,7 @@ env:
 
     - WORKSPACE=Ji.xcworkspace
     - IOS_FRAMEWORK_SCHEME="Ji iOS"
-    - OSX_FRAMEWORK_SCHEME="Ji OSX"
+    - MACOS_FRAMEWORK_SCHEME="Ji OSX"
     - TVOS_FRAMEWORK_SCHEME="Ji tvOS"
     - WATCHOS_FRAMEWORK_SCHEME="Ji watchOS"
     - EXAMPLE_SCHEME="Example"
