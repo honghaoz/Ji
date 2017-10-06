@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Ji"
-  s.version          = "2.0.1"
+  s.version          = "2.1.0"
   s.summary          = "Ji (戟) is a Swift XML/HTML parser."
   s.description      = <<-DESC
                        Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.

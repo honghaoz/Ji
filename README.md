@@ -2,7 +2,7 @@
     <img src="Ji.png" width=220 alt="Ji: a Swift XML/HTML parser" />
 </h3>
 
-# Ji 戟 
+# Ji 戟
 [![CI Status](https://travis-ci.org/honghaoz/Ji.svg?branch=master)](https://travis-ci.org/honghaoz/Ji)
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/Ji.svg?style=flat)](http://cocoapods.org/pods/Ji)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-0473B3.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -32,7 +32,7 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 2.0.0'
+pod 'Ji', '~> 2.1.0'
 ```
 
 Then, run the following command:
@@ -46,7 +46,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" ~> 2.0.0
+github "honghaoz/Ji" ~> 2.1.0
 ```
 
 ### [Swift Package Manager (SPM)](https://swift.org/package-manager)
@@ -72,7 +72,7 @@ import PackageDescription
 let package = Package(
     name: "YOUR_PROJECT_NAME",
     dependencies: [
-        .Package(url: "https://github.com/honghaoz/Ji.git", majorVersion: 2)
+        .Package(url: "https://github.com/honghaoz/Ji.git", majorVersion: 2, minor: 1)
     ]
 )
 ```
@@ -130,7 +130,7 @@ if let googleIndexData = googleIndexData {
 	let jiDoc = Ji(htmlData: googleIndexData)!
 	let htmlNode = jiDoc.rootNode!
 	print("html tagName: \(htmlNode.tagName)") // html tagName: Optional("html")
-	
+
 	let aNodes = jiDoc.xPath("//body//a")
 	if let firstANode = aNodes?.first {
 		print("first a node tagName: \(firstANode.name)") // first a node tagName: Optional("a")
