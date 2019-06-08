@@ -58,11 +58,11 @@ public enum JiNodeType: Int {
 /// Ji node
 open class JiNode {
 	/// The xmlNodePtr for this node.
-	open let xmlNode: xmlNodePtr
+	let xmlNode: xmlNodePtr
 	/// The Ji document contians this node.
-	open unowned let document: Ji
+	unowned let document: Ji
 	/// Node type.
-	open let type: JiNodeType
+	let type: JiNodeType
 	
 	/// A helper flag to get whether keepTextNode has been changed.
 	fileprivate var _keepTextNodePrevious = false

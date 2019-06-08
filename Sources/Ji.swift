@@ -24,11 +24,6 @@
 //  SOFTWARE.
 
 import Foundation
-import CLibXML2
-
-#if os(Linux)
-	import CoreFoundation
-#endif
 
 public typealias 戟 = Ji
 
@@ -70,7 +65,7 @@ open class Ji {
 			self.encoding = encoding
 			
 			let bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: data.count)
-			defer { bytes.deallocate(capacity: data.count) }
+			defer { bytes.deallocate() }
 			data.copyBytes(to: bytes, count: data.count)
 			let cBuffer = UnsafeRawPointer(bytes).assumingMemoryBound(to: CChar.self)
 			
