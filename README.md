@@ -31,7 +31,7 @@ To integrate **Ji** into your Xcode project using CocoaPods, specify it in your 
 ```ruby
 use_frameworks!
 
-pod 'Ji', '~> 4.2.0'
+pod 'Ji', '~> 5.0.0'
 ```
 
 Then, run the following command:
@@ -45,7 +45,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" ~> 4.2.0
+github "honghaoz/Ji" ~> 5.0.0
 ```
 
 ### [Swift Package Manager (SPM)](https://swift.org/package-manager)
@@ -66,13 +66,13 @@ $ sudo apt-get install libxml2-dev
 #### Update `Package.swift`
 To integrate `Ji` in your project, add the proper description to your `Package.swift` file:
 ```swift
-// swift-tools-version:4.2
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(
     name: "YOUR_PROJECT_NAME",
     dependencies: [
-        .package(url: "https://github.com/honghaoz/Ji.git", from: "4.2.0")
+        .package(url: "https://github.com/honghaoz/Ji.git", from: "5.0.0")
     ],
     targets: [
         .target(

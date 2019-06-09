@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Ji"
-  s.version          = "4.2.0"
+  s.version          = "5.0.0"
   s.summary          = "Ji (戟) is a Swift XML/HTML parser."
   s.description      = <<-DESC
                        Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "2.0"
 
   s.requires_arc     = true
-  s.swift_versions   = '4.2'
+  s.swift_versions   = '5.0'
   s.source_files     = ['Sources/Ji/**/*.*']
   s.preserve_path    = 'Sources/Clibxml2/*'
   s.xcconfig         = {
