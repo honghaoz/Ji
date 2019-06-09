@@ -24,10 +24,12 @@ Pod::Spec.new do |s|
 
   s.requires_arc     = true
   s.source_files     = ['Sources/Ji/**/*.*']
-  s.preserve_path    = 'Sources/Clibxml2/*'
+  s.preserve_path    = 'Sources/Clibxml2/module.modulemap'
+  s.module_map = 'Sources/Clibxml2/module.modulemap'
+  # s.pod_target_xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Sources/Clibxml2' }
   s.xcconfig         = {
                          'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2',
-                         'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Sources/Clibxml2',
+                         'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/Sources/Clibxml2',
                        }
 
 end

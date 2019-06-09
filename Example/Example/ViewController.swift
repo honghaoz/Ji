@@ -7,51 +7,50 @@
 //
 
 import UIKit
-import Ji
 
 class ViewController: UIViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		// Init with data
-		
-		let googleIndexData = try? Data(contentsOf: URL(string: "http://www.google.com")!)
-		if let googleIndexData = googleIndexData {
-			let jiDoc = Ji(htmlData: googleIndexData)!
-			let htmlNode = jiDoc.rootNode!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Init with data
+
+        let googleIndexData = try? Data(contentsOf: URL(string: "http://www.google.com")!)
+        if let googleIndexData = googleIndexData {
+            let jiDoc = Ji(htmlData: googleIndexData)!
+            let htmlNode = jiDoc.rootNode!
             print("html tagName: \(String(describing: htmlNode.tagName))")
-			
-			let aNodes = jiDoc.xPath("//body//a")
-			if let firstANode = aNodes?.first {
+
+            let aNodes = jiDoc.xPath("//body//a")
+            if let firstANode = aNodes?.first {
                 print("first a node tagName: \(String(describing: firstANode.name))")
-				let href = firstANode["href"]
+                let href = firstANode["href"]
                 print("first a node href: \(String(describing: href))")
-			}
-		} else {
-			print("google.com is inaccessible")
-		}
-		
-		print("")
-		
-		// Init with URL
-		let jiAppleSupportDoc = Ji(htmlURL: URL(string: "http://www.apple.com/support")!)
-		let titleNode = jiAppleSupportDoc?.xPath("//head/title")?.first
+            }
+        } else {
+            print("google.com is inaccessible")
+        }
+
+        print("")
+
+        // Init with URL
+        let jiAppleSupportDoc = Ji(htmlURL: URL(string: "http://www.apple.com/support")!)
+        let titleNode = jiAppleSupportDoc?.xPath("//head/title")?.first
         print("title: \(String(describing: titleNode?.content))")
-		
-		print("")
-		
-		// Init with String
-		let xmlString = "<?xml version='1.0' encoding='UTF-8'?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>"
-		let xmlDoc = Ji(xmlString: xmlString)
-		let bodyNode = xmlDoc?.rootNode?.firstChildWithName("body")
+
+        print("")
+
+        // Init with String
+        let xmlString = "<?xml version='1.0' encoding='UTF-8'?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>"
+        let xmlDoc = Ji(xmlString: xmlString)
+        let bodyNode = xmlDoc?.rootNode?.firstChildWithName("body")
         print("body: \(String(describing: bodyNode?.content))")
-		
-		print("")
-		
-		// Just for fun
-		let 戟文档 = 戟(htmlURL: URL(string: "https://cocoapods.org/pods/Ji")!)
-		let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
+
+        print("")
+
+        // Just for fun
+        let 戟文档 = 戟(htmlURL: URL(string: "https://cocoapods.org/pods/Ji")!)
+        let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
         print("作者(Author): \(String(describing: attribution?.content))")
-	}
+    }
 }
