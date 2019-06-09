@@ -14,7 +14,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         // Init with data
-
         let googleIndexData = try? Data(contentsOf: URL(string: "http://www.google.com")!)
         if let googleIndexData = googleIndexData {
             let jiDoc = Ji(htmlData: googleIndexData)!

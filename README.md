@@ -12,9 +12,9 @@
 Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 
 ## Features
-- [x] Build XML/HTML Tree and Navigate
-- [x] XPath Query Supported
-- [x] Comprehensive Unit Test Coverage
+- [x] Build XML/HTML Tree and Navigate.
+- [x] XPath Query Supported.
+- [x] Comprehensive Unit Test Coverage.
 - [x] Support Swift Package Manager (SPM). Linux compatible.
 
 ## Requirements
@@ -29,10 +29,9 @@ Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 To integrate **Ji** into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-pod 'Ji', '~> 2.1.0'
+pod 'Ji', '~> 4.2.0'
 ```
 
 Then, run the following command:
@@ -46,7 +45,7 @@ $ pod install
 To integrate `Ji` into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "honghaoz/Ji" ~> 2.1.0
+github "honghaoz/Ji" ~> 4.2.0
 ```
 
 ### [Swift Package Manager (SPM)](https://swift.org/package-manager)
@@ -61,18 +60,26 @@ brew link --force libxml2
 
 - Linux
 ```bash
-$ apt-get install libxml2-dev
+$ sudo apt-get install libxml2-dev
 ```
 
 #### Update `Package.swift`
 To integrate `Ji` in your project, add the proper description to your `Package.swift` file:
 ```swift
+// swift-tools-version:4.2
 import PackageDescription
 
 let package = Package(
     name: "YOUR_PROJECT_NAME",
     dependencies: [
-        .Package(url: "https://github.com/honghaoz/Ji.git", majorVersion: 2, minor: 1)
+        .package(url: "https://github.com/honghaoz/Ji.git", from: "4.2.0")
+    ],
+    targets: [
+        .target(
+            name: "YOUR_TARGET_NAME",
+            dependencies: ["Ji"]
+        ),
+        ...
     ]
 )
 ```
@@ -81,25 +88,13 @@ let package = Package(
 
 If you prefer not to use a dependency manager, you can integrate Ji into your project manually.
 
-- Configure Xcode project:
-    - Open project, select the target, under **General**, in **Linked Frameworks and Libraries**, add `libxml2.2.dylib` and `libxml2.dylib`
-    - Under **Build Settings**, in **Header Search Paths**, add `$(SDKROOT)/usr/include/libxml2`
-    - Under **Build Settings**, in **Other Linker Flags**, add `-lxml2`
-- Import `libxml` headers:
-    - Copy the those import statements:
-    ```objective-c
-    #import <libxml/tree.h>
-    #import <libxml/parser.h>
-    #import <libxml/HTMLtree.h>
-    #import <libxml/HTMLparser.h>
-    #import <libxml/xpath.h>
-    #import <libxml/xpathInternals.h>
-    #import <libxml/xmlerror.h>
-    ```
-    and paste them into your `[Modulename]-Bridging-Header.h`
-- Drag `Ji.swift`, `JiHelper.swift` and `JiNode.swift` in [**Source**](https://github.com/honghaoz/Ji/tree/master/Source) folder into your project.
+- Add sources into your project:
+  - Drag `Ji.swift`, `JiHelper.swift` and `JiNode.swift` in [**Sources/Ji**](https://github.com/honghaoz/Ji/tree/master/Sources/Ji) folder into your project.
+  - Drag [**Sources/Clibxml2**](https://github.com/honghaoz/Ji/tree/master/Sources/Clibxml2) folder into your project.
 
-And that's it!
+- Configure your project:
+    - Open project, select the target, under **Build Settings**, in **Header Search Paths**, add `$(SDKROOT)/usr/include/libxml2`
+    - Under **Build Settings**, in **Import Paths**, add `$(SRCROOT)/Clibxml2` (Make sure this is the path to the `Clibxml2` folder)
 
 ## Usage
 
@@ -112,7 +107,7 @@ And that's it!
 ```swift
 let jiDoc = Ji(htmlURL: URL(string: "http://www.apple.com/support")!)
 let titleNode = jiDoc?.xPath("//head/title")?.first
-print("title: \(titleNode?.content)") // title: Optional("Official Apple Support")
+print("title: \(String(describing: titleNode?.content))") // title: Optional("Official Apple Support")
 ```
 
 - Init with `String`:
@@ -120,37 +115,37 @@ print("title: \(titleNode?.content)") // title: Optional("Official Apple Support
 let xmlString = "<?xml version='1.0' encoding='UTF-8'?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>"
 let jiDoc = Ji(xmlString: xmlString)
 let bodyNode = jiDoc?.rootNode?.firstChildWithName("body")
-print("body: \(bodyNode?.content)") // body: Optional("Don\'t forget me this weekend!")
+print("body: \(String(describing: bodyNode?.content))") // body: Optional("Don\'t forget me this weekend!")
 ```
 
 - Init with `Data`:
 ```swift
 let googleIndexData = try? Data(contentsOf: URL(string: "http://www.google.com")!)
 if let googleIndexData = googleIndexData {
-	let jiDoc = Ji(htmlData: googleIndexData)!
-	let htmlNode = jiDoc.rootNode!
-	print("html tagName: \(htmlNode.tagName)") // html tagName: Optional("html")
+    let jiDoc = Ji(htmlData: googleIndexData)!
+    let htmlNode = jiDoc.rootNode!
+    print("html tagName: \(String(describing: htmlNode.tagName))") // html tagName: Optional("html")
 
-	let aNodes = jiDoc.xPath("//body//a")
-	if let firstANode = aNodes?.first {
-		print("first a node tagName: \(firstANode.name)") // first a node tagName: Optional("a")
-		let href = firstANode["href"]
-		print("first a node href: \(href)") // first a node href: Optional("http://www.google.ca/imghp?hl=en&tab=wi")
-	}
+    let aNodes = jiDoc.xPath("//body//a")
+    if let firstANode = aNodes?.first {
+        print("first a node tagName: \(String(describing: firstANode.name))") // first a node tagName: Optional("a")
+        let href = firstANode["href"]
+        print("first a node href: \(String(describing: href))") // first a node href: Optional("http://www.google.ca/imghp?hl=en&tab=wi")
+    }
 } else {
-	print("google.com is inaccessible")
+    print("google.com is inaccessible")
 }
 
-let 戟文档 = 戟(htmlURL: NSURL(string: "https://cocoapods.org/pods/Ji")!)
+let 戟文档 = 戟(htmlURL: URL(string: "https://cocoapods.org/pods/Ji")!)
 let attribution = 戟文档?.xPath("//ul[@class='attribution']")?.first
-print("作者(Author): \(attribution?.content)")
+print("作者(Author): \(String(describing: attribution?.content))") // 作者(Author): Optional("ByHonghao Zhang")
 ```
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Honghao Zhang (张宏昊)
+Copyright (c) 2019 Honghao Zhang (张宏昊)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
