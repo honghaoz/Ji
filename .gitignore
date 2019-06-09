@@ -32,11 +32,6 @@ DerivedData
 
 Carthage/Build
 
-# Others
-journal.md
-Resources/
-
 # SPM
 /.build
 /Packages
-/*.xcodeproj

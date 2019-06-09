@@ -1,0 +1,16 @@
+PODS:
+  - Ji (4.2.0)
+
+DEPENDENCIES:
+  - Ji (from `../`)
+
+EXTERNAL SOURCES:
+  Ji:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Ji: 6205edcddc7fae7c8b609a55376da2196a058747
+
+PODFILE CHECKSUM: 1ef07cbf365d584aea362a4d8f8a6b676ea35ebc
+
+COCOAPODS: 1.7.0.rc.1

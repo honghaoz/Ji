@@ -11,19 +11,17 @@ import XCTest
 @testable import Ji
 
 class JiTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-		// Setup here
-    }
-	
-    override func tearDown() {
-        // Put teardown code here.
-        super.tearDown()
-    }
-	
+	static var allTests = [
+        ("testInitWithLocalXMLURLSucceed", testInitWithLocalXMLURLSucceed),
+        ("testInitWithRemoteXMLURLSucceed", testInitWithRemoteXMLURLSucceed),
+        ("testInitWithInvalidURLFailed", testInitWithInvalidURLFailed),
+        ("testRootNodeNotNil", testRootNodeNotNil),
+        ("testPrintable", testPrintable),
+    ]
+
 	// MARK: - Init
 	func testInitWithLocalXMLURLSucceed() {
-		let url = URL(string: "sample-menu.xml", relativeTo: Bundle(for: type(of: self)).resourceURL)!
+        let url = URL(fileURLWithPath: Resource.sampleXMLPath!)
 		let document = Ji(xmlURL: url)
 		XCTAssertNotNil(document)
 	}
@@ -37,23 +35,25 @@ class JiTests: XCTestCase {
 			NSLog("WARNING: simple.xml is not found!")
 		}
 	}
-	
+
 	func testInitWithInvalidURLFailed() {
 		let url = URL(string: "dummyURL")!
 		let document = Ji(xmlURL: url)
 		XCTAssertNil(document)
 	}
-	
+
 	// MARK: Root Node
 	func testRootNodeNotNil() {
-		let url = URL(string: "sample-menu.xml", relativeTo: Bundle(for: type(of: self)).resourceURL)!
+		// let url = URL(string: "sample-menu.xml", relativeTo: Bundle(for: type(of: self)).resourceURL)!
+        let url = URL(fileURLWithPath: Resource.sampleXMLPath!)
 		let document = Ji(xmlURL: url)
 		XCTAssertNotNil(document!.rootNode)
 	}
-	
+
 	// MARK: - Printable
 	func testPrintable() {
-		let url = URL(string: "sample-menu.xml", relativeTo: Bundle(for: type(of: self)).resourceURL)!
+		// let url = URL(string: "sample-menu.xml", relativeTo: Bundle(for: type(of: self)).resourceURL)!
+        let url = URL(fileURLWithPath: Resource.sampleXMLPath!)
 		let document = Ji(xmlURL: url)
 		XCTAssertNotNil(document)
 		XCTAssertEqual("\(document!)", document!.rootNode!.rawContent!)
