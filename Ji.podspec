@@ -6,9 +6,9 @@ Pod::Spec.new do |s|
                        Ji (戟) is a Swift wrapper on libxml2 for parsing XML/HTML.
 
                        Features
-                       * Build an XML/HTML tree and navigate the tree
-                       * Evaluate XPath expression and get results nodes
-                       * Comprehensive Unit Test Coverage
+                       * Build an XML/HTML tree and navigate the tree.
+                       * Evaluate XPath expression and get results nodes.
+                       * Comprehensive Unit Test Coverage.
                        * Support Swift Package Manager (SPM). Linux compatible.
 
                        DESC
@@ -23,13 +23,12 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "2.0"
 
   s.requires_arc     = true
+  s.swift_versions   = '4.2'
   s.source_files     = ['Sources/Ji/**/*.*']
-  s.preserve_path    = 'Sources/Clibxml2/module.modulemap'
-  s.module_map = 'Sources/Clibxml2/module.modulemap'
-  # s.pod_target_xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Sources/Clibxml2' }
+  s.preserve_path    = 'Sources/Clibxml2/*'
   s.xcconfig         = {
                          'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2',
-                         'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/Sources/Clibxml2',
+                         'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/Ji/Sources/Clibxml2',
                        }
 
 end
