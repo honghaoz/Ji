@@ -24,6 +24,7 @@
 //  SOFTWARE.
 
 import Foundation
+import CoreFoundation
 import Clibxml2
 
 public typealias 戟 = Ji
